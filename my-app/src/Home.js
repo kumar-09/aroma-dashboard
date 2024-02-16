@@ -1,7 +1,12 @@
+import FoodList from "./FoodList";
+import Cart from "./Cart";
+
 const Home = () => {
     return (
         <div className="home">
-            <h2>Homepage</h2>
+            
+            <FoodList/>
+            <Cart/>
         </div>
     );
 }

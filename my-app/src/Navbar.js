@@ -1,5 +1,5 @@
 import Searchbar from "./Searchbar.js";
-
+import {Link} from 'react-router-dom'
 const Navbar = () => {
     var loggedIn=false
     var loginStatus="Login"
@@ -12,10 +12,10 @@ const Navbar = () => {
                 Get delicious food delivered to your hostel!
             </div>
             <nav className = "navbar">
-                <h1>Aroma's Delight Dhaba</h1>
+               <Link to='/'> <h1>Aroma's Delight Dhaba</h1></Link>
                 {/* <input className="search" type="text" placeholder="Search..." /> */}
                 <Searchbar/>
-                <a href="/Categories">Categories</a>
+               <Link to='/Categories'>Categories</Link>
                 <a href="/">Cart</a>
                 <a href="/">{ loginStatus }</a>
             </nav>
