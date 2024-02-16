@@ -47,7 +47,7 @@ const Home = () => {
         
         <div className="home">
             <FoodList foodItems = {list} subtractOne = {subtractOneMenu} addOne = {addOne}/>
-            <CartDialog foodItems = {list} subtractOne={subtractOne} addOne={addOne} cartList={cart}/>
+            <CartDialog subtractOne={subtractOne} addOne={addOne} cartList={cart}/>
         </div>
     );
 }
