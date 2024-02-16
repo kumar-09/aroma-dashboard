@@ -1,0 +1,66 @@
+
+
+.Fooditem {
+    max-width: 500px;  
+    margin:auto;
+    display:flex;
+    width:90%;
+    padding:16px;
+}
+.Item-image {
+width: 120px;
+height: 120px;
+text-align: center;
+border: 1px solid black;
+border-radius: 5%;
+}
+.Item-image>img {
+   max-height: 100%; 
+}
+.Item-info {
+    flex-grow: 1;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.Item-name {
+    font-size: 18px;
+    
+}
+.Item-info-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.Add-item {
+    display: flex;
+    width:80px;
+    height:28px ;
+    border: 2px solid #ff5050;
+    border-radius: 3px ;
+}
+.Init-add-btn {
+    width:100%;
+    height: 100%;
+}
+.After-Init-btn {
+    width:33.33%;
+    text-align: center;
+    
+}
+.Add-item>button{
+  border:none;
+  background-color: transparent;
+
+}
+.Add-item>div {
+background-color: #ff50501A;
+}
+@media screen and (max-width:500px) {
+    .Item-image {
+        height : 96px;
+    }
+}

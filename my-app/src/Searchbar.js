@@ -40,7 +40,7 @@ const Searchbar = () => {
     return (
        <div className="searchbox">
           <input
-             Type="search"
+             type="search"
              placeholder="Search..."
              onChange={handleChange}
              value={searchInput}

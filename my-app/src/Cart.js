@@ -52,7 +52,7 @@ function Cart(){
                 {
                     cart.map(
                         (item) => 
-                        <CartItem foodItem = {item.dish} add = {addOne} subtract = {subtractOne} number = {item.quantity}/>
+                        <CartItem foodItem = {item.dish} add = {addOne} subtract = {subtractOne} number = {item.quantity} key={item.dish.id}/>
                     )
                     
                 }
