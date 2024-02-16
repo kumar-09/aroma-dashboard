@@ -43,6 +43,12 @@ function Cart(){
         return (
             <div className="cart">
                 <h2 className="cartHeading">Cart</h2>
+                <h3 className="num-of-items">
+                    {   
+                        cart.reduce((sum, item) => sum + item.quantity, 0)
+                    }
+                </h3>
+                <span className="num-of-items"></span>
                 {
                     cart.map(
                         (item) => 
@@ -50,6 +56,11 @@ function Cart(){
                     )
                     
                 }
+                <h3 className="total">
+                    Total: &#8377;{   
+                        cart.reduce((sum, item) => sum + item.quantity * item.dish.cost, 0)
+                    }
+                </h3>
             </div>
         )
     }
