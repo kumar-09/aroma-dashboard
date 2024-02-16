@@ -4,7 +4,11 @@ import CartItem from "./cartItem";
 // cart array has objects of the form {dish, quantity}
 
 function Cart(){
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState([
+        {dish: { name: "pav bhaji", cost: 60, id: 1 }, quantity: 3},
+        {dish: { name: "frankie", cost: 20, id: 2},quantity: 2},
+        {dish: { name: "tea", cost: 10, id: 3}, quantity: 4}]
+    );
 
     const subtractOne = (id) =>{
         const tempCart = cart.map((item) => {
