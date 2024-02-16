@@ -1,13 +1,94 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+  margin:0;
+  font-family: "Montserrat";
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media screen and (max-width:700px) {
+  .head{
+    font-size: 10px;
+  }
+}
+
+html{
+  width:100%;
+}
+body{
+  width:100%;
+}
+.app{
+  width:100%;
+}
+
+.searchbox{
+  width: 20%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search{
+  background: url("/public/search-icon.png") top left     no-repeat;
+  filter: invert(1) brightness(50%);
+  background-size: 7%;
+  background-position: 10px;
+  margin-left:20px;
+  margin-right:20px;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  background-color:rgba(128, 128, 128, 0.434);
+  border:none;
+  border-radius:20px;
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-right:10px;
+  padding-left:40px;
+}
+.head{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  width:100%;
+  font-size: 15px;
+}
+.banner{
+  display:flex;
+  align-items: center;
+  align-self:left;
+  color: white;
+  font-weight:500;
+  width: 100%;
+  padding-top:15px;
+  padding-bottom:15px;
+  justify-content: center;
+  background: #ff5050;
+}
+.navbar {
+  padding-left: 20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  display: flex;
+  width:100%;
+  align-items:center;
+  justify-content: space-around;
+  flex-wrap:wrap;
+  border-bottom: 1px solid #f2f2f2;
+}
+.navbar h1 {
+  color: #f1356d;
+}
+.navbar .links {
+  margin-left: auto;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #f1356d;
+}
+.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
 }
