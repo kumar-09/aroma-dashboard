@@ -1,32 +1,10 @@
 
 import './ItemsComponent.css'
-import { useState } from 'react'
 
-const ItemComponent = ({Food}) => {
+const ItemComponent = ({Food, subtractOne, addOne}) => {
  
-  
 
-   const [Btnstate, setBtnstate] = useState(0);
-   
-
-   function AddtoCart(Food) {
-      
-      setBtnstate(Btnstate+1);
-      Food.quantity+=1;
-     
-   }
-  
-   function RemovefromCart(Food) {
-  
-      if(Food.quantity>1) {Food.quantity-=1;
-      setBtnstate(Btnstate-1);}
-  
-         else if (Food.quantity>0) {
-            Food.quantity-=1;
-         setBtnstate(0);
-      }
-      
-   }
+   //const [Btnstate, setBtnstate] = useState(0);
 
    return (
       <>
@@ -37,18 +15,18 @@ const ItemComponent = ({Food}) => {
                 <img src={Food.image} alt='food' />
              </div>
              <div className="Item-info">
-                <div className="Item-name">{Food.name}</div>
+                <div className="Item-name">{Food.dish.name}</div>
                 <div className='Item-info-price'>
                    <div>
-                      &#x20B9;  {Food.price}
+                      &#x20B9;  {Food.dish.price}
                    </div>
                    <div className="Add-item">
-                      {!Btnstate ? (<button className='Init-add-btn' id={Food.id} onClick={()=>{AddtoCart(Food)}}> ADD <span> +</span></button>) :
+                      {(Food.quantity === 0) ? (<button className='Init-add-btn' id={Food.dish.id} onClick={()=>{addOne(Food.dish.id)}}> ADD <span> +</span></button>) :
                          (
                             <>
-                               <button id={toString(Food.id)} className='After-Init-btn' onClick={()=>{RemovefromCart(Food)}} > - </button>
+                               <button id={toString(Food.id)} className='After-Init-btn' onClick={()=>{subtractOne(Food.dish.id)}} > - </button>
                                <div id={toString(Food.id)} className='After-Init-btn' >{Food.quantity}</div>
-                               <button id={toString(Food.id)} className='After-Init-btn' onClick={()=>{AddtoCart(Food)}}> + </button>
+                               <button id={toString(Food.id)} className='After-Init-btn' onClick={()=>{addOne(Food.dish.id)}}> + </button>
                             </>
                          )}
                    </div>

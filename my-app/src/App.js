@@ -1,15 +1,11 @@
-import Cart from './Cart';
-import FoodList from './FoodList';
-import ItemComponent from './ItemsComponent';
-import logo from './logo.svg';
-// import './App.css';
 import Navbar from './Navbar';
+import Home from './Home';
 function App() {
+  
   return (
     <div className="App">
       <Navbar/>
-      <FoodList/>
-      <Cart/>
+      <Home />
     </div>
   );
 }
