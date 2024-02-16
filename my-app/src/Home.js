@@ -19,8 +19,7 @@ const Home = () => {
             }
             return item;
         });
-        const newList = tempList.filter((item) => item.quantity !== 0);
-        setList(newList);
+        setList(tempList);
     }
 
     const addOne = (id) => {
