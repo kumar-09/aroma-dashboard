@@ -6,25 +6,26 @@ const ItemComponent = ({Food}) => {
  
   
 
-   const [Btnstate, setBtnstate] = useState(false);
+   const [Btnstate, setBtnstate] = useState(0);
    
 
    function AddtoCart(Food) {
       
-      setBtnstate(true);
+      setBtnstate(Btnstate+1);
       Food.quantity+=1;
-      
+     
    }
   
    function RemovefromCart(Food) {
   
-      if(Food.quantity>1) Food.quantity-=1;
+      if(Food.quantity>1) {Food.quantity-=1;
+      setBtnstate(Btnstate-1);}
   
          else if (Food.quantity>0) {
             Food.quantity-=1;
-         setBtnstate(false);
+         setBtnstate(0);
       }
-     
+      
    }
 
    return (
