@@ -16,7 +16,7 @@ const Navbar = () => {
                 {/* <input className="search" type="text" placeholder="Search..." /> */}
                 <Searchbar/>
                <Link to='/Categories'>Categories</Link>
-                <a href="/">Cart</a>
+               <Link to='/Cart'>Cart</Link>
                 <a href="/">{ loginStatus }</a>
             </nav>
         </div>
