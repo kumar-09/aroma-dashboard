@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CartDialog from "./HomePage/CartDialog";
-import FoodList from "./HomePage/FoodList";
+import CartDialog from "./CartDialog";
+import FoodList from "./FoodList";
 
 const Home = () => {
     const [list, setList] = useState([
