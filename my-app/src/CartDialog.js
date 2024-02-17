@@ -1,35 +1,10 @@
-import { useState } from "react";
 import CartItem from "./cartItem";
 
 // cart array has objects of the form {dish, quantity}
 
-function Cart(){
-    const [cart, setCart] = useState([
-        {dish: { name: "pav bhaji", cost: 60, id: 1 }, quantity: 3},
-        {dish: { name: "frankie", cost: 20, id: 2},quantity: 2},
-        {dish: { name: "tea", cost: 10, id: 3}, quantity: 4}]
-    );
-
-    const subtractOne = (id) =>{
-        const tempCart = cart.map((item) => {
-            if(item.dish.id === id){
-                item.quantity = item.quantity - 1;
-            }
-            return item;
-        });
-        const newCart = tempCart.filter((item) => item.quantity !== 0);
-        setCart(newCart);
-    }
-
-    const addOne = (id) => {
-        const tempCart = cart.map((item) => {
-            if(item.dish.id === id){
-                item.quantity = item.quantity + 1;
-            }
-            return item;
-        });
-        setCart(tempCart);
-    }
+function CartDialog({subtractOne, addOne, cartList}){
+    
+    const cart = cartList;
 
     if(cart.length === 0){
         return (
@@ -58,7 +33,7 @@ function Cart(){
                 }
                 <h3 className="total">
                     Total: &#8377;{   
-                        cart.reduce((sum, item) => sum + item.quantity * item.dish.cost, 0)
+                        cart.reduce((sum, item) => sum + item.quantity * item.dish.price, 0)
                     }
                 </h3>
             </div>
@@ -66,4 +41,4 @@ function Cart(){
     }
 }
 
-export default Cart;
+export default CartDialog;
