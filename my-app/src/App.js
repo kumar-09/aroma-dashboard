@@ -42,13 +42,12 @@ const addOne = (id) => {
   return (
     <div className="App">
       <Navbar/>
-      
+        
         <Routes>
           <Route path='/' element = {<Home list={list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
           <Route path='/Categories' element={<Categories/>}/>
-          <Route path = '/Cart' element = {<Cart cartItems={cart}/>}/>
+          <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne}/>}/>
         </Routes>
-     
     </div>
   );
 }
