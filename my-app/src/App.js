@@ -2,9 +2,7 @@
 
 import {BrowserRouter,Route,Routes,Link,} from 'react-router-dom'
 import Navbar from './Navbar';
-
-import Home from './Home';
-import CartItem from './cartItem';
+import Home from './HomePage/Home'
 import Categories from './Categories';
 import { useState } from 'react';
 import Cart from './Cart';
