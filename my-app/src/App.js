@@ -4,6 +4,7 @@ import {BrowserRouter,Route,Routes,Link,} from 'react-router-dom'
 import Navbar from './Navbar';
 
 import Home from './Home';
+import CartItem from './cartItem';
 import Categories from './Categories';
 import { useState } from 'react';
 import Cart from './Cart';
@@ -43,15 +44,6 @@ const addOne = (id) => {
   return (
     <div className="App">
       <Navbar/>
-      
-      {/* <Link to='/Categories'>Categories</Link> */}
-     {/* {<BrowserRouter>
-      <main>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path= '/Categories' element={<Categories/>}/>
-        </Routes>
-      </main> */}
       
         <Routes>
           <Route path='/' element = {<Home list={list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
