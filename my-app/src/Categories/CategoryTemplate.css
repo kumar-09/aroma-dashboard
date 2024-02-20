@@ -1,0 +1,20 @@
+.Categories {
+    margin:20px;
+    
+}
+.Category-list {
+    display: flex;
+
+}
+.Category-img {
+    width: 200px;
+    height:200px;
+    border: 2px solid black;
+    
+}
+.Category-name {
+    height:50px;
+}
+.CategoryTemplate {
+    border: 2px solid black;
+}

@@ -1,8 +1,21 @@
+import CategoryTemplate from "./Categories/CategoryTemplate";
+import './Categories/CategoryTemplate.css';
 const Categories = () => {
     return ( 
-        <h>
+        <div className="Categories">
+        <h1>
             Categories
-        </h>
+        </h1>
+        <hr></hr>
+        <br></br>
+        <br></br>
+        <div className="Category-list">
+            {
+                
+            <CategoryTemplate/>
+}
+        </div>
+        </div>
      );
 }
  
