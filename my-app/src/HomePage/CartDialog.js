@@ -21,9 +21,11 @@ function CartDialog({subtractOne, addOne, cartList}){
                 <h3 className="num-of-items">
                     {   
                         cart.reduce((sum, item) => sum + item.quantity, 0)
+                    } 
+                    {
+                        cart.length === 1 && cart[0].quantity === 1? " Item" : " Items"
                     }
                 </h3>
-                <span className="num-of-items"></span>
                 {
                     cart.map(
                         (item) => 
