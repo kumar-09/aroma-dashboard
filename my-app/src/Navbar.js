@@ -1,8 +1,10 @@
 import Searchbar from "./Searchbar.js";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+var loggedIn;
+var loginStatus;
 const Navbar = () => {
-    var loggedIn=false
-    var loginStatus="Login"
+    loggedIn=false
+    loginStatus="Login"
     if(loggedIn === true){
         loginStatus="Account"
     }
@@ -17,7 +19,7 @@ const Navbar = () => {
                 <Searchbar/>
                <Link to='/Categories'>Categories</Link>
                <Link to='/Cart'>Cart</Link>
-                <a href="/">{ loginStatus }</a>
+               <Link to="/Login">{ loginStatus }</Link>
             </nav>
         </div>
     );

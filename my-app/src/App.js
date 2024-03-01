@@ -2,7 +2,9 @@
 
 import {BrowserRouter,Route,Routes,Link,} from 'react-router-dom'
 import Navbar from './Navbar';
-import Home from './HomePage/Home'
+import Home from './HomePage/Home';
+import Login from './LoginPage/Login';
+import LoginHome from './LoginPage/Home';
 import Categories from './Categories';
 import { useState } from 'react';
 import Cart from './Cart';
@@ -38,7 +40,10 @@ const addOne = (id) => {
     });
     setList(tempCart);
 }
-  
+
+const [loggedIn, setLoggedIn] = useState(false);
+const [email, setEmail] = useState('');
+
   return (
     <div className="App">
       <Navbar/>
@@ -47,6 +52,8 @@ const addOne = (id) => {
           <Route path='/' element = {<Home list={list} setList={setList} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
           <Route path='/Categories' element={<Categories/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne}/>}/>
+          <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
         </Routes>
     </div>
   );

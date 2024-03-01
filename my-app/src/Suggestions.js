@@ -5,6 +5,7 @@ function Suggestions(foodList) {
     for(let i = 0; i <= 3; i++){
         suggestions.push(foodList[Math.round(Math.random()*foodList.length)]);
     }
+    console.log(suggestions);
     return(
         <div className="suggestions">
             <h3 className="suggestions">Discover Something New!</h3>
