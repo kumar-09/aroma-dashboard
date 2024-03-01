@@ -1,15 +1,14 @@
-import CartItem from "./HomePage/cartItem";
+import ItemComponent from "./HomePage/ItemsComponent";
 
-function Suggestions(foodList) {
+function Suggestions({foodList, addOne, subtractOne}) {
     const suggestions = [];
     for(let i = 0; i <= 3; i++){
-        suggestions.push(foodList[Math.round(Math.random()*foodList.length)]);
+        suggestions.push(foodList[Math.floor(Math.random()*foodList.length)]);
     }
-    console.log(suggestions);
     return(
         <div className="suggestions">
             <h3 className="suggestions">Discover Something New!</h3>
-            {suggestions.map((item, i)=> <CartItem foodItem={suggestions[i]}></CartItem>)}
+            {suggestions.map((item, i)=> <ItemComponent Food={item} subtractOne = {subtractOne} addOne = {addOne}/> )}
         </div>
     )
     

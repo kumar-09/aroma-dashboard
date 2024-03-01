@@ -19,7 +19,7 @@ function App() {
     {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:''}, quantity:0}
   ]);
 
-  const cart = list.filter((item) => item.quantity !==0);
+  const cart = list.filter((item) => item.quantity !== 0);
 
   const subtractOne = (id) =>{
     const tempList = list.map((item) => {
@@ -51,7 +51,7 @@ const [email, setEmail] = useState('');
         <Routes>
           <Route path='/' element = {<Home list={list} setList={setList} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
           <Route path='/Categories' element={<Categories/>}/>
-          <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne}/>}/>
+          <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
         </Routes>

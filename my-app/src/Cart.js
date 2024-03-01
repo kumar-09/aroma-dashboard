@@ -3,7 +3,7 @@ import CartItem from "./HomePage/cartItem";
 import Suggestions from "./Suggestions";
 
 
-function Cart({ cartItems, addOne, subtractOne }) {
+function Cart({ cartItems, addOne, subtractOne, foodList}) {
     return (
         <div className="Cart-page">
             <h1 className="cart-heading">Cart</h1>
@@ -30,8 +30,10 @@ function Cart({ cartItems, addOne, subtractOne }) {
                     }
                     <br/>
                     <button className="checkout">Proceed to Checkout</button>
+                    
                     </>
                 }
+                <Suggestions addOne={addOne} subtractOne={subtractOne} foodList={foodList}/>
             </h3>
         </div>
     )
