@@ -30,7 +30,6 @@ function Cart({ cartItems, addOne, subtractOne }) {
                     }
                     <br/>
                     <button className="checkout">Proceed to Checkout</button>
-                    <Suggestions></Suggestions>
                     </>
                 }
             </h3>
