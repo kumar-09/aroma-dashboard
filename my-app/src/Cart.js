@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CartItem from "./HomePage/cartItem";
+import Suggestions from "./Suggestions";
 
 
 function Cart({ cartItems, addOne, subtractOne }) {
@@ -29,6 +30,7 @@ function Cart({ cartItems, addOne, subtractOne }) {
                     }
                     <br/>
                     <button className="checkout">Proceed to Checkout</button>
+                    <Suggestions></Suggestions>
                     </>
                 }
             </h3>
