@@ -14,13 +14,13 @@ const Login = (props) => {
     setPasswordError('');
   
     if ('' === email) {
-      setEmailError('Please enter your email');
+      setEmailError('Please enter userID');
       return;
     }
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError('Please enter a valid email');
-      return;
-    }
+    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+    //   setEmailError('Please enter a valid email');
+    //   return;
+    // }
   
     if ('' === password) {
       setPasswordError('Please enter a password');
@@ -42,7 +42,7 @@ const Login = (props) => {
       <div className={'inputContainer'}>
         <input
           value={email}
-          placeholder="Enter your email here"
+          placeholder="Enter your userID here"
           onChange={(ev) => setEmail(ev.target.value)}
           className={'inputBox'}
         />
