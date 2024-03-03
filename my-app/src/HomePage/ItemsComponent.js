@@ -1,7 +1,7 @@
 
 import './ItemsComponent.css'
 
-const ItemComponent = ({Food, subtractOne, addOne}) => {
+const ItemComponent = ({Food, subtractOne, addOne,sf}) => {
  
 
    //const [Btnstate, setBtnstate] = useState(0);
@@ -10,14 +10,15 @@ const ItemComponent = ({Food, subtractOne, addOne}) => {
       <>
       
         
-             <div className="Fooditem">
+             <div className={sf}>
              <div className="Item-image">
-                <img src={Food.image} alt='food' />
+                <img src={Food.dish.image} alt='food' />
              </div>
              <div className="Item-info">
                 <div className="Item-name">{Food.dish.name}</div>
                 <div className='Item-info-price'>
                    <div>
+                     
                       &#x20B9;  {Food.dish.price}
                    </div>
                    <div className="Add-item">

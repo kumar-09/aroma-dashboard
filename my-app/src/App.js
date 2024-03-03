@@ -13,10 +13,12 @@ import Cart from './Cart';
 function App() {
 
   const [list, setList] = useState([
-    {dish: {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image: './images/3f797cae-9813-4239-b745-9e2cdf09932c.webp'}, quantity:0},
-    { dish: {id:2,name: 'Chicken cheese Sandwich', price: '66', image: ''} ,quantity:0},
-    {dish: {id:3, name:'Egg Cheese Sandwich', price:'60',image:''}, quantity:0},
-    {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:''}, quantity:0}
+    {dish: {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image:'./images/3f797cae-9813-4239-b745-9e2cdf09932c.webp', category: 'Sandwich'}, quantity:0},
+    { dish: {id:2,name: 'Chicken cheese Sandwich', price: '66', image: '', category: 'Sandwich'} ,quantity:0},
+    {dish: {id:3, name:'Egg Cheese Sandwich', price:'60',image:'', category: 'Sandwich'}, quantity:0},
+    {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:'', category: 'Sandwich'}, quantity:0},
+    {dish: {id:5, name:'sprite', price:'20', image:'', category:'cold drinks'}, quantity:0},
+    {dish: {id:6, name: 'coke', price:'20', image:'', category:'cold drinks'}, quantity:0}
   ]);
 
   const cart = list.filter((item) => item.quantity !== 0);

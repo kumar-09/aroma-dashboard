@@ -10,10 +10,9 @@ const Categories = () => {
         <br></br>
         <br></br>
         <div className="Category-list">
-            {
-                
-            <CategoryTemplate/>
-}
+             
+                <CategoryTemplate/>
+
         </div>
         </div>
      );

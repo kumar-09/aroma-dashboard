@@ -8,7 +8,7 @@ const FoodList = ({foodItems, subtractOne, addOne}) => {
             {
             // <ItemComponent FoodList={FoodList}/>
             Menu.map( (Food) =>(
-                    <ItemComponent Food={Food} key={Food.dish.id} subtractOne = {subtractOne} addOne = {addOne}/>        
+                    <ItemComponent Food={Food} key={Food.dish.id} subtractOne = {subtractOne} addOne = {addOne} sf={'Fooditem'}/>        
             ))}
 
         </div>
