@@ -17,8 +17,8 @@ function App() {
     { dish: {id:2,name: 'Chicken cheese Sandwich', price: '66', image: '', category: 'Sandwich'} ,quantity:0},
     {dish: {id:3, name:'Egg Cheese Sandwich', price:'60',image:'', category: 'Sandwich'}, quantity:0},
     {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:'', category: 'Sandwich'}, quantity:0},
-    {dish: {id:5, name:'sprite', price:'20', image:'', category:'cold drinks'}, quantity:0},
-    {dish: {id:6, name: 'coke', price:'20', image:'', category:'cold drinks'}, quantity:0}
+    {dish: {id:5, name:'sprite', price:'20', image:'', category:'Cold drinks'}, quantity:0},
+    {dish: {id:6, name: 'coke', price:'20', image:'', category:'Cold drinks'}, quantity:0}
   ]);
 
   const cart = list.filter((item) => item.quantity !== 0);
