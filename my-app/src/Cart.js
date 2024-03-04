@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
 import CartItem from "./HomePage/cartItem";
 import Suggestions from "./Suggestions";
+import { useEffect, useState } from "react";
 
 
 function Cart({ cartItems, addOne, subtractOne, foodList}) {
+    const [suggestions, setSuggestions] = useState([]);
+    useEffect(() => {
+        let tempSuggestions = [];
+        for(let i = 0; tempSuggestions.length <= 3; i++){
+            var food=(foodList[Math.floor(Math.random()*foodList.length)]);
+            console.log(food);
+            tempSuggestions = tempSuggestions.splice(0, tempSuggestions.indexOf(food)).concat(tempSuggestions.splice(tempSuggestions.indexOf(food)+1));
+            tempSuggestions.push(food);
+            console.log(tempSuggestions);
+        }
+        setSuggestions(tempSuggestions);
+    }, []);
+    
     return (
         <div className="Cart-page">
             <h1 className="cart-heading">Cart</h1>
@@ -33,7 +47,7 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
                     
                     </>
                 }
-                <Suggestions addOne={addOne} subtractOne={subtractOne} foodList={foodList}/>
+                <Suggestions addOne={addOne} subtractOne={subtractOne} suggestions = {suggestions}/>
             </h3>
         </div>
     )
