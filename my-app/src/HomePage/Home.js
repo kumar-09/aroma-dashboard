@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CartDialog from "./CartDialog";
 import FoodList from "./FoodList";
+import CategoryList from "./CategoryList";
+import './Homepage.css'
 
 const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     // const [list, setList] = useState([
@@ -31,6 +33,15 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     //     });
     //     setList(tempCart);
     // }
+    const categories =[];
+    const Sandwich= list.filter((Food) => Food.dish.category === 'Sandwich');
+    const ColdDrinks = list.filter((Food)=> Food.dish.category ==='Cold Drinks')
+    categories.push(Sandwich,ColdDrinks);
+
+    const GotoCategory = (category) => {
+            console.log(category);
+            
+    }
 
     const subtractOneMenu = (id) => {
         const tempList = list.map((item) => {
@@ -41,11 +52,13 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
         });
         setList(tempList);
     }
+    const CategoryName = [ 'Sandwich', 'Cold Drinks', 'Noodles', 'Rices', 'Parathas'];
 
     return (
         
         <div className="home">
-            <FoodList foodItems = {list} subtractOne = {subtractOneMenu} addOne = {addOne}/>
+            <CategoryList categories = {CategoryName} GotoCategory={GotoCategory}/>
+            <FoodList foodItems = {categories} subtractOne = {subtractOneMenu} addOne = {addOne}/>
             <CartDialog subtractOne={subtractOne} addOne={addOne} cartList={cartItems}/>
         </div>
     );

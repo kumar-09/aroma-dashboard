@@ -3,11 +3,8 @@ import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
 
 const FoodList = ({foodItems, subtractOne, addOne}) => {
-    const Menu = foodItems;
-    const categories =[];
-    const Sandwich= Menu.filter((Food) => Food.dish.category === 'Sandwich');
-    const ColdDrinks = Menu.filter((Food)=> Food.dish.category ==='Cold drinks')
-    categories.push(Sandwich,ColdDrinks);
+    const categories = foodItems;
+   
     return ( 
         <div className="Menu">
             {
