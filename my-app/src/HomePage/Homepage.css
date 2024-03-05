@@ -1,13 +1,13 @@
 .Menu {
     width:45%;
     display:inline-block;
-    margin-left:33%;
+    margin-left:27%;
     
 }
 .CategoryList {
     display:inline-flex;
     flex-direction: column;
-    width: 25%;
+    width: 20.5%;
     margin: 2% 0;
     border-top:1px solid grey;
     position: fixed;
@@ -47,4 +47,5 @@
 .cart {
     position: fixed;
     right:10%;
+    width:20%;
 }
