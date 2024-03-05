@@ -10,6 +10,7 @@ import { useState } from 'react';
 import Cart from './Cart';
 
 
+
 function App() {
 
   const [list, setList] = useState([
@@ -45,6 +46,7 @@ const addOne = (id) => {
 
 const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState('');
+
 
   return (
     <div className="App">

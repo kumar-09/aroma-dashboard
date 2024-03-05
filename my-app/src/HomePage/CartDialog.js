@@ -1,5 +1,5 @@
 import CartItem from "./cartItem";
-
+import './Homepage.css'
 // cart array has objects of the form {dish, quantity}
 
 function CartDialog({subtractOne, addOne, cartList}){

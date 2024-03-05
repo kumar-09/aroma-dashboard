@@ -1,6 +1,7 @@
 .Menu {
-    width:40%;
+    width:45%;
     display:inline-block;
+    margin-left:33%;
     
 }
 .CategoryList {
@@ -9,6 +10,7 @@
     width: 25%;
     margin: 2% 0;
     border-top:1px solid grey;
+    position: fixed;
     
 }
 .categorylist-name {
@@ -27,4 +29,22 @@
 .home {
     display: flex;
     margin: 0 10%;
+}
+.Category-name {
+    font-size: 22px;
+    padding-left: 5%;
+}
+.Category-name>p{
+    padding-top: 3%;
+    display:inline-block;
+    margin-right:1%;
+}
+.Category-name>span {
+    background-color: #ff5050;
+    padding: 0% 2%;
+    border-radius: 5px;
+}
+.cart {
+    position: fixed;
+    right:10%;
 }

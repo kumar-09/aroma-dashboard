@@ -54,11 +54,12 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     }
     const CategoryName = [ 'Sandwich', 'Cold Drinks', 'Noodles', 'Rices', 'Parathas'];
 
+
     return (
         
         <div className="home">
-            <CategoryList categories = {CategoryName} GotoCategory={GotoCategory}/>
-            <FoodList foodItems = {categories} subtractOne = {subtractOneMenu} addOne = {addOne}/>
+            <CategoryList categories = {CategoryName} GotoCategory={GotoCategory} />
+            <FoodList foodItems = {categories} subtractOne = {subtractOneMenu} addOne = {addOne} />
             <CartDialog subtractOne={subtractOne} addOne={addOne} cartList={cartItems}/>
         </div>
     );

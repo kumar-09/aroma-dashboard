@@ -49,6 +49,9 @@ body{
   flex-direction: column;
   width:100%;
   font-size: 15px;
+  position:sticky;
+  top: 0;
+  background-color: white;
 }
 .banner{
   display:flex;
@@ -71,6 +74,7 @@ body{
   justify-content: space-around;
   flex-wrap:wrap;
   border-bottom: 1px solid #f2f2f2;
+  width:100%;
 }
 .navbar h1 {
   color: #f1356d;
