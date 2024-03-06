@@ -8,6 +8,11 @@ import LoginHome from './LoginPage/Home';
 import Categories from './Categories';
 import { useState } from 'react';
 import Cart from './Cart';
+import Footer from './Footer';
+import TNC from './TNC';
+import AboutUs from './AboutUs';
+import ContactUs from './ContactUs';
+import AdminPage from './AdminPage';
 
 
 
@@ -58,7 +63,13 @@ const [email, setEmail] = useState('');
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
+          <Route path = "/tnc" element = {<TNC/>}/>
+          <Route path = "/about-us" element = {<AboutUs/>} />
+          <Route path = "/contact-us" element = {<ContactUs/>} />
+          <Route path='/admin' element = {<AdminPage/>}/>
         </Routes>
+
+      <Footer/>
     </div>
   );
 }
