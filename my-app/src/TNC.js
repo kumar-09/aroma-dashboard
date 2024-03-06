@@ -12,7 +12,7 @@ function TNC(){
                 <br />
                 Delivery
                 <ul>
-                    <li>Our delivery service is available within IIT Bombay Powai. Delivery charges may apply based on distance and order value.</li>
+                    <li>Our delivery service is available within IIT Area, Powai, Bombay. Delivery charges may apply based on distance and order value.</li>
                     <li>Delivery times are estimates and may vary based on traffic, weather, and other factors. We will strive to deliver your order within the specified time frame.</li>  
                     <li>Orders placed for delivery must meet the minimum order value, which may vary based on location.</li>    
                 </ul>
