@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import CartDialog from "./CartDialog";
 import FoodList from "./FoodList";
 import CategoryList from "./CategoryList";
@@ -54,12 +54,17 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     }
     const CategoryName = [ 'Sandwich', 'Cold Drinks', 'Noodles', 'Rices', 'Parathas'];
 
+    // connecting FoodList and Categorylist---------------------->
+    const myref = useRef(null);
+    function scrollToCategory(CategoryId) {
+        if(myref.current) myref.current.scrollToCategory(CategoryId); 
+    }
 
     return (
         
         <div className="home">
-            <CategoryList categories = {CategoryName} GotoCategory={GotoCategory} />
-            <FoodList foodItems = {categories} subtractOne = {subtractOneMenu} addOne = {addOne} />
+            <CategoryList categories = {CategoryName} GotoCategory={GotoCategory} scrollToCategory={scrollToCategory} />
+            <FoodList ref={myref} foodItems = {categories} subtractOne = {subtractOneMenu} addOne = {addOne} />
             <CartDialog subtractOne={subtractOne} addOne={addOne} cartList={cartItems}/>
         </div>
     );
