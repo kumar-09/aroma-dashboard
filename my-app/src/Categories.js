@@ -12,7 +12,7 @@ const Categories = ({list}) => {
         <br></br>
         <div className="Category-list">
              { categories.map(category => (
-                <CategoryTemplate/>
+                <CategoryTemplate category={category} key={category[0].dish.category}/>
             )) }
         </div>
         </div>

@@ -4,7 +4,8 @@
 }
 .Category-list {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    
 }
 .Category-img {
     width: 200px;
@@ -12,9 +13,25 @@
     border: 2px solid black;
     
 }
-.Category-name {
+.Category-name-categories {
     height:50px;
+    text-align: center;
 }
 .CategoryTemplate {
     border: 2px solid black;
+    margin: 20px;
+}
+.category-Link {
+    text-decoration:none !important;
+}
+.categorylist-flex {
+    display:flex;
+    
+}
+.CategoryTitle {
+    font-size: 27px;
+    margin: 2.5%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    display: inline-block;
 }

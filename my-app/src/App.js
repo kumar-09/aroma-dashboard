@@ -13,6 +13,7 @@ import TNC from './TNC';
 import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import AdminPage from './AdminPage';
+import CategoryFoodList from './Categories/CategoryFoodList';
 
 
 
@@ -65,6 +66,14 @@ const addOne = (id) => {
 const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState('');
 
+// onclick eventhandling of category page ----------------------->>>>
+
+const  handleClick_Category = (category) => {
+      
+}
+
+
+//---------------------------------------------------------------<<<<
 
   return (
     <div className="App">
@@ -80,6 +89,10 @@ const [email, setEmail] = useState('');
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage/>}/>
+          { categories.map (category => (
+             <Route key={category[0].dish.category} path={'Categories/CategoryFoodlist-'+category[0].dish.category} element={<CategoryFoodList category={category} addOne={addOne} subtractOne={subtractOne}  />} />
+          ))}
+         
         </Routes>
 
       <Footer/>

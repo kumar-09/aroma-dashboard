@@ -1,7 +1,13 @@
 
+.Fooditem-dif-design {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    
+}
 
 .Fooditem {
-    max-width: 500px;  
+    max-width: 500px;
     margin:auto;
     display:flex;
     width:90%;
