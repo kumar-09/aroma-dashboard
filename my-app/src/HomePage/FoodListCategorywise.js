@@ -1,6 +1,7 @@
 import ItemComponent from "./ItemsComponent";
 import './Homepage.css'
 const FoodListCategorywise = ({Foodlist, subtractOne, addOne, sf}) => {
+  console.log(Foodlist[0].dish)
     return ( 
         <div id={Foodlist[0].dish.category+'list'}>
       {  console.log(Foodlist)}

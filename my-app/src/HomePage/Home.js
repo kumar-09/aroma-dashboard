@@ -33,15 +33,7 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     //     });
     //     setList(tempCart);
     // }
-    const categories =[];
-    const Sandwich= list.filter((Food) => Food.dish.category === 'Sandwich');
-    const ColdDrinks = list.filter((Food)=> Food.dish.category ==='Cold Drinks')
-    categories.push(Sandwich,ColdDrinks);
-
-    const GotoCategory = (category) => {
-            console.log(category);
-            
-    }
+    const categories = list;
 
     const subtractOneMenu = (id) => {
         const tempList = list.map((item) => {
@@ -64,7 +56,7 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     return (
         
         <div className="home">
-            <CategoryList categories = {CategoryName} GotoCategory={GotoCategory} scrollToCategory={scrollToCategory} />
+            <CategoryList categories = {CategoryName}  scrollToCategory={scrollToCategory} />
             <FoodList ref={myref} foodItems = {categories} subtractOne = {subtractOneMenu} addOne = {addOne} />
             <CartDialog subtractOne={subtractOne} addOne={addOne} cartList={cartItems}/>
         </div>

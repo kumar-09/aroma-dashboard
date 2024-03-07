@@ -4,7 +4,7 @@
 }
 .Category-list {
     display: flex;
-
+    justify-content: space-evenly;
 }
 .Category-img {
     width: 200px;

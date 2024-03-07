@@ -24,8 +24,21 @@ function App() {
     {dish: {id:3, name:'Egg Cheese Sandwich', price:'60',image:'', category: 'Sandwich'}, quantity:0},
     {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:'', category: 'Sandwich'}, quantity:0},
     {dish: {id:5, name:'sprite', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:6, name: 'coke', price:'20', image:'', category:'Cold Drinks'}, quantity:0}
+    {dish: {id:6, name: 'coke', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
+    {dish: {id:7, name: 'fanta', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
+    {dish: {id:8, name: 'Veg Hakka Noodles', price:'45', image:'', category:'Noodles'}, quantity:0},
+    {dish: {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'}, quantity:0},
+    {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);
+
+  const categories =[];
+  const Sandwich= list.filter((Food) => Food.dish.category === 'Sandwich');
+  const ColdDrinks = list.filter((Food)=> Food.dish.category ==='Cold Drinks');
+  const Noodles = list.filter((Food)=>Food.dish.category ==='Noodles');
+  const Rices = list.filter((Food)=> Food.dish.category==='Rices');
+  const Paratha= list.filter((Food) => Food.dish.category === 'Parathas');
+  categories.push(Sandwich,ColdDrinks,Noodles,Rices,Paratha);
+console.log(categories)
 
   const cart = list.filter((item) => item.quantity !== 0);
 
@@ -58,8 +71,8 @@ const [email, setEmail] = useState('');
       <Navbar/>
         
         <Routes>
-          <Route path='/' element = {<Home list={list} setList={setList} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
-          <Route path='/Categories' element={<Categories/>}/>
+          <Route path='/' element = {<Home list={categories} setList={setList} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
+          <Route path='/Categories' element={<Categories list={categories}/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />

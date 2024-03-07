@@ -46,6 +46,10 @@ border-radius: 5%;
     width:100%;
     height: 100%;
 }
+.Init-add-btn:hover {
+    background-color: #ff5050;
+    color: white;
+}
 .After-Init-btn {
     width:33.33%;
     text-align: center;
@@ -57,7 +61,7 @@ border-radius: 5%;
 
 }
 .Add-item>div {
-background-color: #ff50501A;
+background-color:#ff5050/*#ff50501A*/ ;
 }
 @media screen and (max-width:500px) {
     .Item-image {

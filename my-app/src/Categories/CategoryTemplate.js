@@ -2,6 +2,7 @@ import './CategoryTemplate.css'
 
 const CategoryTemplate = () => {
     return ( 
+        
         <div className="CategoryTemplate">
             <div className="Category-img">
                 <img src='' alt='category'></img>

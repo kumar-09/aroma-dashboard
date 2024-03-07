@@ -9,7 +9,7 @@ const ItemComponent = ({Food, subtractOne, addOne,sf}) => {
    return (
       <>
       
-        
+
              <div className={sf}>
              <div className="Item-image">
                 <img src={Food.dish.image} alt='food' />
