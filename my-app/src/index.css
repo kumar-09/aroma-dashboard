@@ -99,3 +99,81 @@ body{
   display:flex;
   flex-direction:column;
 }
+
+.footer{
+  color: white;
+  background-color: #ff5050;
+  display: inline-flex;
+  width: 100%;
+  padding: 40px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.footer-img{
+  width: 30%;
+  border: maroon 2px solid;
+  box-shadow: 0 0 4px red;
+}
+
+.footer-link-list{
+  list-style-type: none;
+  padding-left: 0px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.footer-links{
+  color: white;
+}
+
+.footer-links:hover{
+  text-decoration: underline;
+}
+
+.copyright{
+  font-size:19px;
+}
+
+.TNC {
+  width: 96%;
+  margin-left: 2%;
+  text-align: justify;
+  font-size: 17px;
+  margin-top: 15px;
+  color: darkred;
+}
+
+.tnc-heading{
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.about-us{
+  width: 96%;
+  margin-left: 2%;
+  text-align: justify;
+  font-size: 17px;
+  margin-top: 15px;
+  color: darkred;
+}
+
+.about-us-heading {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.contact-us{
+  width: 96%;
+  margin-left: 2%;
+  text-align: justify;
+  font-size: 17px;
+  margin-top: 15px;
+  color: darkred;
+}
+
+.contact-heading {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
