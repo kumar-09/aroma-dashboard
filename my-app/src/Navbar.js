@@ -1,13 +1,18 @@
 import Searchbar from "./Searchbar.js";
 import {Link} from 'react-router-dom';
-var loggedIn;
-var loginStatus;
-const Navbar = () => {
-    loggedIn=false
-    loginStatus="Login"
-    if(loggedIn === true){
-        loginStatus="Account"
-    }
+import {useState} from 'react';
+import DropDown from './LoginPage/Dropdown.js';
+const Navbar = (props) => {
+    var loggedIn = props.loggedIn;
+    var email = props.email;
+    const [Hover, setHover] = useState(false);
+    const handleMouseEnter = () => {
+        setHover(true);
+      };
+    
+      const handleMouseLeave = () => {
+        setHover(false);
+      };
     return (
         <div className="head" id="head">
             <div className="banner">
@@ -19,7 +24,11 @@ const Navbar = () => {
                 <Searchbar/>
                <Link to='/Categories'>Categories</Link>
                <Link to='/Cart'>Cart</Link>
-               <Link to="/Login">{ loginStatus }</Link>
+               {loggedIn ? 
+               <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <Link to='/Account' id = "acc" >Account</Link>
+                    {Hover && <DropDown/>}
+                </div> : <Link to='/Login'>Login</Link>}
             </nav>
         </div>
     );

@@ -94,3 +94,8 @@ body{
   margin: 40px auto;
   padding: 20px;
 }
+
+#dropdown { 
+  display:flex;
+  flex-direction:column;
+}

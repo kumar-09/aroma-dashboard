@@ -13,6 +13,7 @@ import TNC from './TNC';
 import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import AdminPage from './AdminPage';
+import Register from './LoginPage/Register';
 
 
 
@@ -49,13 +50,13 @@ const addOne = (id) => {
     setList(tempCart);
 }
 
-const [loggedIn, setLoggedIn] = useState(false);
+const [loggedIn, setLoggedIn] = useState(true);
 const [email, setEmail] = useState('');
 
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar  loggedIn = {loggedIn} email = {email}/>
         
         <Routes>
           <Route path='/' element = {<Home list={list} setList={setList} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
@@ -63,6 +64,8 @@ const [email, setEmail] = useState('');
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
+          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
+          <Route path="/account" element={<account setEmail={setEmail} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
