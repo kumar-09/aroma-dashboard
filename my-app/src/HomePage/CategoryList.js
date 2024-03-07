@@ -6,7 +6,7 @@ const CategoryList = ({categories,scrollToCategory}) => {
         <div className="CategoryList">
         {
             categories.map( (category,index) => (
-                <div className="categorylist-name" key={index} onClick={()=> {scrollToCategory(category)}}>{category}</div>
+                <div className="categorylist-name" id={category+'btn'}  key={index} onClick={()=> {scrollToCategory(category)}}>{category}</div>
             ))
         }
         </div>

@@ -1,7 +1,7 @@
 
 import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
-import { forwardRef,useImperativeHandle, useRef } from "react";
+import { Children, forwardRef,useImperativeHandle, useRef } from "react";
 
 const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
 
@@ -21,12 +21,20 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             behavior: 'smooth'
            });
             }
-            
+            const id= CategoryId+'btn';
+            document.getElementsByClassName('CategoryList')[0].childNodes.forEach( (child)=>{
+                let classList_string = child.classList.value;
+                console.log(classList_string) ;
+                console.log()
+                if(classList_string.includes('activebtn-categorylist')) child.classList.remove('activebtn-categorylist')
+                })
+            document.getElementById(id).classList.add('activebtn-categorylist');
         }
     
     useImperativeHandle(ref,() => ({
         scrollToCategory,
     }));
+       
    //----------------------<<<
 
 
