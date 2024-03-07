@@ -54,12 +54,13 @@ const Home = ( {list, addOne, subtractOne, cartItems, setList}) => {
     }
     const CategoryName = [ 'Sandwich', 'Cold Drinks', 'Noodles', 'Rices', 'Parathas'];
 
-    // connecting FoodList and Categorylist---------------------->
+    // connecting FoodList and Categorylist---------------------->>>
+    
     const myref = useRef(null);
     function scrollToCategory(CategoryId) {
         if(myref.current) myref.current.scrollToCategory(CategoryId); 
     }
-
+    //------------------------------<<<
     return (
         
         <div className="home">

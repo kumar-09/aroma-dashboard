@@ -1,8 +1,7 @@
 .Menu {
     width:45%;
     display:inline-block;
-    margin-left:27%;
-    
+    margin-left:27%;    
 }
 .CategoryList {
     display:inline-flex;
@@ -11,7 +10,6 @@
     margin: 2% 0;
     border-top:1px solid grey;
     position: fixed;
-    
 }
 .categorylist-name {
     padding: 4px 2px;
