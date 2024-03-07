@@ -26,9 +26,9 @@ const Navbar = (props) => {
                <Link to='/Cart'>Cart</Link>
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <Link to='/Account' id = "acc" >Account</Link>
+                    <Link to='/account' id = "acc" >Account</Link>
                     {Hover && <DropDown/>}
-                </div> : <Link to='/Login'>Login</Link>}
+                </div> : <Link to='/login'>Login</Link>}
             </nav>
         </div>
     );

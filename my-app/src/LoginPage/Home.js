@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import Login from './Login';
 
 const Home = (props) => {
-  const { loggedIn, email } = props;
+  const loggedIn = props.loggedIn;
+  const email = props.email;
   const navigate = useNavigate();
 
   const onButtonClick = () => {

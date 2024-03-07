@@ -6,7 +6,7 @@ import Home from './HomePage/Home';
 import Login from './LoginPage/Login';
 import LoginHome from './LoginPage/Home';
 import Categories from './Categories';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cart from './Cart';
 import Footer from './Footer';
 import TNC from './TNC';
@@ -14,10 +14,9 @@ import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import AdminPage from './AdminPage';
 import Register from './LoginPage/Register';
+import axios from 'axios';
 
-
-
-function App() {
+const App = () => {
 
   const [list, setList] = useState([
     {dish: {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image:'./images/3f797cae-9813-4239-b745-9e2cdf09932c.webp', category: 'Sandwich'}, quantity:0},
@@ -28,6 +27,27 @@ function App() {
     {dish: {id:6, name: 'coke', price:'20', image:'', category:'Cold Drinks'}, quantity:0}
   ]);
 
+  const [MasterData, setMasterData] = useState({details : [], })
+    let data;
+    
+    useEffect(() => {
+      setTimeout(() => {
+        axios.get('http://localhost:8000/api/menu/')
+        .then(res => {
+          data = res.data;
+          setMasterData({
+            details: data
+          });
+        })
+        .catch(err => {console.log("Error thrown")})
+      }, 1000);
+    }, []);
+
+    MasterData.details = MasterData.details.map((dish) => {return {dish, quantity:0}})
+
+    console.log(MasterData.details);
+
+  
   const cart = list.filter((item) => item.quantity !== 0);
 
   const subtractOne = (id) =>{
@@ -56,6 +76,10 @@ const [email, setEmail] = useState('');
 
   return (
     <div className="App">
+
+      {
+        
+      }
       <Navbar  loggedIn = {loggedIn} email = {email}/>
         
         <Routes>
@@ -71,7 +95,6 @@ const [email, setEmail] = useState('');
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage/>}/>
         </Routes>
-
       <Footer/>
     </div>
   );
