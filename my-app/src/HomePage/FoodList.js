@@ -14,8 +14,9 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
         console.log(category);
         if(category) {
            const height=category.getBoundingClientRect().top;
+           const navbar_height = document.getElementById('head').getBoundingClientRect().bottom;
            document.documentElement.scrollBy({
-            top: height-128.4,
+            top: height-navbar_height,
             left: 0,
             behavior: 'smooth'
            });

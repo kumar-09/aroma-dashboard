@@ -9,7 +9,7 @@ const Navbar = () => {
         loginStatus="Account"
     }
     return (
-        <div className="head">
+        <div className="head" id="head">
             <div className="banner">
                 Get delicious food delivered to your hostel!
             </div>
