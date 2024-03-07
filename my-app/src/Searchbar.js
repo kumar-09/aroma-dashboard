@@ -29,9 +29,9 @@ const Searchbar = () => {
        return ( 
             <div>
                 <tr>
-                <th> Item </th>
+                {/* <th> Item </th>
                 <th></th>
-                <th> Cost </th>
+                <th> Cost </th> */}
                 </tr>
                 <div> {filtered} </div>
             </div>
@@ -46,7 +46,7 @@ const Searchbar = () => {
              value={searchInput}
              className="search"
           />
-          <table style={{ tableLayout: "fixed", width: "11rem", border:"1px solid"}} className="searchresults" >
+          <table style={{ tableLayout: "fixed", width: "11rem", border:"none"}} className="searchresults" >
              
              {searchList()}
           </table>

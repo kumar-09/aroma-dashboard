@@ -1,6 +1,6 @@
 function ContactUs(){
     return(
-        <div className="contact-us">
+        <div className="contact-us" id = "top">
             <h2 className="contact-heading">Contact Us</h2>
             <p className="contact-desc">
 

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-const Login = (props) => {
+const Register = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -37,7 +36,7 @@ const Login = (props) => {
   return (
     <div className={'mainContainer'}>
       <div className={'titleContainer'}>
-        <div>Login</div>
+        <div>Register</div>
       </div>
       <br />
       <div className={'inputContainer'}>
@@ -61,15 +60,14 @@ const Login = (props) => {
       </div>
       <br />
       <div className={'inputContainer'}>
-        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
+        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'} />
       </div>
-
       <div className='noaccount'>
-        Don't have an account?
-        <Link to="/register">Register Here!</Link>
+        Already have an account?
+        <Link to="/login">Login Now!</Link>
       </div>
     </div>
   )
 }
 
-export default Login;
+export default Register;
