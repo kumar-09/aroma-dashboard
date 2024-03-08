@@ -39,7 +39,7 @@ const App = () => {
   const Rices = list.filter((Food)=> Food.dish.category==='Rices');
   const Paratha= list.filter((Food) => Food.dish.category === 'Parathas');
   categories.push(Sandwich,ColdDrinks,Noodles,Rices,Paratha);
-console.log(categories)
+// console.log(categories)
 
   const [MasterData, setMasterData] = useState({details : [], })
     let data;

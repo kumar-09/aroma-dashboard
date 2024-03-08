@@ -105,7 +105,7 @@ body{
   background-color: #ff5050;
   display: inline-flex;
   width: 100%;
-  padding: 40px;
+  padding: 40px 0;
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;

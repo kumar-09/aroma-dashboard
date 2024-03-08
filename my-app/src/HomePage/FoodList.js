@@ -1,7 +1,7 @@
 
 import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
-import { Children, forwardRef,useImperativeHandle, useRef } from "react";
+import { Children, forwardRef,useEffect,useImperativeHandle, useRef } from "react";
 
 const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
 
@@ -10,7 +10,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
 
     const scrollToCategory = (CategoryId)=> {
         const category = document.getElementById(CategoryId);
-        console.log('category:',CategoryId,'is selected.');
+        console.log(CategoryId);
         console.log(category);
         if(category) {
            const height=category.getBoundingClientRect().top;
@@ -23,9 +23,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             }
             const id= CategoryId+'btn';
             document.getElementsByClassName('CategoryList')[0].childNodes.forEach( (child)=>{
-                let classList_string = child.classList.value;
-                console.log(classList_string) ;
-                console.log()
+                let classList_string = child.classList.value;        
                 if(classList_string.includes('activebtn-categorylist')) child.classList.remove('activebtn-categorylist')
                 })
             document.getElementById(id).classList.add('activebtn-categorylist');
@@ -34,6 +32,34 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
     useImperativeHandle(ref,() => ({
         scrollToCategory,
     }));
+
+    console.log(categories);
+
+    // implementation of back-scrolling ----->>>
+
+   
+        window.addEventListener('scroll',()=>{
+            categories.map( category => {
+            let title = category[0].dish.category;
+            // console.log(document.getElementById(title));
+            let titleElement = document.getElementById(title);
+            // console.log(titleElement);
+            let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
+            console.log( 'height of ',title,': ',heightOfTitleFromTop)
+            let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
+            if( heightOfTitleFromTop <= heightOfHeader) {
+                console.log(title,'  stick')
+                    titleElement.classList.add('Category-name-active');
+                   
+            }
+            else {
+                if(titleElement.classList.value.includes('Category-name-active') )
+                    titleElement.classList.remove('Category-name-active');
+        }} )
+
+        });
+        
+    
        
    //----------------------<<<
 
@@ -48,6 +74,6 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
      );
-});
- 
+            
+})
 export default FoodList;

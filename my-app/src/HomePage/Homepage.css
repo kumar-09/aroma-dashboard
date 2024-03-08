@@ -1,3 +1,6 @@
+
+
+
 .Menu {
     width:45%;
     display:inline-block;
@@ -29,6 +32,15 @@
 .Category-name {
     font-size: 22px;
     padding-left: 5%;
+    background-color: white;
+    padding-bottom: 2.5%;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.Category-name-active {
+    position: sticky;
+    top: 128.4px;
+    z-index: -1;
+    
 }
 .Category-name>p{
     padding-top: 3%;
