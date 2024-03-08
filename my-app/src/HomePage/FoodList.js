@@ -34,11 +34,15 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
         scrollToCategory,
     }));
 
-    console.log(categories);
 
     // implementation of back-scrolling ----->>>
-
-   
+        //for onload first category active btn;
+            const sandwichTitle = document.getElementById('Sandwich');
+            const sandwichBtn = document.getElementById('Sandwichbtn');
+            if(sandwichTitle){
+            const heightOfSandwichTitle = sandwichTitle.getBoundingClientRect().top;
+            if(heightOfSandwichTitle === document.getElementById('head').getBoundingClientRect().bottom) sandwichBtn.classList.add('activebtn-categorylist');
+            }
         window.addEventListener('scroll',()=>{
             categories.map( category => {
             let title = category[0].dish.category;
@@ -62,7 +66,8 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
                     titleElement.classList.remove('Category-name-active');
                 
         }
-            if( heightOfTitleFromTop === heightOfHeader)  titleBtn.classList.add('activebtn-categorylist');
+        const heightOfTitle = titleElement.getBoundingClientRect().height;
+            if( heightOfTitleFromTop >= heightOfHeader && heightOfTitleFromTop<= heightOfHeader+heightOfTitle)  titleBtn.classList.add('activebtn-categorylist');
             else {
                 if(titleBtn.classList.value.includes('activebtn-categorylist')) titleBtn.classList.remove('activebtn-categorylist');
             }

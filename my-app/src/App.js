@@ -40,7 +40,7 @@ const App = () => {
   const Paratha= list.filter((Food) => Food.dish.category === 'Parathas');
   categories.push(Sandwich,ColdDrinks,Noodles,Rices,Paratha);
 // console.log(categories)
-
+ 
   const [MasterData, setMasterData] = useState({details : [], })
     let data;
     
@@ -87,11 +87,22 @@ const addOne = (id) => {
 const [loggedIn, setLoggedIn] = useState(true);
 const [email, setEmail] = useState('');
 
-// onclick eventhandling of category page ----------------------->>>>
-
-const  handleClick_Category = (category) => {
+// category API ----------------------->>>>
+let CategoryDatalist;
+const [sandwichData,setsandwichData]= useState([]);
+useEffect (  ()=>{
+  setTimeout( ()=>{
+    axios.get('http://127.0.0.1:8000/api/menu/sandwich')
+    .then ( res =>{
+      console.log(res.data)
+      CategoryDatalist = res.data;
+     
+    setsandwichData(CategoryDatalist);
+  })
+  .catch( error => console.log('failed to fetch category data'))
+},1000)},[])
       
-}
+
 
 
 //---------------------------------------------------------------<<<<
