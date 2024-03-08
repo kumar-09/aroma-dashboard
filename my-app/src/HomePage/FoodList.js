@@ -44,6 +44,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             // console.log(document.getElementById(title));
             let titleElement = document.getElementById(title);
             // console.log(titleElement);
+            if(titleElement){
             let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
             console.log( 'height of ',title,': ',heightOfTitleFromTop)
             let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
@@ -55,7 +56,8 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             else {
                 if(titleElement.classList.value.includes('Category-name-active') )
                     titleElement.classList.remove('Category-name-active');
-        }} )
+            
+        }}} )
 
         });
         
