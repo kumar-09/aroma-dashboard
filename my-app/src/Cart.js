@@ -21,7 +21,7 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
     return (
         <div className="Cart-page">
             <h1 className="cart-heading">Cart</h1>
-            {cartItems.map((item) => <CartItem key={item.dish.id} foodItem={item.dish} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} />)}
+            {cartItems.map((item) => <CartItem key={item.id} foodItem={foodList.find((dish) => {return dish.id === item.id})} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} />)}
 
             <h3 className="total">
                 {cartItems.length === 0 && 
@@ -39,15 +39,18 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
                             {cartItems.length === 1  && cartItems[0].quantity === 1 ? " Item" : " Items"}
                         </h4>
                         
-                        Total: &#8377;{
-                        cartItems.reduce((sum, item) => sum + item.quantity * item.dish.price, 0)
-                    }
+                        Total: &#8377;{   
+                        cartItems.reduce((sum, item) => {
+                            let dish = foodList.find((eatable) => {return eatable.id === item.id});
+                            return sum + item.quantity * dish.price}, 0
+                        )
+                        }
                     <br/>
                     <button className="checkout">Proceed to Checkout</button>
                     
                     </>
                 }
-                <Suggestions addOne={addOne} subtractOne={subtractOne} suggestions = {suggestions}/>
+                {cartItems.length === 0 && <Suggestions addOne={addOne} subtractOne={subtractOne} suggestions = {suggestions}/>}
             </h3>
         </div>
     )

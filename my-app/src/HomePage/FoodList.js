@@ -3,7 +3,7 @@ import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
 import { Children, forwardRef,useEffect,useImperativeHandle, useRef } from "react";
 
-const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
+const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
 
     const categories = foodItems;
     // for scrolling to clicked category--->>>
@@ -85,7 +85,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             {
             // <ItemComponent FoodList={FoodList}/>
             categories.map( (category) =>(
-                    <FoodListCategorywise  Foodlist={category} key={categories.indexOf(category)} subtractOne = {subtractOne} addOne = {addOne} sf={'Fooditem'}  />       
+                    <FoodListCategorywise  Foodlist={category} key={categories.indexOf(category)} subtractOne = {subtractOne} addOne = {addOne} sf={'Fooditem'}  cart = {cart}/>       
             ))}
              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
