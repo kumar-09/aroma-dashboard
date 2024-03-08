@@ -1,6 +1,6 @@
 import CategoryTemplate from "./Categories/CategoryTemplate";
 import './Categories/CategoryTemplate.css';
-const Categories = ({list}) => {
+const Categories = ({list, cart}) => {
     const categories = list;
     return ( 
         <div className="Categories">
@@ -12,7 +12,7 @@ const Categories = ({list}) => {
         <br></br>
         <div className="Category-list">
              { categories.map(category => (
-                <CategoryTemplate category={category} key={category[0].dish.category}/>
+                <CategoryTemplate category={category} key={category[0].category} cart = {cart}/>
             )) }
         </div>
         </div>
