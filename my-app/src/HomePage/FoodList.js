@@ -44,6 +44,8 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             let title = category[0].dish.category;
             // console.log(document.getElementById(title));
             let titleElement = document.getElementById(title);
+            let titleBtnId = title+'btn';
+            let titleBtn = document.getElementById(titleBtnId);
             // console.log(titleElement);
             if(titleElement){
             let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
@@ -52,13 +54,19 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             if( heightOfTitleFromTop <= heightOfHeader) {
                 // console.log(title,'  stick')
                     titleElement.classList.add('Category-name-active');
+                    titleBtn.classList.add('activebtn-categorylist');
                    
             }
             else {
                 if(titleElement.classList.value.includes('Category-name-active') )
                     titleElement.classList.remove('Category-name-active');
-            
-        }}} )
+                
+        }
+            if( heightOfTitleFromTop === heightOfHeader)  titleBtn.classList.add('activebtn-categorylist');
+            else {
+                if(titleBtn.classList.value.includes('activebtn-categorylist')) titleBtn.classList.remove('activebtn-categorylist');
+            }
+    }} )
 
         });
         
