@@ -9,9 +9,10 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
     // for scrolling to clicked category--->>>
 
     const scrollToCategory = (CategoryId)=> {
-        const category = document.getElementById(CategoryId);
-        console.log(CategoryId);
-        console.log(category);
+        const CategoryFoodListId = CategoryId+'list'
+        const category = document.getElementById(CategoryFoodListId);
+        // console.log(CategoryId);
+        // console.log(category);
         if(category) {
            const height=category.getBoundingClientRect().top;
            const navbar_height = document.getElementById('head').getBoundingClientRect().bottom;
@@ -46,10 +47,10 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne},ref) => {
             // console.log(titleElement);
             if(titleElement){
             let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
-            console.log( 'height of ',title,': ',heightOfTitleFromTop)
+            // console.log( 'height of ',title,': ',heightOfTitleFromTop)
             let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
             if( heightOfTitleFromTop <= heightOfHeader) {
-                console.log(title,'  stick')
+                // console.log(title,'  stick')
                     titleElement.classList.add('Category-name-active');
                    
             }

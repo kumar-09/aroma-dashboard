@@ -13,8 +13,6 @@ body {
     display:flex;
     width:90%;
     padding:16px;
-    z-index: -2;
-    /* position: relative; */
 }
 .Item-image {
 width: 120px;
