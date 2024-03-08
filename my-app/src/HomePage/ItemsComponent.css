@@ -1,9 +1,10 @@
-
+body {
+    background-color: white;
+}
 .Fooditem-dif-design {
     display: flex;
     flex-direction: column;
     max-width: 250px;
-    
 }
 
 .Fooditem {
@@ -19,7 +20,7 @@ height: 120px;
 text-align: center;
 border: 1px solid black;
 border-radius: 5%;
-}
+z-index: -2;}
 .Item-image>img {
    max-height: 100%; 
 }
