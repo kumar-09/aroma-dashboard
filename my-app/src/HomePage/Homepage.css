@@ -1,10 +1,14 @@
 
-
+body {
+    background-color: white;
+}
 
 .Menu {
     width:45%;
     display:inline-block;
     margin-left:27%;
+    border-right: 1px solid #f2f2f2;
+    border-left: 1px solid #f2f2f2;
     
 }
 .CategoryList {
@@ -19,6 +23,7 @@
 .categorylist-name {
     padding: 4px 2px;
     border-bottom : 1px solid grey;
+
 }
 .categorylist-name:hover {
     color : #f1356d;
@@ -34,7 +39,10 @@
     padding-left: 5%;
     background-color: white;
     padding-bottom: 2.5%;
-    border-bottom: 1px solid rgb(221, 221, 221);
+    border-bottom: 1px solid #f2f2f2;
+    border-top: 1px solid #f2f2f2;
+
+    z-index: -1;
 }
 .Category-name-active {
     position: sticky;
