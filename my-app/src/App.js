@@ -46,7 +46,7 @@ const App = () => {
   ];
 
   const categories =[];
-  const Sandwich= list.filter((Food) => Food.category === 'sandwich');
+  const Sandwich= list.filter((Food) => Food.category === 'Sandwich');
   const ColdDrinks = list.filter((Food)=> Food.category ==='Cold Drinks');
   const Noodles = list.filter((Food)=>Food.category ==='Noodles');
   const Rices = list.filter((Food)=> Food.category==='Rices');

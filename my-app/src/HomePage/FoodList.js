@@ -85,7 +85,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
             {
             // <ItemComponent FoodList={FoodList}/>
             categories.map( (category) =>(
-                    <FoodListCategorywise  Foodlist={category} key={categories.indexOf(category)} subtractOne = {subtractOne} addOne = {addOne} sf={'Fooditem'}  cart = {cart}/>       
+                    <FoodListCategorywise  Foodlist={category} key={categories.indexOf(category)} subtractOne = {subtractOne} addOne = {addOne} ItemInfo={'Item-info'} ItemName={'Item-name'}  ItemPriceInfo={'Item-info-price'} AddBtn={'Add-item'} ImgClass={'Item-img'} MainClass={'Fooditem'}  cart = {cart}/>       
             ))}
              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>

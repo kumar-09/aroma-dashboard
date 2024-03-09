@@ -20,13 +20,17 @@
 .CategoryTemplate {
     border: 2px solid black;
     margin: 20px;
+    transition: scale 0.4s;
+}
+.CategoryTemplate:hover{ 
+    scale: 1.08;
 }
 .category-Link {
     text-decoration:none !important;
 }
 .categorylist-flex {
     display:flex;
-    
+    justify-content: space-evenly;
 }
 .CategoryTitle {
     font-size: 27px;

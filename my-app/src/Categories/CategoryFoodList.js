@@ -28,7 +28,7 @@ useEffect (  ()=>{
             </div>
             <div className="categorylist-flex">
                 { CategoryData.map(Food => (
-                    <ItemComponent  Food={Food} key={Food.food_id} subtractOne = {subtractOne} addOne = {addOne} sf={'Fooditem-dif-design'} quantity={((cart.find((eatable => eatable.id === Food.id)))??{quantity: 0}).quantity}/>
+                    <ItemComponent  Food={Food} key={Food.food_id} subtractOne = {subtractOne} addOne = {addOne} ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'} quantity={((cart.find((eatable => eatable.id === Food.id)))??{quantity: 0}).quantity}/>
                 ))}
             </div>
         </div>
