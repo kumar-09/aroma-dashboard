@@ -163,10 +163,7 @@ useEffect (  ()=>{
   //In Home Component "list" refers to the category-list while "menu" refers to the food-item list 
   return (
     <div className="App">
-
-      {
-        
-      }
+      
       <Navbar  loggedIn = {loggedIn} email = {email}/>
         
         <Routes>

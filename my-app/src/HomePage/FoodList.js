@@ -1,7 +1,7 @@
 
 import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
-import { Children, forwardRef,useEffect,useImperativeHandle, useRef } from "react";
+import { Children, forwardRef,useEffect,useImperativeHandle } from "react";
 
 const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
 
@@ -45,7 +45,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
             }
         window.addEventListener('scroll',()=>{
             categories.map( category => {
-            let title = category[0].dish.category;
+            let title = category[0].category;
             // console.log(document.getElementById(title));
             let titleElement = document.getElementById(title);
             let titleBtnId = title+'btn';
