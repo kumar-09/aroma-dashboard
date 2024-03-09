@@ -146,7 +146,7 @@ let CategoryDatalist;
 const [sandwichData,setsandwichData]= useState([]);
 useEffect (  ()=>{
   setTimeout( ()=>{
-    axios.get('http://127.0.0.1:8000/api/menu/sandwich')
+    axios.get('http://127.0.0.1:8000/api/menu/sandwich/')
     .then ( res =>{
       console.log(res.data)
       CategoryDatalist = res.data;

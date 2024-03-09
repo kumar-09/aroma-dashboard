@@ -2,22 +2,10 @@ import { Link } from "react-router-dom";
 import CartItem from "./HomePage/cartItem";
 import Suggestions from "./Suggestions";
 import { useEffect, useState } from "react";
+import PrevOrders from "./PrevOrders";
 
 
 function Cart({ cartItems, addOne, subtractOne, foodList}) {
-    const [suggestions, setSuggestions] = useState([]);
-    useEffect(() => {
-        let tempSuggestions = [];
-        for(let i = 0; tempSuggestions.length <= 3; i++){
-            var food=(foodList[Math.floor(Math.random()*foodList.length)]);
-            console.log(food);
-            tempSuggestions = tempSuggestions.splice(0, tempSuggestions.indexOf(food)).concat(tempSuggestions.splice(tempSuggestions.indexOf(food)+1));
-            tempSuggestions.push(food);
-            console.log(tempSuggestions);
-        }
-        setSuggestions(tempSuggestions);
-    }, []);
-    
     return (
         <div className="Cart-page">
             <h1 className="cart-heading">Cart</h1>
@@ -50,7 +38,8 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
                     
                     </>
                 }
-                {cartItems.length === 0 && <Suggestions addOne={addOne} subtractOne={subtractOne} suggestions = {suggestions}/>}
+                {cartItems.length === 0 && <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cartItems}/>}
+                {true && <PrevOrders userID={'Aminesh@1210'} addOne={addOne} subtractOne={subtractOne}/>}
             </h3>
         </div>
     )
