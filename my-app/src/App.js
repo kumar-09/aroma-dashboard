@@ -46,7 +46,7 @@ const App = () => {
   ];
 
   const categories =[];
-  const Sandwich= list.filter((Food) => Food.category === 'Sandwich');
+  const Sandwich= list.filter((Food) => Food.category === 'sandwich');
   const ColdDrinks = list.filter((Food)=> Food.category ==='Cold Drinks');
   const Noodles = list.filter((Food)=>Food.category ==='Noodles');
   const Rices = list.filter((Food)=> Food.category==='Rices');
@@ -141,21 +141,7 @@ const App = () => {
 const [loggedIn, setLoggedIn] = useState(true);
 const [email, setEmail] = useState('');
 
-// category API ----------------------->>>>
-let CategoryDatalist;
-const [sandwichData,setsandwichData]= useState([]);
-useEffect (  ()=>{
-  setTimeout( ()=>{
-    axios.get('http://127.0.0.1:8000/api/menu/sandwich')
-    .then ( res =>{
-      console.log(res.data)
-      CategoryDatalist = res.data;
-     
-    setsandwichData(CategoryDatalist);
-  })
-  .catch( error => console.log('failed to fetch category data'))
-},1000)},[])
-      
+
 
 
 
