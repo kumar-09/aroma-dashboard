@@ -40,6 +40,7 @@ const Login = (props) => {
         <div>Login</div>
       </div>
       <br />
+      <form>
       <div className={'inputContainer'}>
         <input
           value={email}
@@ -63,6 +64,7 @@ const Login = (props) => {
       <div className={'inputContainer'}>
         <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
       </div>
+      </form>
 
       <div className='noaccount'>
         Don't have an account?

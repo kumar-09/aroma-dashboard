@@ -1,13 +1,11 @@
 import {useState} from "react";
 
 var hidden='none'
-const Searchbar = () => {
+const Searchbar = (props) => {
     const [searchInput, setSearchInput] = useState("");
-    let items = [
-       { name: "pav bhaji", cost: 60 },
-       { name: "frankie", cost: 20},
-       { name: "tea", cost: 10}
-    ];
+    var items = props.items;
+    items = items.map((item)=>{return {name : item.name.toUpperCase(), category: item.category.toUpperCase()};});
+    console.log(items);
     const handleChange = (e) => {
        e.preventDefault();
        setSearchInput(e.target.value)
@@ -17,12 +15,11 @@ const Searchbar = () => {
     };
     function searchList() {
        let filtereditems = items.filter((item) => {
-          return item.name.match(searchInput.toLowerCase());
+          return item.name.match(searchInput.toUpperCase());
        });
        const filtered = filtereditems?.map((item) => (
           <tr>
              <td> {item.name}</td>
-             <td> {item.cost} </td>
           </tr>
        ));
        if(searchInput==="") return ;

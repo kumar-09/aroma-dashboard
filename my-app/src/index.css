@@ -178,3 +178,39 @@ body{
   font-size: 27px;
   margin-bottom: 10px;
 }
+
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+}
+.titleContainer{
+  font-size:larger;
+  font-weight: bolder;
+}
+.inputContainer>input{
+  height: 5vh;
+  width: 40vh;
+  border-radius: 20px;
+}
+.inputButton{
+  background-color: #ff6a6a;
+  border: none;
+}
+
+.inputContainer{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputBox{
+}

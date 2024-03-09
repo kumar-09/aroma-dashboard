@@ -150,7 +150,7 @@ const [email, setEmail] = useState('');
   return (
     <div className="App">
       
-      <Navbar  loggedIn = {loggedIn} email = {email}/>
+      <Navbar  loggedIn = {loggedIn} email = {email} foodList = {list}/>
         
         <Routes>
           <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} /> 
