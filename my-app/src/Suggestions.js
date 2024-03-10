@@ -5,7 +5,7 @@ import axios from "axios";
 function Suggestions({addOne, subtractOne, cart}) {
     const [sug, setSug] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+    //const [error, setError] = useState(false);
     useEffect(
         () => {
             setTimeout(() => {axios.get('http://127.0.0.1:8000/api/menu/cold-drink/')
@@ -26,7 +26,7 @@ function Suggestions({addOne, subtractOne, cart}) {
             })
             .catch((err)=>{
                 console.log(err);
-                setError(true);
+                //setError(true);
                 setLoading(false);
             })
         }, 2000)
@@ -44,7 +44,7 @@ function Suggestions({addOne, subtractOne, cart}) {
     return(
         <div className="suggestions">
             <h3 className="suggestions">Grab a delightful beverage before you leave!!</h3>
-            {error && <h4>Cannot connect to server</h4>}
+            {(!loading && sug.length === 0) && <h4>Cannot connect to server</h4>}
             {loading && <h4>Loading........</h4>}
             {sug  && sug.map((item, i)=> <ItemComponent Food={item} subtractOne = {subtractOne} addOne = {addOne} key={i} quantity={((cart.find((eatable => eatable.id === item.id)))??{quantity: 0}).quantity}/> )}
         </div>

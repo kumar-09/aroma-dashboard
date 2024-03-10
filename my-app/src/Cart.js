@@ -38,8 +38,8 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
                     
                     </>
                 }
-                {cartItems.length === 0 && <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cartItems}/>}
-                {true && <PrevOrders userID={'Aminesh@1210'} addOne={addOne} subtractOne={subtractOne}/>}
+                <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cartItems}/>
+                {true && <PrevOrders userID={'23b0608'} addOne={addOne} subtractOne={subtractOne} foodList = {foodList} cart={cartItems}/>}
             </h3>
         </div>
     )
