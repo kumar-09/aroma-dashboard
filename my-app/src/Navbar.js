@@ -6,6 +6,7 @@ const Navbar = (props) => {
     var loggedIn = props.loggedIn;
     var email = props.email;
     const foodList = props.foodList;
+    const setLoggedIn = props.setLoggedIn;
     // console.log(foodList);
     const [Hover, setHover] = useState(false);
     const handleMouseEnter = () => {
@@ -28,9 +29,9 @@ const Navbar = (props) => {
                <Link to='/Cart'>Cart</Link>
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <Link to='/account' id = "acc" >Account - {email}</Link>
+                    <Link to='/account' id = "acc" >{email}</Link>
                     {Hover && <DropDown/>}
-                </div> : <Link to='/login'>Login</Link>}
+                </div> : <Link to='/Login' >Login</Link>}
             </nav>
         </div>
     );

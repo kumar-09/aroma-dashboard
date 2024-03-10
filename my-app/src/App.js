@@ -16,6 +16,7 @@ import AdminPage from './AdminPage';
 import Register from './LoginPage/Register';
 import axios from 'axios';
 import CategoryFoodList from './Categories/CategoryFoodList';
+import LogOut from './LoginPage/Logout';
 
 const App = () => {
 
@@ -150,7 +151,7 @@ const [email, setEmail] = useState('');
   return (
     <div className="App">
       
-      <Navbar  loggedIn = {loggedIn} email = {email} foodList = {list}/>
+      <Navbar  loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn}/>
         
         <Routes>
           <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
@@ -164,6 +165,7 @@ const [email, setEmail] = useState('');
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage/>}/>
+          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn}/>}/>
           { categories.map (category => (
              <Route key={category[0].category} path={'Categories/CategoryFoodlist-'+category[0].category} element={<CategoryFoodList category={category} addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
           ))}
