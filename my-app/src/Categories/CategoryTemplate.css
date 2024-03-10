@@ -31,11 +31,23 @@
 .categorylist-flex {
     display:flex;
     justify-content: space-evenly;
+    flex-grow: 1;
 }
 .CategoryTitle {
     font-size: 27px;
     margin: 2.5%;
     padding-bottom: 5px;
     border-bottom: 1px solid black;
+    display: inline-block;
+}
+/*filter--->>*/
+.filter {
+
+}
+.filteroption {
+    display: inline-block;
+    margin:8px;
+}
+.filterlabel{
     display: inline-block;
 }

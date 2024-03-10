@@ -6,7 +6,7 @@ import Home from './HomePage/Home';
 import Login from './LoginPage/Login';
 import LoginHome from './LoginPage/Home';
 import Categories from './Categories';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import Cart from './Cart';
 import Footer from './Footer';
 import TNC from './TNC';
@@ -142,7 +142,8 @@ const [loggedIn, setLoggedIn] = useState(true);
 const [email, setEmail] = useState('');
 
 
-
+//setting useRef to navbar to access header element
+  const NavbarRef = useRef(null);
 
 
 //---------------------------------------------------------------<<<<
@@ -150,10 +151,10 @@ const [email, setEmail] = useState('');
   return (
     <div className="App">
       
-      <Navbar  loggedIn = {loggedIn} email = {email} foodList = {list}/>
+      <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list}/>
         
         <Routes>
-          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} /> 
+          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef}/>} /> 
           <Route path='/Categories' element={<Categories list={categories}/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />

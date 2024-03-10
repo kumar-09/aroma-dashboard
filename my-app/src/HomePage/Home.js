@@ -4,7 +4,7 @@ import FoodList from "./FoodList";
 import CategoryList from "./CategoryList";
 import './Homepage.css'
 
-const Home = ( {list, addOne, subtractOne, cartItems, menu}) => {
+const Home = ( {list, addOne, subtractOne, cartItems, menu,HeaderRef}) => {
     const categories = list;
 
     /*const subtractOneMenu = (id) => {
@@ -29,7 +29,7 @@ const Home = ( {list, addOne, subtractOne, cartItems, menu}) => {
         
         <div className="home">
             <CategoryList categories = {CategoryName}  scrollToCategory={scrollToCategory} />
-            <FoodList ref={myref} foodItems = {categories} subtractOne = {subtractOne} addOne = {addOne} menu = {menu} cart = {cartItems}/>
+            <FoodList HeaderRef={HeaderRef} ref={myref} foodItems = {categories} subtractOne = {subtractOne} addOne = {addOne} menu = {menu} cart = {cartItems}/>
             <CartDialog subtractOne={subtractOne} addOne={addOne} cartList={cartItems} menu = {menu}/>
         </div>
     );

@@ -1,9 +1,9 @@
 
 import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
-import { Children, forwardRef,useEffect,useImperativeHandle } from "react";
+import { Children, forwardRef,useEffect,useImperativeHandle, useState ,useLayoutEffect} from "react";
 
-const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
+const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef},ref) => {
 
     const categories = foodItems;
     // for scrolling to clicked category--->>>
@@ -34,15 +34,33 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
         scrollToCategory,
     }));
 
-
+    
     // implementation of back-scrolling ----->>>
-        //for onload first category active btn;
+       /*use for re-rendering react so that hegiht of head is updated and on changing dimension gives
+        smooth experience in foodlist sticky part*/
+        const [size, setSize] = useState([0, 0]);
+            useLayoutEffect(() => {
+              function updateSize() {
+                setSize([window.innerWidth, window.innerHeight]);
+              }
+              window.addEventListener('resize', updateSize);
+              updateSize();
+              return () => window.removeEventListener('resize', updateSize);
+            }, []);
+        //getting height of header and setting it to css variable--->
+        let HeightOfHeader;
+        if(HeaderRef.current){
+         HeightOfHeader= HeaderRef.current.getBoundingClientRect().bottom;
+         document.documentElement.style.setProperty('--stickHeight',`${HeightOfHeader}px`);
+        }
+         //for onload first category active btn;
             const sandwichTitle = document.getElementById('Sandwich');
             const sandwichBtn = document.getElementById('Sandwichbtn');
             if(sandwichTitle){
             const heightOfSandwichTitle = sandwichTitle.getBoundingClientRect().top;
-            if(heightOfSandwichTitle === document.getElementById('head').getBoundingClientRect().bottom) sandwichBtn.classList.add('activebtn-categorylist');
+            if(heightOfSandwichTitle ===HeightOfHeader ) sandwichBtn.classList.add('activebtn-categorylist');
             }
+        //scroll event on foodlist component
         window.addEventListener('scroll',()=>{
             categories.map( category => {
             let title = category[0].category;
@@ -59,7 +77,6 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
                 // console.log(title,'  stick')
                     titleElement.classList.add('Category-name-active');
                     titleBtn.classList.add('activebtn-categorylist');
-                   
             }
             else {
                 if(titleElement.classList.value.includes('Category-name-active') )
@@ -75,10 +92,6 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart},ref) => {
 
         });
         
-    
-       
-   //----------------------<<<
-
 
     return ( 
         <div className="Menu">

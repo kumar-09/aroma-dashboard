@@ -1,4 +1,7 @@
-
+:root {
+    --stickHeight: 128.4px;
+}
+/* add media query for inital heights*/
 body {
     background-color: white;
 }
@@ -23,6 +26,7 @@ body {
     position: fixed;
     
 }
+
 .categorylist-name {
     padding: 4px 2px;
     border-bottom : 1px solid grey;
@@ -48,7 +52,7 @@ body {
 }
 .Category-name-active {
     position: sticky;
-    top: 128.4px;
+    top: var(--stickHeight);
     z-index: 1;
     
 }
@@ -71,4 +75,30 @@ body {
     color : #f1356d;
     background-image: linear-gradient(to right, rgba(250,80,80,0),rgba(250,80,80,0.08));
     border-right : 5px solid #ff5050;
+}
+
+@media screen and (max-width:770px ) {
+    .CategoryList{
+        display: none;
+    }
+    .Menu {
+        width:60%;
+        margin: 0;
+    }
+    .home {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:470px) {
+    .cart {
+        display: none;
+    }
+    .Menu {
+        width:100%;
+    }
+    .Home{
+        margin:0 5px;
+    }
+    
 }
