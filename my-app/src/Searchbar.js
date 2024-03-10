@@ -1,11 +1,12 @@
-import {useState} from "react";
-
+import {useState, Link} from "react";
+import {useRef } from "react";
+import FoodList from "./HomePage/FoodList";
 var hidden='none'
 const Searchbar = (props) => {
     const [searchInput, setSearchInput] = useState("");
     var items = props.items;
-    items = items.map((item)=>{return {name : item.name.toUpperCase(), category: item.category.toUpperCase()};});
-    console.log(items);
+    items = items.map((item)=>{return {name : item.name.toUpperCase(), category: item.category};});
+   //  console.log(items);
     const handleChange = (e) => {
        e.preventDefault();
        setSearchInput(e.target.value)
@@ -19,7 +20,7 @@ const Searchbar = (props) => {
        });
        const filtered = filtereditems?.map((item) => (
           <tr>
-             <td> {item.name}</td>
+             <a href = {'/' + item.category}> {item.name}</a>
           </tr>
        ));
        if(searchInput==="") return ;
@@ -33,6 +34,11 @@ const Searchbar = (props) => {
                 <div> {filtered} </div>
             </div>
         );
+    }
+
+    const myref = useRef(null);
+    function scrollToCategory(CategoryId) {
+        if(myref.current) myref.current.scrollToCategory(CategoryId); 
     }
     return (
        <div className="searchbox">
