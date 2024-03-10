@@ -138,7 +138,7 @@ const App = () => {
     });
   }
 
-const [loggedIn, setLoggedIn] = useState(true);
+const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState('');
 
 
@@ -153,7 +153,7 @@ const [email, setEmail] = useState('');
       <Navbar  loggedIn = {loggedIn} email = {email} foodList = {list}/>
         
         <Routes>
-          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} /> 
+          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart}/>} />
           <Route path='/Categories' element={<Categories list={categories}/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
