@@ -59,7 +59,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef,men
             const sandwichBtn = document.getElementById('Sandwichbtn');
             if(sandwichTitle){
             const heightOfSandwichTitle = sandwichTitle.getBoundingClientRect().top;
-            if(heightOfSandwichTitle ===HeightOfHeader ) sandwichBtn.classList.add('activebtn-categorylist');
+            if(heightOfSandwichTitle <= HeightOfHeader+2 && heightOfSandwichTitle>= HeightOfHeader+2 ) sandwichBtn.classList.add('activebtn-categorylist');
             }
         //scroll event on foodlist component
         window.addEventListener('scroll',()=>{
@@ -74,8 +74,9 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef,men
             let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
             // console.log( 'height of ',title,': ',heightOfTitleFromTop)
             let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
+            console.log(heightOfHeader);
             if( heightOfTitleFromTop <= heightOfHeader) {
-                // console.log(title,'  stick')
+                console.log(title,'  stick')
                     titleElement.classList.add('Category-name-active');
                     titleBtn.classList.add('activebtn-categorylist');
             }
@@ -85,7 +86,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef,men
                 
         }
         const heightOfTitle = titleElement.getBoundingClientRect().height;
-            if( heightOfTitleFromTop >= heightOfHeader && heightOfTitleFromTop<= heightOfHeader+heightOfTitle)  titleBtn.classList.add('activebtn-categorylist');
+            if( heightOfTitleFromTop >= heightOfHeader-2 && heightOfTitleFromTop<= heightOfHeader+heightOfTitle)  titleBtn.classList.add('activebtn-categorylist');
             else {
                 if(titleBtn.classList.value.includes('activebtn-categorylist')) titleBtn.classList.remove('activebtn-categorylist');
             }
