@@ -114,7 +114,7 @@ body {
     padding: 10px;
     height: 50px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: space-between;
     margin-bottom: 20px;
     width: 85%;
@@ -171,8 +171,13 @@ body {
     margin-top: 30px;
     cursor: pointer;
 }
-.go-to-cart {
-    
+.cart-food-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.food-img{
+    width:150px;
 }
 @media screen and (max-width:770px ) {
     .CategoryList{

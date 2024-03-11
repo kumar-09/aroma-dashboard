@@ -32,7 +32,7 @@ function CartDialog({subtractOne, addOne, cartList, menu,myref}){
                 {
                     cart.map(
                         (item) => 
-                        <CartItem foodItem = {menu.find((dish) => {return dish.id === item.id})} add = {addOne} subtract = {subtractOne} number = {item.quantity} key={item.id} showImg={false}/>
+                        <CartItem foodItem = {menu.find((dish) => {return dish.id === item.id})} add = {addOne} subtract = {subtractOne} number = {item.quantity} key={item.id} cost={'cost'} showImg={false} fooditem={'food-item'}/>
                     )
                     
                 }
