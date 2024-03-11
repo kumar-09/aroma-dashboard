@@ -35,15 +35,15 @@ const Login = (props) => {
     //   setPasswordError('The password must be 8 characters or longer');
     //   return;
     // }
-    let data = [];
-    axios.get('http://localhost:8000/api/menu/')
-        .then(res => {
-          let d = res.data;
-          data = d;
-        })
-        .catch(err => {console.log("Error thrown")})
+    // let data = [];
+    // axios.get('http://localhost:8000/api/menu/')
+    //     .then(res => {
+    //       let d = res.data;
+    //       data = d;
+    //     })
+    //     .catch(err => {console.log("Error thrown")})
 
-        console.log(data);
+    //     console.log(data);
 
       //   axios({method : 'get', url: 'http://localhost:8000/api/login/', data : ({userid: email, pswd : password}), headers: {
       //     'Content-Type': 'application/x-www-form-urlencoded',
@@ -51,10 +51,10 @@ const Login = (props) => {
       //   .then(res => console.log(res))
       //   .catch(err => console.log(err));
 
-      let d = {
-        userid : email,
-        pswd : password
-      };
+      // let d = {
+      //   userid : email,
+      //   pswd : password
+      // };
       // console.log(d);
     // axios.get('http://localhost:8000/api/login/')
     //   .then(res => {
@@ -72,7 +72,11 @@ const Login = (props) => {
     axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : ({userid: email, pswd : password}), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
-      .then(res => {console.log(res); props.setLoggedIn(true); props.setEmail(email); navigate("/");})
+      .then(res => {console.log(res.status); 
+        if(res.status === 200){ props.setLoggedIn(true); props.setEmail(email); navigate("/");}
+       else if(res.status === 201){
+        setEmailError("Please enter valid credentials");
+      }})
       .catch(err => console.log(err));
   
 
