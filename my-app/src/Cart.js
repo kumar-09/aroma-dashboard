@@ -8,7 +8,7 @@ import PrevOrders from "./PrevOrders";
 function Cart({ cartItems, addOne, subtractOne, foodList}) {
     return (
         <div className="Cart-page">
-            <h1 className="cart-heading">Cart</h1>
+            <div className="cart-heading">Cart</div>
             {cartItems.map((item) => <CartItem key={item.id} foodItem={foodList.find((dish) => {return dish.id === item.id})} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} />)}
 
             <h3 className="total">

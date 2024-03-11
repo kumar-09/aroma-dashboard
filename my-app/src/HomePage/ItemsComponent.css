@@ -116,10 +116,10 @@ object-fit: contain;
   
   }
   .Add-item-dif-design>div {
-    background-color:#ff5050/*#ff50501A*/ ;
+    background-color:#ff50506A/*#ff50501A*/ ;
     }
 .Add-item>div {
-background-color:#ff5050/*#ff50501A*/ ;
+background-color:#ff50506A/*#ff50501A*/ ;
 }
 @media screen and (max-width:500px) {
     .Item-image {

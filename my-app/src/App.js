@@ -144,7 +144,7 @@ const [email, setEmail] = useState('');
 
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);
-
+  const FooterRef = useRef(null);
 
 //---------------------------------------------------------------<<<<
   //In Home Component "list" refers to the category-list while "menu" refers to the food-item list 
@@ -154,7 +154,7 @@ const [email, setEmail] = useState('');
       <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list}/>
         
         <Routes>
-          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef}/>} /> 
+          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories list={categories}/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
@@ -170,7 +170,7 @@ const [email, setEmail] = useState('');
           ))}
          
         </Routes>
-      <Footer/>
+      <Footer footerref={FooterRef}/>
     </div>
   );
 }

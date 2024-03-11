@@ -3,7 +3,7 @@ import FoodListCategorywise from "./FoodListCategorywise";
 import ItemComponent from "./ItemsComponent";
 import { Children, forwardRef,useEffect,useImperativeHandle, useState ,useLayoutEffect} from "react";
 
-const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef},ref) => {
+const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef,menuref},ref) => {
 
     const categories = foodItems;
     // for scrolling to clicked category--->>>
@@ -32,6 +32,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef},re
     
     useImperativeHandle(ref,() => ({
         scrollToCategory,
+        
     }));
 
     
@@ -94,7 +95,7 @@ const FoodList = forwardRef(({foodItems, subtractOne, addOne, cart,HeaderRef},re
         
 
     return ( 
-        <div className="Menu">
+        <div className="Menu" ref={menuref} >
             {
             // <ItemComponent FoodList={FoodList}/>
             categories.map( (category) =>(

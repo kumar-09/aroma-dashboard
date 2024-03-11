@@ -26,16 +26,25 @@ useEffect (  ()=>{
 
 //fliter---->>>
 
-let max_price,min_price,price_interval;
+// let max_price,min_price,price_interval;
 
-    let tempPriceArr =[];
-    CategoryData.map( food => {
-        tempPriceArr.push(food.price);
-    })
-     max_price = Math.max(...tempPriceArr);
-     min_price = Math.min(...tempPriceArr);
-     price_interval = (max_price-min_price) % 5 !==0 ? Math.floor((max_price-min_price)/5)+1 : (max_price-min_price)/5;
+//     let tempPriceArr =[];
+//     CategoryData.map( food => {
+//         tempPriceArr.push(food.price);
+//     })
+//      max_price = Math.max(...tempPriceArr);
+//      min_price = Math.min(...tempPriceArr);
+//      price_interval = (max_price-min_price) % 5 !==0 ? Math.floor((max_price-min_price)/5)+1 : (max_price-min_price)/5;
     
+//     const [checkBox, setcheckBox] = useState({
+//         checkBoxes: [
+//             {
+//                 name:'check1',
+                
+//             }
+//         ]
+//     });
+
 
     return ( 
         <>
@@ -47,7 +56,7 @@ let max_price,min_price,price_interval;
            
             
                 <div className="categorylist" style={{display:'flex',justifyContent:'space-evenly'}}>
-                { CategoryData.length!==0 && (
+                {/* { CategoryData.length!==0 && (
                     <div className="filteroption" style={{display:'inline-flex',flexDirection:'column'}}>
                   <div><input  className="filteroption"  type="checkbox"/><label className="filterlabel">&#x20B9;{min_price}-&#x20B9;{min_price+price_interval}</label></div>  
                   <div> <input  className="filteroption"  type="checkbox"/><label className="filterlabel">&#x20B9;{min_price+price_interval}-&#x20B9;{min_price+2*price_interval}</label></div>  
@@ -57,7 +66,7 @@ let max_price,min_price,price_interval;
                     
                 </div>
                
-            )}
+            )} */}
             
             
             <div className="categorylist-flex">

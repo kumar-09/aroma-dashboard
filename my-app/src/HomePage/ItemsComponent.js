@@ -11,11 +11,11 @@ const ItemComponent = ({Food, subtractOne, addOne,MainClass, quantity,ImgClass,A
                 <img src={'http://localhost:8000/'+Food.image} alt='food' />
              </div>
              <div className={ItemInfo}>
-                <div className={ItemName}>{Food.name}</div>
+                <div className={ItemName}>{Food.name.toUpperCase()}</div>
                 <div className={ItemPriceInfo}>
                    <div>
                      
-                        {Food.price} &#x20B9;
+                   &#x20B9; {Food.price} 
                    </div>
                    <div className={AddBtn}>
                       {(quantity === 0) ? (<button className='Init-add-btn' id={Food.id} onClick={()=>{addOne(Food.id)}}> ADD <span> +</span></button>) :
