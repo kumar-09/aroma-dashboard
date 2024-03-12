@@ -20,7 +20,7 @@ const Searchbar = (props) => {
        });
        const filtered = filtereditems?.map((item) => (
           <tr>
-             <a href = {'/' + item.category}> {item.name}</a>
+             <a href = {'/Categories/CategoryFoodList-' + item.category}> {item.name}</a>
           </tr>
        ));
        if(searchInput==="") return ;
