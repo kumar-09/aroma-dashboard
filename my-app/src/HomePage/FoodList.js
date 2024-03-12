@@ -86,23 +86,27 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
                 // console.log(titleElement);
                 if (titleElement) {
                     let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
-                    // console.log( 'height of ',title,': ',heightOfTitleFromTop)
                     let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
-                    console.log(heightOfHeader);
-                    if (heightOfTitleFromTop <= heightOfHeader) {
-                        // console.log(title,'  stick');
-                        titleElement.classList.add('Category-name-active');
+                    // console.log(heightOfHeader);
+
+
+                    const scrollPosition = window.scrollY ;
+                    const titlePosition = titleElement.offsetTop;
+                    console.log(titlePosition)
+                    const nextTitlePosition =
+                      categories.indexOf(category) < categories.length - 1
+                        ? document.getElementById(`${categories[categories.indexOf(category) + 1][0].category}`).offsetTop
+                        : Number.MAX_SAFE_INTEGER;
+                        
+                    if (scrollPosition >= titlePosition && scrollPosition < nextTitlePosition) {
                         titleBtn.classList.add('activebtn-categorylist');
+                        titleElement.classList.add('Category-name-active');
                     }
                     else {
                         if (titleElement.classList.value.includes('Category-name-active'))
-                            titleElement.classList.remove('Category-name-active');
-
-                    }
-                    const heightOfTitle = titleElement.getBoundingClientRect().height;
-                    if (heightOfTitleFromTop >= heightOfHeader && heightOfTitleFromTop <= heightOfHeader + heightOfTitle) { console.log(titleBtn); titleBtn.classList.add('activebtn-categorylist'); }
-                    else {
+                        titleElement.classList.remove('Category-name-active');
                         if (titleBtn.classList.value.includes('activebtn-categorylist')) titleBtn.classList.remove('activebtn-categorylist');
+
                     }
                 }
             }
@@ -115,6 +119,24 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
         }
     },[categories,isScrolling]
     )
+
+
+                    // if (heightOfTitleFromTop <= heightOfHeader) {
+                    //     // console.log(title,'  stick');
+                    //     titleElement.classList.add('Category-name-active');
+                    //     titleBtn.classList.add('activebtn-categorylist');
+                    // }
+                    // else {
+                    //     if (titleElement.classList.value.includes('Category-name-active'))
+                    //         titleElement.classList.remove('Category-name-active');
+
+                    // }
+                    // const heightOfTitle = titleElement.getBoundingClientRect().height;
+                    // console.log(category[0].category,'  header-',heightOfHeader,'titleheight: ',heightOfTitleFromTop, 'heightofheader+title', heightOfHeader+heightOfTitle)
+                    // if (heightOfTitleFromTop >= heightOfHeader-3 && heightOfTitleFromTop <= heightOfHeader + heightOfTitle) { console.log(titleBtn); titleBtn.classList.add('activebtn-categorylist'); } // given a margin of 3 in heightfromtop as due to some padding and margin heightfrom top is different
+                    // else {
+                    //     if (titleBtn.classList.value.includes('activebtn-categorylist')) titleBtn.classList.remove('activebtn-categorylist');
+                    // }
 
 
     return (
