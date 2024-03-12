@@ -25,7 +25,7 @@ body {
     margin: 2% 0;
     border-top:1px solid grey;
     position: sticky;
-    top: calc(var(--stickHeight) + 23.08px);
+    top: calc(var(--stickHeight));
     height: 500px;
     
 }
