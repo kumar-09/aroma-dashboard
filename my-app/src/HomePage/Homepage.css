@@ -1,6 +1,7 @@
 :root {
     --stickHeight: 128.4px;
     --foodHeight: 500px;
+    --footerHeight: 212.73px;
 }
 /* add media query for inital heights*/
 body {
@@ -13,7 +14,7 @@ body {
     margin-left:2%;
     border-right: 1px solid lightgray;
     border-left: 1px solid lightgray;
-    position: relative;
+    /* position: relative; */
 }
 .Category-food-list {
     position: relative;
@@ -23,7 +24,7 @@ body {
     flex-direction: column;
     width: 25%;
     margin: 2% 0;
-    border-top:1px solid grey;
+    border-top:1px solid lightgrey;
     position: sticky;
     top: calc(var(--stickHeight));
     height: 500px;
@@ -32,7 +33,7 @@ body {
 
 .categorylist-name {
     padding: 4px 2px;
-    border-bottom : 1px solid grey;
+    border-bottom : 1px solid lightgrey;
 }
 .categorylist-name:hover {
     color : #f1356d;

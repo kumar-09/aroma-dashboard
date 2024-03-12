@@ -146,10 +146,16 @@ const [email, setEmail] = useState('');
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);
   const FooterRef = useRef(null);
-
+  if(FooterRef.current){ 
+    let footerHeight = FooterRef.current.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
 //---------------------------------------------------------------<<<<
+   // for showing active navlink
+  //  const [activeNavlink, setactiveNavlink] = useRef(null);
+
   //In Home Component "list" refers to the category-list while "menu" refers to the food-item list 
   return (
+    <>
     <div className="App">
       
       <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn}/>
@@ -172,8 +178,9 @@ const [email, setEmail] = useState('');
           ))}
          
         </Routes>
-      <Footer footerref={FooterRef}/>
     </div>
+          <Footer footerref={FooterRef}/>
+</>
   );
 }
 

@@ -8,7 +8,7 @@ function Suggestions({addOne, subtractOne, cart}) {
     //const [error, setError] = useState(false);
     useEffect(
         () => {
-            setTimeout(() => {axios.get('http://127.0.0.1:8000/api/menu/cold-drink/')
+            setTimeout(() => {axios.get('http://127.0.0.1:8000/api/menu/Cold Drinks/')
             /*.then((res) => {
                 console.log("Ami's data has arrived: ", res.data);
                 if(res.ok === false){
@@ -29,7 +29,7 @@ function Suggestions({addOne, subtractOne, cart}) {
                 //setError(true);
                 setLoading(false);
             })
-        }, 2000)
+        }, 0)
     }
         , []
     );
@@ -43,10 +43,12 @@ function Suggestions({addOne, subtractOne, cart}) {
     }*/
     return(
         <div className="suggestions">
-            <h3 className="suggestions">Grab a delightful beverage before you leave!!</h3>
-            {(!loading && sug.length === 0) && <h4>Cannot connect to server</h4>}
-            {loading && <h4>Loading........</h4>}
-            {sug  && sug.map((item, i)=> <ItemComponent Food={item} subtractOne = {subtractOne} addOne = {addOne} key={i} quantity={((cart.find((eatable => eatable.id === item.id)))??{quantity: 0}).quantity}/> )}
+            <div style={{margin: '2.5% 0'}}>Grab a delightful beverage before you leave!!</div>
+            {(!loading && sug.length === 0) && <div>Cannot connect to server :(</div>}
+            {loading && <div>Loading........</div>}
+            <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+            {sug  && sug.map((item, i)=> <ItemComponent Food={item} subtractOne = {subtractOne} addOne = {addOne} key={i} quantity={((cart.find((eatable => eatable.id === item.id)))??{quantity: 0}).quantity}  ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'}/> )}
+       </div>
         </div>
     )
     

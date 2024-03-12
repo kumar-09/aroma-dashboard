@@ -10,17 +10,22 @@
 .Category-img {
     width: 200px;
     height:200px;
-    border: 2px solid black;
-    
+    border: inherit;
+    border-bottom: 2px solid black;
 }
 .Category-name-categories {
     height:50px;
     text-align: center;
+    color:black;
+}
+.Category-name-categories >p{
+    padding-top: 14px;
 }
 .CategoryTemplate {
     border: 2px solid black;
     margin: 20px;
     transition: scale 0.4s;
+    border-radius: 11px;
 }
 .CategoryTemplate:hover{ 
     scale: 1.08;

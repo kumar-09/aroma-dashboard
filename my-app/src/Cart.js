@@ -3,24 +3,28 @@ import CartItem from "./HomePage/cartItem";
 import Suggestions from "./Suggestions";
 import { useEffect, useState } from "react";
 import PrevOrders from "./PrevOrders";
+import img from './image/empty-cart-7359557-6024626.png';
 
 
 function Cart({ cartItems, addOne, subtractOne, foodList}) {
     return (
         <div className="Cart-page">
-            <div className="cart-heading">Cart</div>
+            { cartItems.length !=0 && <div className="cart-heading">Cart</div>}
             <div className="cart-flex">
             <div className="cart-list">
             {cartItems.map((item) => <CartItem key={item.id} foodItem={foodList.find((dish) => {return dish.id === item.id})} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} cost={'cost-dif'} fooditem={'fooditem-dif'} />)}
-            </div>
-            <div className="total">
-                {cartItems.length === 0 && 
-                <>
+            {cartItems.length === 0 && 
+                <div className="emptyCart" style={{marginLeft: '55%',padding: 0,marginTop: 50}}>
                     Your cart is empty :(
                     <br/>
-                    <Link to="/"><button className="lure">Back to Homepage</button></Link>
-                </>
-                }
+                    <img src={img} style={{width: 300}}></img>
+                    <Link to="/"><button className="go-to-cart-btn" style={{backgroundColor: '#ff5050'}}>Back to Homepage</button></Link>
+                    </div>}
+            </div>
+        
+            <div className="total">
+
+                    
                 
                 {   
                     cartItems.length !== 0 && <>
@@ -36,7 +40,7 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
                         )
                         }
                     <br/>
-                    <button className="checkout">Proceed to Checkout</button>
+                    <button className="go-to-cart-btn">Proceed to Checkout</button>
                     
                     </>
                 }
@@ -44,7 +48,7 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
             </div>
             
             </div>
-            <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cartItems}/>
+            {cartItems.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cartItems}/>}
                 {true && <PrevOrders userID={'23b0608'} addOne={addOne} subtractOne={subtractOne} foodList = {foodList} cart={cartItems}/>}
         </div>
     )

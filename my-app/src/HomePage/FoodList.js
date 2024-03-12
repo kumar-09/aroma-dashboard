@@ -85,19 +85,15 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
                 let titleBtn = document.getElementById(titleBtnId);
                 // console.log(titleElement);
                 if (titleElement) {
-                    let heightOfTitleFromTop = titleElement.getBoundingClientRect().top;
                     let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
-                    // console.log(heightOfHeader);
-
-
-                    const scrollPosition = window.scrollY ;
+                
+                    const scrollPosition = window.scrollY+heightOfHeader+1 ;
                     const titlePosition = titleElement.offsetTop;
-                    console.log(titlePosition)
                     const nextTitlePosition =
                       categories.indexOf(category) < categories.length - 1
                         ? document.getElementById(`${categories[categories.indexOf(category) + 1][0].category}`).offsetTop
                         : Number.MAX_SAFE_INTEGER;
-                        
+                        console.log( category[0].category,' ',scrollPosition,' ',titlePosition,' ',nextTitlePosition)
                     if (scrollPosition >= titlePosition && scrollPosition < nextTitlePosition) {
                         titleBtn.classList.add('activebtn-categorylist');
                         titleElement.classList.add('Category-name-active');

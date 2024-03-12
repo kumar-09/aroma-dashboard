@@ -9,6 +9,9 @@
     font-size: 10px;
   }
 }
+.App {
+  min-height: calc(100vh - var(--footerHeight));
+}
 
 html{
   width:100%;
@@ -21,10 +24,11 @@ body{
 }
 
 .searchbox{
-  width: 20%;
+  width: 30%;
   display:flex;
   flex-direction: column;
   align-items: center;
+
 }
 .search{
   background: url("/public/search-icon.png") top left     no-repeat;
@@ -35,11 +39,10 @@ body{
   margin-right:20px;
   width: 100%;
   color: rgb(255, 255, 255);
-  background-color:rgba(128, 128, 128, 0.434);
+  background-color:rgba(128, 128, 128, 0.1);
   border:none;
   border-radius:20px;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding: 12px 0;
   padding-right:10px;
   padding-left:40px;
 }
@@ -76,6 +79,18 @@ body{
   border-bottom: 1px solid #f2f2f2;
   width:100%;
 }
+.nav-links:hover {
+  background-color: #f2f2f2;
+  border-radius: 30px;
+}
+.nav-links{
+  color:#4d4d4d;
+  display: flex;
+  align-items: center;
+}
+.nav-links > img {
+  margin-right: 5px;
+}
 .navbar h1 {
   color: #f1356d;
 }
@@ -85,10 +100,10 @@ body{
 .navbar a {
   margin-left: 16px;
   text-decoration: none;
-  padding: 6px;
+  padding: 6px 16px;
 }
-.navbar a:hover {
-  color: #f1356d;
+.active-nav-links {
+  background-color: #ff6a6a;
 }
 .content {
   max-width: 600px;
@@ -99,6 +114,7 @@ body{
 #dropdown { 
   display:flex;
   flex-direction:column;
+  
 }
 
 .footer{
@@ -245,4 +261,8 @@ border-radius: 5px;
     width: 85%;
     font-size: 14px;
     border: 1px solid lightgray;
+}
+.suggestions {
+ font-weight:600;
+ margin: 20px;
 }

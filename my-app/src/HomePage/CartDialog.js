@@ -1,6 +1,6 @@
 import CartItem from "./cartItem";
 import './Homepage.css'
-import img from '../empty-cart-7359557-6024626.png'
+import img from '../image/empty-cart-7359557-6024626.png'
 import {Link} from 'react-router-dom'
 // cart array has objects of the form {dish, quantity}
 

@@ -2,7 +2,7 @@ import ItemComponent from "../HomePage/ItemsComponent";
 import './CategoryTemplate.css'
 import { useEffect,useState } from "react";
 import axios from 'axios'
-import img from '../Spin-1s-200px.gif'
+import img from '../image/Spin-1s-200px.gif'
 const CategoryFoodList = ({category,addOne,subtractOne, cart}) => {
     const [Failed, setFailed] = useState(false);
     const [Load, setLoad] = useState(true);

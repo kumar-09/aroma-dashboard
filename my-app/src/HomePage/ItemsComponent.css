@@ -5,10 +5,12 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 250px;
-    border: 2px solid black;
+    border: 2px solid lightgray;
+    border-radius: 11px;
+    box-shadow:0px 0px 14px -4px rgba(0,0,0,0.5);
 }
 
-.Fooditem {
+.Fooditem { 
     max-width: 500px;
     margin:auto;
     display:flex;
@@ -22,6 +24,7 @@ body {
     /* border: 2px solid black; */
     /* border-radius: 5%; */
     border-bottom: 2px solid black;
+    border-radius: inherit;
 }
 .Item-img-dif-design>img{
     max-height:250px;
