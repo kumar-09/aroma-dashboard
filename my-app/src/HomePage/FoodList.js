@@ -1,7 +1,9 @@
 import './Homepage.css'
 import FoodListCategorywise from "./FoodListCategorywise";
+import catgimg from '../image/category-svgrepo-com (1).svg'
 import ItemComponent from "./ItemsComponent";
 import { Children, forwardRef, useEffect, useImperativeHandle, useState, useLayoutEffect, useRef } from "react";
+import {Link} from 'react-router-dom'
 
 const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, menuref }, ref) => {
 
@@ -62,7 +64,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
         HeightOfHeader = HeaderRef.current.getBoundingClientRect().bottom;
         document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
     }
-    //for onload first category active btn;
+    // for onload first category active btn;
     // const sandwichTitle = document.getElementById('Sandwich');
     // const sandwichBtn = document.getElementById('Sandwichbtn');
     // if(sandwichTitle){
@@ -93,7 +95,6 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
                       categories.indexOf(category) < categories.length - 1
                         ? document.getElementById(`${categories[categories.indexOf(category) + 1][0].category}`).offsetTop
                         : Number.MAX_SAFE_INTEGER;
-                        console.log( category[0].category,' ',scrollPosition,' ',titlePosition,' ',nextTitlePosition)
                     if (scrollPosition >= titlePosition && scrollPosition < nextTitlePosition) {
                         titleBtn.classList.add('activebtn-categorylist');
                         titleElement.classList.add('Category-name-active');
@@ -115,6 +116,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
         }
     },[categories,isScrolling]
     )
+    window.addEventListener('load', scrollfuncRef.current)
 
 
                     // if (heightOfTitleFromTop <= heightOfHeader) {
@@ -143,6 +145,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
                     <FoodListCategorywise Foodlist={category} key={categories.indexOf(category)} subtractOne={subtractOne} addOne={addOne} ItemInfo={'Item-info'} ItemName={'Item-name'} ItemPriceInfo={'Item-info-price'} AddBtn={'Add-item'} ImgClass={'Item-img'} MainClass={'Fooditem'} cart={cart} />
                 ))}
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    {/* <Link ><div className='catgBtn' ><img src={catgimg} style={{width:20,display:'inline-block',color: 'white'} } ></img><div className='catg-btn-name'>categories</div></div></Link> */}
         </div>
     );
 

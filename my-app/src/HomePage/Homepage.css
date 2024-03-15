@@ -180,6 +180,22 @@ body {
 .food-img{
     width:150px;
 }
+/* 
+.catgBtn {
+    position: fixed;
+    top: 91%;
+    left: 46%;
+    z-index: 5;
+    display: flex;
+    background-color: #ff5050;
+    padding: 5px 6px;
+    border-radius: 11px;
+}
+
+.catg-btn-name{
+    display: inline-block;
+} */
+
 @media screen and (max-width:770px ) {
     .CategoryList{
         display: none;
@@ -190,6 +206,10 @@ body {
     }
     .home {
         margin: 0;
+    }
+    .cart {
+        width:35%;
+        height: calc(var(--foodHeight) - 77px);
     }
 }
 
@@ -204,4 +224,9 @@ body {
         margin:0 5px;
     }
     
+}
+@media screen and (max-width:1025px) {
+    .home {
+        margin:0 1%;
+    }
 }

@@ -6,7 +6,7 @@ import Home from './HomePage/Home';
 import Login from './LoginPage/Login';
 import LoginHome from './LoginPage/Home';
 import Categories from './Categories';
-import { useState, useEffect,useRef } from 'react';
+import { useState, useEffect,useRef, useLayoutEffect } from 'react';
 import Cart from './Cart';
 import Footer from './Footer';
 import TNC from './TNC';
@@ -146,9 +146,25 @@ const [email, setEmail] = useState('');
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);
   const FooterRef = useRef(null);
-  if(FooterRef.current){ 
-    let footerHeight = FooterRef.current.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+      // function updateSize() {
+      //     setSize([window.innerWidth, window.innerHeight]);
+      // }
+      // window.addEventListener('resize', updateSize);
+      // updateSize();
+      // return () => window.removeEventListener('resize', updateSize);
+      
+    if(FooterRef.current){ 
+      let footerHeight = FooterRef.current.getBoundingClientRect().height;
+      console.log(footerHeight)
+      document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
+
+
+  }, []);
+
+  
+ 
 //---------------------------------------------------------------<<<<
    // for showing active navlink
   //  const [activeNavlink, setactiveNavlink] = useRef(null);
