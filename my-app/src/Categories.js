@@ -2,6 +2,7 @@ import CategoryTemplate from "./Categories/CategoryTemplate";
 import './Categories/CategoryTemplate.css';
 const Categories = ({list, cart}) => {
     const categories = list;
+    
     return ( 
         <div className="Categories">
         <h1>

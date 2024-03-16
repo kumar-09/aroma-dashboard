@@ -3,10 +3,8 @@ import CartDialog from "./CartDialog";
 import FoodList from "./FoodList";
 import CategoryList from "./CategoryList";
 import './Homepage.css'
-
-const Home = ( {list, addOne, subtractOne, cartItems, menu,HeaderRef,FooterRef}) => {
-    const categories = list;
-
+import axios from "axios";
+const Home = ( { menu,addOne, subtractOne, cartItems,HeaderRef,FooterRef}) => {
     /*const subtractOneMenu = (id) => {
         const tempList = list.map((item) => {
             if(item.dish.id === id){
@@ -16,8 +14,11 @@ const Home = ( {list, addOne, subtractOne, cartItems, menu,HeaderRef,FooterRef})
         });
         setList(tempList);
     }*/
-    const CategoryName = [ 'Sandwich', 'Cold Drinks', 'Noodles', 'Rices', 'Parathas'];
-
+const [CategoryNames, setCategoryNames] = useState([]);
+    axios.get('http://127.0.0.1:8000/api/category-list/')
+    .then(res=>{
+        setCategoryNames(res.data)
+    })
     // connecting FoodList and Categorylist---------------------->>>
     
     const myref = useRef(null);
@@ -28,10 +29,6 @@ const Home = ( {list, addOne, subtractOne, cartItems, menu,HeaderRef,FooterRef})
     //------------------------------<<<
     //css var height of foodlist ---
     let HeightOfFoodlist;
-    // if(menuref.current){
-        
-    //         console.log(menuref.current);
-    // }
     useEffect(()=>{
         console.log(menuref.current);
             HeightOfFoodlist= menuref.current.getBoundingClientRect().bottom-menuref.current.getBoundingClientRect().top;
@@ -39,7 +36,6 @@ const Home = ( {list, addOne, subtractOne, cartItems, menu,HeaderRef,FooterRef})
             // style.setProperty('--foodHeight',`${HeightOfFoodlist}px`)
 },[]);
 
-    
     const CartRef = useRef(null);
     
         // if(CartRef.current && FooterRef.current){
@@ -57,8 +53,8 @@ const Home = ( {list, addOne, subtractOne, cartItems, menu,HeaderRef,FooterRef})
     return (
         
         <div className="home">
-            <CategoryList categories = {CategoryName}  scrollToCategory={scrollToCategory} />
-            <FoodList menuref={menuref}HeaderRef={HeaderRef} ref={myref} foodItems = {categories} subtractOne = {subtractOne} addOne = {addOne} menu = {menu} cart = {cartItems}/>
+            <CategoryList categories = {CategoryNames}  scrollToCategory={scrollToCategory} />
+            <FoodList menuref={menuref} HeaderRef={HeaderRef} ref={myref} subtractOne = {subtractOne} addOne = {addOne} cart = {cartItems}/>
             <CartDialog myref={CartRef} subtractOne={subtractOne} addOne={addOne} cartList={cartItems} menu = {menu}/>
         </div>
     );

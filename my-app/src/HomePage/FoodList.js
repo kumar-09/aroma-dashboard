@@ -4,10 +4,37 @@ import catgimg from '../image/category-svgrepo-com (1).svg'
 import ItemComponent from "./ItemsComponent";
 import { Children, forwardRef, useEffect, useImperativeHandle, useState, useLayoutEffect, useRef } from "react";
 import {Link} from 'react-router-dom'
+import axios from 'axios';
 
-const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, menuref }, ref) => {
+const FoodList = forwardRef(({subtractOne, addOne, cart, HeaderRef, menuref }, ref) => {
 
-    const categories = foodItems;
+    const [tempData, settempData] = useState({});
+    const [MasterData, setMasterData] = useState([]);
+      let data;
+      useEffect(() => {
+        setTimeout(() => {
+          axios.get('http://localhost:8000/api/all-category-menu')
+          .then(res => {
+            data = res.data;
+            settempData(data);
+            console.log(data);
+            
+          })
+          // .catch(err => {console.log("Error thrown")})
+        }, 1000);
+      },[]);
+  
+  let temparr=[];
+  
+  useEffect(()=>{
+    Object.keys(tempData).forEach( key => {
+      temparr.push([key,tempData[key]])
+    })
+    setMasterData(temparr);
+  },[tempData])
+
+
+
     // for scrolling to clicked category--->>>
 
     const scrollToCategory = (CategoryId) => {
@@ -72,7 +99,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
     // if(heightOfSandwichTitle <= HeightOfHeader+2 && heightOfSandwichTitle>= HeightOfHeader+2 ) sandwichBtn.classList.add('activebtn-categorylist');
     // }
 
-
+    const categories = MasterData;
     //scroll event on foodlist component
     const [isScrolling, setisScrolling] = useState(true);
     const scrollfuncRef = useRef(null);
@@ -80,7 +107,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
         scrollfuncRef.current = () => {
             categories.map(category => {
                 if(isScrolling) {
-                let title = category[0].category;
+                let title = category[0];
                 // console.log(document.getElementById(title));
                 let titleElement = document.getElementById(title);
                 let titleBtnId = title + 'btn';
@@ -93,7 +120,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
                     const titlePosition = titleElement.offsetTop;
                     const nextTitlePosition =
                       categories.indexOf(category) < categories.length - 1
-                        ? document.getElementById(`${categories[categories.indexOf(category) + 1][0].category}`).offsetTop
+                        ? document.getElementById(`${categories[categories.indexOf(category) + 1][0]}`).offsetTop
                         : Number.MAX_SAFE_INTEGER;
                     if (scrollPosition >= titlePosition && scrollPosition < nextTitlePosition) {
                         titleBtn.classList.add('activebtn-categorylist');
@@ -140,8 +167,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
     return (
         <div className="Menu" ref={menuref} >
             {
-                // <ItemComponent FoodList={FoodList}/>
-                categories.map((category) => (
+                MasterData.map((category) => (
                     <FoodListCategorywise Foodlist={category} key={categories.indexOf(category)} subtractOne={subtractOne} addOne={addOne} ItemInfo={'Item-info'} ItemName={'Item-name'} ItemPriceInfo={'Item-info-price'} AddBtn={'Add-item'} ImgClass={'Item-img'} MainClass={'Fooditem'} cart={cart} />
                 ))}
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

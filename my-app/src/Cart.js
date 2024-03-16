@@ -12,7 +12,7 @@ function Cart({ cartItems, addOne, subtractOne, foodList}) {
             { cartItems.length !=0 && <div className="cart-heading">Cart</div>}
             <div className="cart-flex">
             <div className="cart-list">
-            {cartItems.map((item) => <CartItem key={item.id} foodItem={foodList.find((dish) => {return dish.id === item.id})} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} cost={'cost-dif'} fooditem={'fooditem-dif'} />)}
+            {cartItems.map((item) => <CartItem key={item.Food_id} foodItem={foodList.find((dish) => {return dish.food_id === item.food_id})} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} cost={'cost-dif'} fooditem={'fooditem-dif'} />)}
             {cartItems.length === 0 && 
                 <div className="emptyCart" style={{marginLeft: '55%',padding: 0,marginTop: 50}}>
                     Your cart is empty :(

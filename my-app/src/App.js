@@ -55,27 +55,19 @@ const App = () => {
   categories.push(Sandwich,ColdDrinks,Noodles,Rices,Paratha);
 // console.log(categories)
  
-  const [MasterData, setMasterData] = useState({details : [], })
-    let data;
-    
-    useEffect(() => {
-      setTimeout(() => {
-        axios.get('http://localhost:8000/api/menu/')
-        .then(res => {
-          data = res.data;
-          setMasterData({
-            details: data
-          });
-        })
-        .catch(err => {console.log("Error thrown")})
-      }, 1000);
-    }, []);
 
-    MasterData.details = MasterData.details.map((dish) => {return {dish, quantity:0}})
+// console.log(MasterData);
+const [menu, setmenu] = useState([]);
+  useEffect( ()=> {
+    axios.get('http://127.0.0.1:8000/api/menu/')
+    .then(res=> {
+      setmenu(res.data);
+    })
+    .catch( err=>{
+      console.log('failed to get menu list.')
+    })
+  },[])
 
-    console.log(MasterData.details);
-
-  
   const [cart, setCart] = useState([]);
 
   const subtractOne = (id) =>{
@@ -177,9 +169,9 @@ const [email, setEmail] = useState('');
       <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn}/>
         
         <Routes>
-          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
-          <Route path='/Categories' element={<Categories list={categories}/>}/>
-          <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
+          <Route path='/' element = {<Home addOne={addOne} menu={menu} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
+          <Route path='/Categories' element={<Categories/>}/>
+          <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
