@@ -46,14 +46,7 @@ const App = () => {
     {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'},
   ];
 
-  const categories =[];
-  const Sandwich= list.filter((Food) => Food.category === 'Sandwich');
-  const ColdDrinks = list.filter((Food)=> Food.category ==='Cold Drinks');
-  const Noodles = list.filter((Food)=>Food.category ==='Noodles');
-  const Rices = list.filter((Food)=> Food.category==='Rices');
-  const Paratha= list.filter((Food) => Food.category === 'Parathas');
-  categories.push(Sandwich,ColdDrinks,Noodles,Rices,Paratha);
-// console.log(categories)
+
  
 
 // console.log(MasterData);
@@ -67,6 +60,14 @@ const [menu, setmenu] = useState([]);
       console.log('failed to get menu list.')
     })
   },[])
+  const [categories, setcategories] = useState([]);
+useEffect(()=>{
+  axios.get('http://127.0.0.1:8000/api/category-list/')
+  .then(res=>{
+      setcategories(res.data);
+  })
+
+},[])
 
   const [cart, setCart] = useState([]);
 
@@ -74,7 +75,7 @@ const [menu, setmenu] = useState([]);
     const tempCart = [...cart];
     let index = tempCart.findIndex((item) => 
     {
-      return item.id === id;
+      return item.food_id === id;
     });
     if(index === -1){
       console.log("Logical error related to subtraction before adding to cart");
@@ -113,10 +114,10 @@ const [menu, setmenu] = useState([]);
       const tempCart = [...cart];
     let index = tempCart.findIndex((item) => 
     {
-      return item.id === id;
+      return item.food_id === id;
     });
     if(index === -1){
-      tempCart.push({id: id, quantity: 1});
+      tempCart.push({food_id: id, quantity: 1});
     }
     else if(tempCart[index].quantity === 10){
       alert("You cannot add more than 10 units of one dish!!");
@@ -151,8 +152,6 @@ const [email, setEmail] = useState('');
       let footerHeight = FooterRef.current.getBoundingClientRect().height;
       console.log(footerHeight)
       document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
-
-
   }, []);
 
   
@@ -170,7 +169,7 @@ const [email, setEmail] = useState('');
         
         <Routes>
           <Route path='/' element = {<Home addOne={addOne} menu={menu} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
-          <Route path='/Categories' element={<Categories/>}/>
+          <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
@@ -182,7 +181,7 @@ const [email, setEmail] = useState('');
           <Route path='/admin' element = {<AdminPage/>}/>
           <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn}/>}/>
           { categories.map (category => (
-             <Route key={category[0].category} path={'Categories/CategoryFoodlist-'+category[0].category} element={<CategoryFoodList category={category} addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
+             <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
           ))}
          
         </Routes>

@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom'
 // cart array has objects of the form {dish, quantity}
 
 function CartDialog({ subtractOne, addOne, cartList, menu, myref }) {
-
-    const cart = cartList;
-
+const cart = cartList;
     if (cart.length === 0) {
 
         return (
@@ -33,15 +31,15 @@ function CartDialog({ subtractOne, addOne, cartList, menu, myref }) {
                 {
                     cart.map(
                         (item) =>
-                            <CartItem foodItem={menu.find((dish) => { return dish.id === item.id })} add={addOne} subtract={subtractOne} number={item.quantity} key={item.id} cost={'cost'} showImg={false} fooditem={'food-item'} />
+                            <CartItem foodItem={menu.find((dish) => { return dish.food_id === item.food_id })} add={addOne} subtract={subtractOne} number={item.quantity} key={item.food_id} cost={'cost'} showImg={false} fooditem={'food-item'} />
                     )
 
                 }
                 <div className="total">
                     Total: &#8377; {
                         cart.reduce((sum, item) => {
-                            let dish = menu.find((eatable) => { return eatable.id === item.id });
-                            return sum + item.quantity * dish.price
+                            let dish = menu.find((eatable) => { return eatable.food_id === item.food_id });
+                            return sum + item.quantity * dish.price;
                         }, 0
                         )
                     }

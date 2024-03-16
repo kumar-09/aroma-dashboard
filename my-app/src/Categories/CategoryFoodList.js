@@ -6,11 +6,14 @@ import img from '../image/Spin-1s-200px.gif'
 const CategoryFoodList = ({category,addOne,subtractOne, cart}) => {
     const [Failed, setFailed] = useState(false);
     const [Load, setLoad] = useState(true);
+
 // category API ----------------------->>>>
+
 let CategoryDatalist;
 const [CategoryData,setCategoryData]= useState([]);
+
 useEffect (  ()=>{
-   axios.get('http://127.0.0.1:8000/api/menu/'+category[0].category)
+   axios.get('http://127.0.0.1:8000/api/menu/'+category)
   .then ( res =>{
     console.log(res.data)
     CategoryDatalist = res.data;
@@ -51,7 +54,7 @@ useEffect (  ()=>{
 
         <div className="CategoryFoodList">
             <div className="CategoryTitle">
-                {category[0].category}
+                {category}
             </div>
            
             
@@ -84,7 +87,7 @@ useEffect (  ()=>{
 
                 }
                 { CategoryData.map(Food => (
-                    <ItemComponent  Food={Food} key={Food.food_id} subtractOne = {subtractOne} addOne = {addOne} ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'} quantity={((cart.find((eatable => eatable.id === Food.id)))??{quantity: 0}).quantity}/>
+                    <ItemComponent  Food={Food} key={Food.food_id} subtractOne = {subtractOne} addOne = {addOne} ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'} quantity={((cart.find((eatable => eatable.food_id === Food.food_id)))??{quantity: 0}).quantity}/>
                 ))}
             </div>
            

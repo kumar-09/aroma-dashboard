@@ -1,8 +1,9 @@
 import CategoryTemplate from "./Categories/CategoryTemplate";
 import './Categories/CategoryTemplate.css';
-const Categories = ({list, cart}) => {
-    const categories = list;
-    
+import { useState } from "react";
+import axios from "axios";
+const Categories = ({cart,categories}) => {
+  
     return ( 
         <div className="Categories">
         <h1>
@@ -13,7 +14,7 @@ const Categories = ({list, cart}) => {
         <br></br>
         <div className="Category-list">
              { categories.map(category => (
-                <CategoryTemplate category={category} key={category[0].category} cart = {cart}/>
+                <CategoryTemplate category={category} key={category.Type} cart = {cart}/>
             )) }
         </div>
         </div>

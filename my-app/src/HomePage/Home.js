@@ -15,10 +15,14 @@ const Home = ( { menu,addOne, subtractOne, cartItems,HeaderRef,FooterRef}) => {
         setList(tempList);
     }*/
 const [CategoryNames, setCategoryNames] = useState([]);
+useEffect(()=>{
     axios.get('http://127.0.0.1:8000/api/category-list/')
     .then(res=>{
         setCategoryNames(res.data)
     })
+    .catch(err=> {console.log('failed to get category-list')})
+},[])
+    
     // connecting FoodList and Categorylist---------------------->>>
     
     const myref = useRef(null);

@@ -4,7 +4,7 @@ import './ItemsComponent.css'
 const ItemComponent = ({Food, subtractOne, addOne,MainClass, quantity,ImgClass,AddBtn,ItemPriceInfo,ItemInfo,ItemName}) => {
    return (
       <>
-      
+      {console.log(Food)}
 
              <div className={MainClass}>
              <div className={ImgClass}>
@@ -18,12 +18,12 @@ const ItemComponent = ({Food, subtractOne, addOne,MainClass, quantity,ImgClass,A
                    &#x20B9; {Food.price} 
                    </div>
                    <div className={AddBtn}>
-                      {(quantity === 0) ? (<button className='Init-add-btn' id={Food.id} onClick={()=>{addOne(Food.id)}}> ADD <span> +</span></button>) :
+                      {(quantity === 0) ? (<button className='Init-add-btn' id={Food.food_id} onClick={()=>{addOne(Food.food_id)}}> ADD <span> +</span></button>) :
                          (
                             <>
-                               <button id={toString(Food.id)} className='After-Init-btn' onClick={()=>{subtractOne(Food.id)}} > - </button>
-                               <div id={toString(Food.id)} className='After-Init-btn' >{quantity}</div>
-                               <button id={toString(Food.id)} className='After-Init-btn' onClick={()=>{addOne(Food.id)}}> + </button>
+                               <button id={toString(Food.food_id)} className='After-Init-btn' onClick={()=>{subtractOne(Food.food_id)}} > - </button>
+                               <div id={toString(Food.food_id)} className='After-Init-btn' >{quantity}</div>
+                               <button id={toString(Food.food_id)} className='After-Init-btn' onClick={()=>{addOne(Food.food_id)}}> + </button>
                             </>
                          )}
                    </div>
