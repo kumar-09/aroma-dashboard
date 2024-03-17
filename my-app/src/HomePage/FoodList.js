@@ -6,35 +6,9 @@ import { Children, forwardRef, useEffect, useImperativeHandle, useState, useLayo
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
-const FoodList = forwardRef(({subtractOne, addOne, cart, HeaderRef, menuref }, ref) => {
+const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, HeaderRef, menuref }, ref) => {
 
-    const [tempData, settempData] = useState({});
-    const [MasterData, setMasterData] = useState([]);
-      let data;
-      useEffect(() => {
-        setTimeout(() => {
-          axios.get('http://localhost:8000/api/all-category-menu')
-          .then(res => {
-            data = res.data;
-            settempData(data);
-            console.log(data);
-            
-          })
-          // .catch(err => {console.log("Error thrown")})
-        }, 1000);
-      },[]);
-  
-  let temparr=[];
-  
-  useEffect(()=>{
-    Object.keys(tempData).forEach( key => {
-      temparr.push([key,tempData[key]])
-    })
-    setMasterData(temparr);
-  },[tempData])
-
-
-
+   
     // for scrolling to clicked category--->>>
 
     const scrollToCategory = (CategoryId) => {
@@ -42,8 +16,6 @@ const FoodList = forwardRef(({subtractOne, addOne, cart, HeaderRef, menuref }, r
         window.removeEventListener('scroll',scrollfuncRef.current);
         const CategoryFoodListId = CategoryId + 'list';
         const category = document.getElementById(CategoryFoodListId);
-        // console.log(CategoryId);
-        // console.log(category);
         if (category) {
             const height = category.getBoundingClientRect().top;
             const navbar_height = document.getElementById('head').getBoundingClientRect().bottom;
@@ -53,6 +25,7 @@ const FoodList = forwardRef(({subtractOne, addOne, cart, HeaderRef, menuref }, r
                 left: 0,
                 behavior: 'smooth'
             });
+
             setTimeout(() => {                              // settimeout used to give time to scroll animation
                 setisScrolling(true);
                 window.addEventListener('scroll',scrollfuncRef.current);
@@ -143,7 +116,9 @@ const FoodList = forwardRef(({subtractOne, addOne, cart, HeaderRef, menuref }, r
         }
     },[categories,isScrolling]
     )
-    window.addEventListener('load', scrollfuncRef.current)
+    useEffect(()=>{window.addEventListener('load', scrollfuncRef.current)
+                },[scrollfuncRef.current])
+    
 
 
                     // if (heightOfTitleFromTop <= heightOfHeader) {

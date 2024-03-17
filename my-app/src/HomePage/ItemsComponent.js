@@ -4,8 +4,6 @@ import './ItemsComponent.css'
 const ItemComponent = ({Food, subtractOne, addOne,MainClass, quantity,ImgClass,AddBtn,ItemPriceInfo,ItemInfo,ItemName}) => {
    return (
       <>
-      {console.log(Food)}
-
              <div className={MainClass}>
              <div className={ImgClass}>
                 <img src={'http://localhost:8000/'+Food.image} alt='food' />

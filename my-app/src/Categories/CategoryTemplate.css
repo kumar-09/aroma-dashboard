@@ -5,12 +5,11 @@
 .Category-list {
     display: flex;
     flex-wrap: wrap;
-    
 }
 .Category-img {
     width: 200px;
     height:200px;
-    border: inherit;
+    border-radius:inherit;
     border-bottom: 2px solid black;
 }
 .Category-name-categories {
@@ -37,6 +36,8 @@
     display:flex;
     justify-content: space-evenly;
     flex-grow: 1;
+    flex-wrap:wrap;
+
 }
 .CategoryTitle {
     font-size: 27px;
@@ -55,4 +56,62 @@
 }
 .filterlabel{
     display: inline-block;
+}
+
+@media screen and (min-width:426px) and (max-width:768px) {
+    .Category-list{ 
+        margin: 0 15%;
+    }
+    .Fooditem-dif-design {
+        margin:2% 1%;
+        max-width: 200px;
+    }
+    .Item-img-dif-design{
+        height:200px;
+    }
+    .Item-img-dif-design>img{
+        max-height:200px;
+    }
+    .Item-name-dif-design{
+        font-size: 15px;
+        margin-top: 8px;
+    }
+    .Item-info-price-dif-design{
+        font-size: 15px;
+        margin-top: 8px;
+    }
+    .Add-item-dif-design{
+        width: 70px;
+        height: 24.5px;
+    }
+}
+@media screen and (max-width: 426px) {
+    .Category-list {
+        margin: 0 4%;
+    }
+    .Category-img {
+        width: 100%;
+        height: 100%;
+        border-bottom: 0;
+    }
+    .Category-img>img {
+        border-bottom: 2px solid black;
+    }
+    .Category-name-categories >p {
+        padding-top: 8px;
+        font-size: 25px;
+    }
+    .Fooditem-dif-design{
+        max-width:300px;
+        margin-bottom: 8%;
+    }
+    .Item-img-dif-design{
+        height:300px;
+    }
+    .Item-img-dif-design>img{
+        max-height:300px;
+    }
+    .CategoryTitle{
+        margin: 5.5%;
+    }
 }

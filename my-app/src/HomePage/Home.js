@@ -4,16 +4,8 @@ import FoodList from "./FoodList";
 import CategoryList from "./CategoryList";
 import './Homepage.css'
 import axios from "axios";
-const Home = ( { menu,addOne, subtractOne, cartItems,HeaderRef,FooterRef}) => {
-    /*const subtractOneMenu = (id) => {
-        const tempList = list.map((item) => {
-            if(item.dish.id === id){
-                item.quantity = item.quantity - 1;
-            }
-            return item;
-        });
-        setList(tempList);
-    }*/
+const Home = ( { MasterData,menu,addOne, subtractOne, cartItems,HeaderRef,FooterRef}) => {
+
 const [CategoryNames, setCategoryNames] = useState([]);
 useEffect(()=>{
     axios.get('http://127.0.0.1:8000/api/category-list/')
@@ -58,7 +50,7 @@ useEffect(()=>{
         
         <div className="home">
             <CategoryList categories = {CategoryNames}  scrollToCategory={scrollToCategory} />
-            <FoodList menuref={menuref} HeaderRef={HeaderRef} ref={myref} subtractOne = {subtractOne} addOne = {addOne} cart = {cartItems}/>
+            <FoodList MasterData={MasterData}  menuref={menuref} HeaderRef={HeaderRef} ref={myref} subtractOne = {subtractOne} addOne = {addOne} cart = {cartItems}/>
             <CartDialog myref={CartRef} subtractOne={subtractOne} addOne={addOne} cartList={cartItems} menu = {menu}/>
         </div>
     );

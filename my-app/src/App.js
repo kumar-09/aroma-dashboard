@@ -45,7 +45,32 @@ const App = () => {
     {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'},
     {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'},
   ];
+//getting main foodlist data (categorywise foodlist)
 
+  const [tempData, settempData] = useState({});
+  const [MasterData, setMasterData] = useState([]);
+    let data;
+    useEffect(() => {
+      setTimeout(() => {
+        axios.get('http://localhost:8000/api/all-category-menu')
+        .then(res => {
+          data = res.data;
+          settempData(data);
+          console.log(data);
+          
+        })
+        // .catch(err => {console.log("Error thrown")})
+      }, 1000);
+    },[]);
+
+let temparr=[];
+
+useEffect(()=>{
+  Object.keys(tempData).forEach( key => {
+    temparr.push([key,tempData[key]])
+  })
+  setMasterData(temparr);
+},[tempData])
 
  
 
@@ -168,7 +193,7 @@ const [email, setEmail] = useState('');
       <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn}/>
         
         <Routes>
-          <Route path='/' element = {<Home addOne={addOne} menu={menu} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
+          <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
           <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={email}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />

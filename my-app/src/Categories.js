@@ -6,7 +6,7 @@ const Categories = ({cart,categories}) => {
   
     return ( 
         <div className="Categories">
-        <h1>
+        <h1 style={{paddingBottom: 8,}}>
             Categories
         </h1>
         <hr></hr>
