@@ -6,7 +6,7 @@ const ItemComponent = ({Food, subtractOne, addOne,MainClass, quantity,ImgClass,A
       <>
              <div className={MainClass}>
              <div className={ImgClass}>
-                <img src={'http://localhost:8000/'+Food.image} alt='food' />
+                <img src={'http://localhost:8000/'+Food.image} alt={Food.name} />
              </div>
              <div className={ItemInfo}>
                 <div className={ItemName}>{Food.name.toUpperCase()}</div>

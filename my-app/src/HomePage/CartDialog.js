@@ -4,12 +4,11 @@ import img from '../image/empty-cart-7359557-6024626.png'
 import { Link } from 'react-router-dom'
 // cart array has objects of the form {dish, quantity}
 
-function CartDialog({ subtractOne, addOne, cartList, menu, myref }) {
-const cart = cartList;
+function CartDialog({ subtractOne, addOne, cart, menu }) {
     if (cart.length === 0) {
 
         return (
-            <div className="cart" id="cart" ref={myref} >
+            <div className="cart" id="cart" >
                 <div className="cartHeading">Cart</div>
                 <div className="emptyCart">Your cart is empty.</div>
                 <div style={{ textAlign: "center" }}><img src={img} style={{ width: '200px' }}></img></div>
@@ -18,7 +17,7 @@ const cart = cartList;
     }
     else {
         return (
-            <div className="cart" ref={myref} id="cart" >
+            <div className="cart" id="cart" >
                 <div className="cartHeading">Cart</div>
                 <div className="num-of-items">
                     {
