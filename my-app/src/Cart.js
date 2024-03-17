@@ -55,7 +55,7 @@ const [cartadded, setcartadded] = useState(false);
     return (
         
         
-       <div className="Cart-page">
+            <div className="Cart-page">
             { cartItems.length !=0 && <div className="cart-heading">Cart</div>}
             <div className="cart-flex">
             <div className="cart-list">
@@ -69,28 +69,39 @@ const [cartadded, setcartadded] = useState(false);
                     </div>}
             </div>
         
-            <div className="total">
+                <div className="total-cart-page" style={{border: cartItems.length !==0 ? '1px solid lightgray': 'none'}}>
 
-                    
-                
-                {   
+                    ORDER SUMMARY <br></br><br></br>
+               
+                {    
                     cartItems.length !== 0 && <>
-                        <div>
+                        <div style={{marginBottom: '40px'}}>
                             {cartItems.reduce((sum, item) => sum + item.quantity, 0)}  
                             {cartItems.length === 1  && cartItems[0].quantity === 1 ? " Item" : " Items"}
                         </div>
                         
-                        Total: &#8377;{   
+                        <div style={{margin: '20px 0'}}>Item Total: &#8377;{   
                         cartItems.reduce((sum, item) => {
                             let dish = foodList.find((eatable) => {return eatable.id === item.id});
                             return sum + item.quantity * dish.price}, 0
                         )
                         }
-                    <br/>
-
-                 {loggedIn ? <button className="go-to-cart-btn" onClick={()=>{handleCheckout(cartItems)}}>Proceed to Checkout</button>
-                    :<Link to='/login'> <button className="go-to-cart-btn" style={{textDecoration:'none'}}> Proceed to Checkout</button> </Link>}  
-                    
+                        </div>
+                        <div className="delivery-charges">
+                            Delivery charge : &#8377; 30
+                        </div>
+                        <div className="grandTotal">
+                            Grand Total: &#8377;
+                        {cartItems.reduce((sum, item) => {
+                            let dish = foodList.find((eatable) => {return eatable.id === item.id});
+                            return sum + item.quantity * dish.price}, 30
+                        )}
+                        </div>
+                        
+                        <div className="cart-checkout-btn">
+                 {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{handleCheckout(cartItems)}}>Proceed to Checkout</button>
+                    :<Link to='/login'> <button className="go-to-cart-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
+                    </div>
                     </>
                 }
                
@@ -100,6 +111,7 @@ const [cartadded, setcartadded] = useState(false);
             {cartItems.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cartItems}/>}
                 {loggedIn && <PrevOrders userID={'23b0608'} addOne={addOne} subtractOne={subtractOne} foodList = {foodList} cart={cartItems}/>}
         </div>
+            
               )
             
 }

@@ -114,4 +114,27 @@
     .CategoryTitle{
         margin: 5.5%;
     }
+    .copyright{
+        font-size: 15px;
+        padding-left: 10px;
+    }
+    .footer-link-list{
+        font-size: 15px;
+        padding-right: 10px;
+    }
+    .footer-img{ 
+        display: none;
+    }
+    .footer{
+        justify-content: space-between;
+    }
+    .footer-img-dif{
+        width:100%;
+        margin: 5px 0;
+    }
+}
+@media screen and (min-width: 426px) {
+    .footer-img-dif {
+        display: none;
+    }
 }

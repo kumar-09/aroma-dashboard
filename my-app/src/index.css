@@ -153,6 +153,7 @@ body{
 
 .copyright{
   font-size:19px;
+  font-weight: 500;
 }
 
 .TNC {
@@ -237,11 +238,31 @@ form{
   padding:1.1% 10.5%;
 }
 .cart-list {
-  width: 60%;
+  width: 63%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 0;
 }
 .cart-flex {
   display: flex;
-  margin: 0 10%;
+  margin: 0 5%;
+  justify-content: space-between;
+}
+.total-cart-page{
+  height: 400px;
+  width:300px;
+    padding: 10px;
+    font-size: 18px;
+}
+.delivery-charges{
+  margin: 20px 0;
+}
+.grandTotal {
+  margin: 20px 0;
+}
+.cart-checkout-btn {
+  text-align: center;
+  margin-top: 60px;
 }
 .cost-dif {
     display: flex;
@@ -259,9 +280,10 @@ border-radius: 5px;
     /* flex-direction: column; */
     justify-content: space-between;
     margin-bottom: 20px;
-    width: 85%;
+    width: 44%;
     font-size: 14px;
     border: 1px solid lightgray;
+    margin: 8px 16px;
 }
 .suggestions {
  font-weight:600;

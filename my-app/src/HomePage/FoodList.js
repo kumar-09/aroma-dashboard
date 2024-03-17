@@ -141,8 +141,10 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, HeaderRef, m
 
     return (
         <div className="Menu" ref={menuref} >
-            {
-                MasterData.map((category) => (
+            
+                 <img className = "footer-img-dif" src="https://dukaan.b-cdn.net/600x600/webp/4420984/58dfd4d9-6975-4e74-9027-758740ffcbf6/image-78227dda-6d27-4026-9733-56dd23d462bc.png" alt="Aroma Delight Dhaba" />
+            
+              {  MasterData.map((category) => (
                     <FoodListCategorywise Foodlist={category} key={categories.indexOf(category)} subtractOne={subtractOne} addOne={addOne} ItemInfo={'Item-info'} ItemName={'Item-name'} ItemPriceInfo={'Item-info-price'} AddBtn={'Add-item'} ImgClass={'Item-img'} MainClass={'Fooditem'} cart={cart} />
                 ))}
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
