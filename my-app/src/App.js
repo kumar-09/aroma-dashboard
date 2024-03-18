@@ -19,6 +19,7 @@ import CategoryFoodList from './Categories/CategoryFoodList';
 import LogOut from './LoginPage/Logout';
 import ScrollToTop from './ScrollToTop';
 import SearchList from './Searchlist';
+import DropDown from './LoginPage/Dropdown'
 
 const App = () => {
 
@@ -124,6 +125,7 @@ useEffect(()=>{
 
 const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState('');
+const [Hover, setHover] = useState(false);
 // console.log(searchInput);
 
 //setting useRef to navbar to access header element
@@ -152,8 +154,9 @@ const [email, setEmail] = useState('');
     <>
     <div className="App">
       <ScrollToTop/>
-      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput}/>
+      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput} setHover={setHover}/>
         <SearchList items = {MasterData} searchInput = {searchInput}/>
+        {Hover && <DropDown/>}
         <Routes>
           <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
