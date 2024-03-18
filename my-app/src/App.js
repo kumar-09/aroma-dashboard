@@ -17,6 +17,7 @@ import Register from './LoginPage/Register';
 import axios from 'axios';
 import CategoryFoodList from './Categories/CategoryFoodList';
 import LogOut from './LoginPage/Logout';
+import ScrollToTop from './ScrollToTop';
 
 const App = () => {
 
@@ -122,10 +123,20 @@ const [email, setEmail] = useState('');
       document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
   }, []);
 
+  useEffect(()=>{   
+    let onload = ()=>{
+    console.log('loaded');
+       document.documentElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+       })} 
+     window.addEventListener('load',onload)
+    },[MasterData])
+
   return (
     <>
     <div className="App">
-      
+      <ScrollToTop/>
       <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {menu} setLoggedIn={setLoggedIn}/>
         
         <Routes>

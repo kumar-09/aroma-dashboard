@@ -57,10 +57,10 @@ const [cartadded, setcartadded] = useState(false);
             <div className="Cart-page">
             { cart.length !=0 && <div className="cart-heading">Cart</div>}
             <div className="cart-flex">
-            <div className="cart-list">
+            <div className="cart-list" style={{width: cart.length===0 && '100%', justifyContent: cart.length===0 && 'center' }}>
             {cart.map((item) => <CartItem key={item.Food_id} foodItem={foodList.find((dish) => {return dish.food_id === item.food_id})} add={addOne} subtract={subtractOne} showImg={true} number={item.quantity} cost={'cost-dif'} fooditem={'fooditem-dif'} />)}
             {cart.length === 0 && 
-                <div className="emptyCart" style={{marginLeft: '55%',padding: 0,marginTop: 50}}>
+                <div className="emptyCart" >
                     Your cart is empty :(
                     <br/>
                     <img src={img} style={{width: 300}}></img>
@@ -68,7 +68,7 @@ const [cartadded, setcartadded] = useState(false);
                     </div>}
             </div>
         
-                <div className="total-cart-page" style={{border: cart.length !==0 ? '1px solid lightgray': 'none'}}>
+                <div className="total-cart-page" style={{display: cart.length !==0 ? "inline-block" : "none"}}>
 
                     ORDER SUMMARY <br></br><br></br>
                

@@ -132,6 +132,12 @@
         width:100%;
         margin: 5px 0;
     }
+    .emptyCart {
+        margin-top: 0;
+    }
+    .emptyCart>img{
+        width:200px !important;
+    }
 }
 @media screen and (min-width: 426px) {
     .footer-img-dif {
