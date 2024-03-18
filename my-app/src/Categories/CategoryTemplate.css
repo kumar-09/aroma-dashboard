@@ -34,7 +34,6 @@
 }
 .categorylist-flex {
     display:flex;
-    justify-content: space-evenly;
     flex-grow: 1;
     flex-wrap:wrap;
 
@@ -63,7 +62,7 @@
         margin: 0 15%;
     }
     .Fooditem-dif-design {
-        margin:2% 1%;
+        margin:2% 3%;
         max-width: 200px;
     }
     .Item-img-dif-design{
@@ -86,6 +85,9 @@
     }
 }
 @media screen and (max-width: 426px) {
+    .categorylist-flex{
+        justify-content: space-evenly;
+    }
     .Category-list {
         margin: 0 4%;
     }
@@ -102,11 +104,11 @@
         font-size: 25px;
     }
     .Fooditem-dif-design{
-        max-width:300px;
+        max-width:250px;
         margin-bottom: 8%;
     }
     .Item-img-dif-design{
-        height:300px;
+        height:250px;
     }
     .Item-img-dif-design>img{
         max-height:300px;
