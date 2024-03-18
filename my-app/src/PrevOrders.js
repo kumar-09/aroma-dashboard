@@ -20,7 +20,7 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
                     console.log("Fetch Error" + err);
                 });
         }
-        , [userID]
+    ,[userID]
     );
     const tempList = [];//This has pdtID: quantity pairs
     for (const key in pastOrders[0]) {
@@ -30,7 +30,7 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
     for(let i = 0; i <= tempList.length - 1; i++)
     {
         for(const key in tempList[i]){
-            const foodItem = foodList.find((dish) => {return ((dish.id).toString() === key)});
+            const foodItem = foodList.find((dish) => {return ((dish.food_id).toString() === key)});
             if(foodItem && suitFormat.findIndex((dish) =>{ return dish.id === foodItem.id})< 0){
                 suitFormat.push(foodItem);
             }

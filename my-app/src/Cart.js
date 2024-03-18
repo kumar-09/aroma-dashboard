@@ -15,37 +15,46 @@ const [cartadded, setcartadded] = useState(false);
         food_ids : [],
         quantity: [],
     });
-
- function handleCheckout(cart){
-    let d = new Date();
-    let fulldate = d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'-'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
-    let ids=[],quantities=[];
-    cart.map(item => {
-        ids.push(item.food_id);
-        quantities.push(item.quantity);
-    })
-    console.log(ids,quantities)
-    setAddCart({
-        userid: userId,
-        cart_id: fulldate,
-        food_ids: ids,
-        quantity: quantities
-    })
-    console.log(AddCart)
-    axios.post('http://127.0.0.1:8000/api/addCart/',AddCart)
-    .then (res=>{
-        console.log(res);
-    })
-    .catch( err=>{
-        console.log('failed to add cart');
-        setcartadded(false);
-    })
-    .finally(()=>{
-        setcartadded(true);
-        navigate('/')
-    })
-
+    function handleCheckout(cart){
+        let d = new Date();
+        let fulldate = d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'-'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+        let ids=[],quantities=[];
+        cart.map(item => {
+            ids.push(item.food_id);
+            quantities.push(item.quantity);
+        })
+        console.log(ids,quantities,fulldate,userId)
+         let newcart={
+            userid: userId,
+            cart_id: fulldate,
+            food_ids: ids,
+            quantity: quantities
+        }
+        setAddCart(newcart);
+        return newcart
     }
+
+    const addcart= ()=>{
+        console.log(AddCart)
+        axios.post('http://127.0.0.1:8000/api/addCart/', AddCart)
+        .then (res=>{
+            console.log(res);
+        })
+        .catch( err=>{
+            console.log('failed to add cart');
+            setcartadded(false);
+        })
+        .finally(()=>{
+            setcartadded(true);
+            // navigate('/')
+        })
+    }
+        
+       
+    
+        
+
+ 
 
 
 
@@ -98,17 +107,24 @@ const [cartadded, setcartadded] = useState(false);
                         </div>
                         
                         <div className="cart-checkout-btn">
-                 {loggedIn ? <button className="go-to-cart-btn chekout-btn" style={{marginLeft: 0}} onClick={()=>{handleCheckout(cart)}}>Proceed to Checkout</button>
-                    :<Link to='/login'> <button className="go-to-cart-btn chekout-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
+                 {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{let newCart = handleCheckout(cart);if(newCart){addcart()}}}>Proceed to Checkout</button>
+                    :<Link to='/login'> <button className="go-to-cart-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
                     </div>
                     </>
                 }
                
             </div>
-            
+         
             </div>
-            {cart.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cart}/>}
-                {loggedIn && <PrevOrders userID={'23b0608'} addOne={addOne} subtractOne={subtractOne} foodList = {foodList} cart={cart}/>}
+            {/* {cart.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cart}/>} */}
+            {  cart.length!==0 && <div className="checkout">
+            { loggedIn ? <button className="checkout-btn" style={{marginLeft: 0}} onClick={()=>{addcart(handleCheckout(cart))}}>Proceed to Checkout</button>
+                    :<Link to='/login'> <button className="checkout-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}                      
+            </div>}
+
+                {loggedIn && <PrevOrders userID={userId} addOne={addOne} subtractOne={subtractOne} foodList = {foodList} cart={cart}/>}
+                
+               
         </div>
             
               )

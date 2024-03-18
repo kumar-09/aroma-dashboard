@@ -77,7 +77,7 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
                 let titleElement = document.getElementById(title);
                 let titleBtnId = title + 'btn';
                 let titleBtn = document.getElementById(titleBtnId);
-                if (titleElement) {
+                if (titleElement && titleBtn) {
                     let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
                 
                     const scrollPosition = window.scrollY+heightOfHeader+1 ;
