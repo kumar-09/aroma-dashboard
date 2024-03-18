@@ -177,9 +177,11 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    padding-left: 18px;
+    justify-content: space-evenly;
 }
 .food-img{
-    width:150px;
+    width:100px;
 }
 /* 
 .catgBtn {

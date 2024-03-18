@@ -291,11 +291,8 @@ form{
     padding-right:10%;
 }
 .fooditem-dif {
-  padding-top: 15px;
-  padding-bottom: 37px;
-  padding-left: 15px;
 border-radius: 5px;
-    height: 50px;
+    height: 100px;
     display: flex;
     /* flex-direction: column; */
     justify-content: space-between;

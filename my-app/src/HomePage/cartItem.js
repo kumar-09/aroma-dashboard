@@ -5,8 +5,7 @@ function CartItem({ foodItem, add, subtract, number, showImg = false,cost,foodit
 
     return (
         <div className={fooditem} key={foodItem.food_id}>
-            {console.log(showImg)}
-          { showImg  &&  <div className="food-img"><img src={foodItem.image} alt={foodItem.name} /></div>}
+          { showImg  &&  <div className="food-img"><img src={'http://127.0.0.1:8000/'+foodItem.image} style={{width:'100%'}} alt={foodItem.name} /></div>}
             <div className="cart-food-info">
             <div className="name">{foodItem.name.toUpperCase()}</div>
             
