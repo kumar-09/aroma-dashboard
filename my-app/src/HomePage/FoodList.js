@@ -46,12 +46,14 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
  
     let HeightOfHeader;
     //getting height of header and setting it to css variable--->
-    useLayoutEffect(() => {
+    useEffect(()=>{  
         if (NavbarRef.current) {
-            HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
-            document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
-        }
-        console.log(HeightOfHeader)
+        HeightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
+        document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
+        // console.log(HeightOfHeader)
+    }},[])
+
+    useLayoutEffect(() => {
         function updateSize() {
             if (NavbarRef.current) {
                 HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
@@ -62,6 +64,7 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
         window.addEventListener('resize', updateSize);
         return () => window.removeEventListener('resize', updateSize);
     },[]);
+
     const [isScrolling, setisScrolling] = useState(true);
     const scrollfuncRef = useRef(null);
    
@@ -106,10 +109,6 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
         }
     },[MasterData,isScrolling]
     )
-
-   
-
-
 
     return (
         <div className="Menu" ref={menuref} >
