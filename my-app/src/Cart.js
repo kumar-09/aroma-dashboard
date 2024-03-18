@@ -74,12 +74,12 @@ const [cartadded, setcartadded] = useState(false);
                
                 {    
                     cart.length !== 0 && <>
-                        <div style={{marginBottom: '40px'}}>
+                        <div className="total-items">
                             {cart.reduce((sum, item) => sum + item.quantity, 0)}  
                             {cart.length === 1  && cart[0].quantity === 1 ? " Item" : " Items"}
                         </div>
                         
-                        <div style={{margin: '20px 0'}}>Item Total: &#8377;{   
+                        <div className="item-total">Item Total: &#8377;{   
                         cart.reduce((sum, item) => {
                             let dish = foodList.find((eatable) => {return eatable.id === item.id});
                             return sum + item.quantity * dish.price}, 0
@@ -98,8 +98,8 @@ const [cartadded, setcartadded] = useState(false);
                         </div>
                         
                         <div className="cart-checkout-btn">
-                 {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{handleCheckout(cart)}}>Proceed to Checkout</button>
-                    :<Link to='/login'> <button className="go-to-cart-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
+                 {loggedIn ? <button className="go-to-cart-btn chekout-btn" style={{marginLeft: 0}} onClick={()=>{handleCheckout(cart)}}>Proceed to Checkout</button>
+                    :<Link to='/login'> <button className="go-to-cart-btn chekout-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
                     </div>
                     </>
                 }

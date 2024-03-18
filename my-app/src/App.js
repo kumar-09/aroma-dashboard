@@ -24,9 +24,12 @@ const App = () => {
 
   const [tempData, settempData] = useState({});
   const [MasterData, setMasterData] = useState([]);
-    let data;
+  let temparr=[];
+  const [menu, setmenu] = useState([]);
+  const [categories, setcategories] = useState([]);
+  let data;
     useEffect(() => {
-      setTimeout(() => {
+      
         axios.get('http://localhost:8000/api/all-category-menu')
         .then(res => {
           data = res.data;
@@ -35,10 +38,20 @@ const App = () => {
           
         })
         // .catch(err => {console.log("Error thrown")})
-      }, 1000);
-    },[]);
+      
+      axios.get('http://127.0.0.1:8000/api/menu/')
+      .then(res=> {
+        setmenu(res.data);
+      })
+      .catch( err=>{
+        console.log('failed to get menu list.')
+      })
 
-let temparr=[];
+      axios.get('http://127.0.0.1:8000/api/category-list/')
+      .then(res=>{
+          setcategories(res.data);
+      })
+    },[]);
 
 useEffect(()=>{
   Object.keys(tempData).forEach( key => {
@@ -46,25 +59,6 @@ useEffect(()=>{
   })
   setMasterData(temparr);
 },[tempData])
-
-const [menu, setmenu] = useState([]);
-  useEffect( ()=> {
-    axios.get('http://127.0.0.1:8000/api/menu/')
-    .then(res=> {
-      setmenu(res.data);
-    })
-    .catch( err=>{
-      console.log('failed to get menu list.')
-    })
-  },[])
-  const [categories, setcategories] = useState([]);
-useEffect(()=>{
-  axios.get('http://127.0.0.1:8000/api/category-list/')
-  .then(res=>{
-      setcategories(res.data);
-  })
-
-},[])
 
   const [cart, setCart] = useState([]);
 
@@ -120,7 +114,7 @@ const [email, setEmail] = useState('');
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);
   const FooterRef = useRef(null);
-  const [size, setSize] = useState([0, 0]);
+//getting footer height for making it stays at bottom.
   useLayoutEffect(() => { 
     if(FooterRef.current){ 
       let footerHeight = FooterRef.current.getBoundingClientRect().height;

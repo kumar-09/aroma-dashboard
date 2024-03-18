@@ -256,6 +256,8 @@ form{
 }
 .delivery-charges{
   margin: 20px 0;
+  border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
 }
 .grandTotal {
   margin: 20px 0;
@@ -263,6 +265,12 @@ form{
 .cart-checkout-btn {
   text-align: center;
   margin-top: 60px;
+}
+.total-items {
+  margin-bottom: 40px;
+}
+.item-total {
+  margin: 20px 0;
 }
 .cost-dif {
     display: flex;
@@ -288,4 +296,47 @@ border-radius: 5px;
 .suggestions {
  font-weight:600;
  margin: 20px;
+}
+
+@media screen and (max-width:769px) {
+  .cart-flex{
+    flex-direction: column;
+    margin: 0 12%;
+    align-items: center;
+  }
+  .cart-list{
+    width: 100%;
+  }
+  .food-img{
+    width: 150px;
+  }
+  .fooditem-dif{
+    width: 100%;
+  }
+  .name{ 
+    padding-left: 20px;
+  }
+  .cost-price {
+    padding-left: 20px;
+  }
+  .total-cart-page{
+    width: 80%;
+    font-size: 15px;
+  }
+  .item-total {
+    margin: 10px 0;
+  }
+  .total-items {
+    margin: 10px 0;
+  }
+  .delivery-charges{
+    margin: 10px 0;
+  }
+  .cart-checkout-btn{
+    position: sticky;
+    bottom: 0;
+  }
+  .checkout-btn{
+    
+  }
 }

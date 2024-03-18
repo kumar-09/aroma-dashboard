@@ -1,10 +1,7 @@
 import './Homepage.css'
 import FoodListCategorywise from "./FoodListCategorywise";
-import catgimg from '../image/category-svgrepo-com (1).svg'
-import ItemComponent from "./ItemsComponent";
-import { Children, forwardRef, useEffect, useImperativeHandle, useState, useLayoutEffect, useRef } from "react";
-import {Link} from 'react-router-dom'
-import axios from 'axios';
+import { forwardRef, useEffect, useImperativeHandle, useState, useLayoutEffect, useRef } from "react";
+
 
 const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, menuref }, ref) => {
 
@@ -12,6 +9,7 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
     // for scrolling to clicked category--->>>
 
     const scrollToCategory = (CategoryId) => {
+       
         setisScrolling(false);
         window.removeEventListener('scroll',scrollfuncRef.current);
         const CategoryFoodListId = CategoryId + 'list';
@@ -42,30 +40,33 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
 
     useImperativeHandle(ref, () => ({
         scrollToCategory,
-      
     }));
 
     // implementation of back-scrolling ----->>>
-    /*use for re-rendering  so that height of head is updated and on changing dimension gives
-     smooth experience in foodlist sticky part*/
-    const [size, setSize] = useState([0, 0]);
+ 
+    let HeightOfHeader;
+    //getting height of header and setting it to css variable--->
     useLayoutEffect(() => {
+      
+        console.log(HeightOfHeader)
         function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
+            if (NavbarRef.current) {
+                HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
+                document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
+                console.log(HeightOfHeader);
+            }
         }
         window.addEventListener('resize', updateSize);
-        updateSize();
         return () => window.removeEventListener('resize', updateSize);
-    }, []);
-    //getting height of header and setting it to css variable--->
-    let HeightOfHeader;
-    if (NavbarRef.current) {
-        HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
-        document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
-    }
+    },[]);
     const [isScrolling, setisScrolling] = useState(true);
     const scrollfuncRef = useRef(null);
-    useEffect(() => {
+   
+    useEffect(() => {                 
+        if (NavbarRef.current) {
+            HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
+            document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
+        }
         scrollfuncRef.current = () => {
             MasterData.map(category => {
                 if(isScrolling) {
@@ -103,8 +104,6 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
         }
     },[MasterData,isScrolling]
     )
-    useEffect(()=>{window.addEventListener('load', scrollfuncRef.current)
-                },[scrollfuncRef.current])
 
     return (
         <div className="Menu" ref={menuref} >
