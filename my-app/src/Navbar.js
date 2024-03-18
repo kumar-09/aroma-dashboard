@@ -13,14 +13,14 @@ const Navbar = (props) => {
     const setLoggedIn = props.setLoggedIn;
 
     // console.log(foodList);
-    const [Hover, setHover] = useState(false);
+    
     const handleMouseEnter = () => {
-        setHover(true);
+        props.setHover(true);
       };
    // for showing active navlink
     const [activeNavlink, setactiveNavlink] = useState(null);
       const handleMouseLeave = () => {
-        setHover(false);
+        props.setHover(false);
       };
     return (
         <div className="head" id="head" ref={NavbarRef}>
@@ -36,7 +36,6 @@ const Navbar = (props) => {
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <Link className="nav-links" to='/account' id = "acc" >{email}</Link>
-                    {Hover && <DropDown/>}
                 </div> : <Link to='/Login' className="nav-links" ><img src={loginimg} style={{width: '25px'}}></img>Login</Link>}
             </nav>
         </div>
