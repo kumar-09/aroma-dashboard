@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 const Login = (props) => {
-  var sh = "";
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -12,7 +11,8 @@ const Login = (props) => {
 
   const navigate = useNavigate();
 
-  const onButtonClick = () => {
+  const onButtonClick = (event) => {
+    event.preventDefault();
     setEmailError('');
     setPasswordError('');
   
@@ -68,18 +68,13 @@ const Login = (props) => {
     //     console.log("then");
     //   })
     //   .catch(err => {console.log(err);console.log("catch");});
-
     axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : ({userid: email, pswd : password}), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
       .then(res => {console.log(res.status); 
         if(res.status === 200){ props.setLoggedIn(true); props.setEmail(email); navigate("/");}
-       else if(res.status === 201){
-        setEmailError("Please enter valid credentials");
-      }})
-      .catch(err => console.log(err));
-  
-
+       })
+      .catch(err => {setPasswordError("Please enter valid credentials");});
   }
 
   return (
@@ -88,6 +83,7 @@ const Login = (props) => {
         <div>Login</div>
       </div>
       <br />
+      <form onSubmit={onButtonClick}>
       <div className={'inputContainer'}>
         <input
           value={email}
@@ -111,8 +107,9 @@ const Login = (props) => {
       </div>
       <br />
       <div className={'inputContainer'}>
-        <input className={'inputButton'} type="submit" onClick={onButtonClick} value={'Log in'} />
+        <button className={'inputButton'} type="submit">Log in</button>
       </div>
+    </form>
 
       <div className='noaccount'>
         Don't have an account?

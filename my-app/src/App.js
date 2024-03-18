@@ -17,6 +17,7 @@ import Register from './LoginPage/Register';
 import axios from 'axios';
 import CategoryFoodList from './Categories/CategoryFoodList';
 import LogOut from './LoginPage/Logout';
+import SearchList from './Searchlist';
 
 const App = () => {
 
@@ -32,6 +33,13 @@ const App = () => {
     {dish: {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'}, quantity:0},
     {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);*/
+
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value)
+ };
 
   const list = [
     {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image:'./images/3f797cae-9813-4239-b745-9e2cdf09932c.webp', category: 'Sandwich'},
@@ -174,8 +182,8 @@ const [email, setEmail] = useState('');
     <>
     <div className="App">
       
-      <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn}/>
-        
+      <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput}/>
+      <SearchList items = {list} searchInput = {searchInput}/>
         <Routes>
           <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories list={categories}/>}/>

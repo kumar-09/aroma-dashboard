@@ -13,6 +13,7 @@
   min-height: calc(100vh - var(--footerHeight));
 }
 
+
 html{
   width:100%;
 }
@@ -29,6 +30,10 @@ body{
   flex-direction: column;
   align-items: center;
 
+}
+.searchresults{
+  z-index :1;
+  background: transparent;
 }
 .search{
   background: url("/public/search-icon.png") top left     no-repeat;
@@ -214,6 +219,9 @@ body{
 }
 .inputButton{
   background-color: #ff6a6a;
+  height: 5vh;
+  width: 40vh;
+  border-radius: 20px;
   border: none;
 }
 
