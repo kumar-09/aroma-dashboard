@@ -6,7 +6,7 @@ import catgimg from './image/category-svgrepo-com.svg'
 import cartimg from './image/cart-3-svgrepo-com.svg'
 import loginimg from './image/login-svgrepo-com.svg'
 const Navbar = (props) => {
-    var HeaderRef = props.HeaderRef;
+    var NavbarRef = props.NavbarRef;
     var loggedIn = props.loggedIn;
     var email = props.email;
     const foodList = props.foodList;
@@ -23,7 +23,7 @@ const Navbar = (props) => {
         setHover(false);
       };
     return (
-        <div className="head" id="head" ref={HeaderRef}>
+        <div className="head" id="head" ref={NavbarRef}>
             <div className="banner">
                 Get delicious food delivered to your hostel!
             </div>

@@ -8,6 +8,7 @@ body {
     border: 2px solid lightgray;
     border-radius: 11px;
     box-shadow:0px 0px 14px -4px rgba(0,0,0,0.5);
+
 }
 
 .Fooditem { 
@@ -17,13 +18,18 @@ body {
     width:90%;
     padding:16px;
 }
+.Fooditem-dif-design:hover{
+    scale:1.05;
+}
+.Fooditem:hover {
+    background-color: #f2f2f2;
+}
 .Item-img-dif-design {
     width: 100%;
-    max-height: 250px;
     height: 250px;
     /* border: 2px solid black; */
     /* border-radius: 5%; */
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
     border-radius: inherit;
 }
 .Item-img-dif-design>img{
@@ -37,7 +43,7 @@ height: 120px;
 text-align: center;
 border: 1px solid black;
 border-radius: 5%;
-z-index: -2;
+z-index: 0;
 object-fit: contain;
 }
 .Item-img>img {

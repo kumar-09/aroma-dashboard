@@ -1,12 +1,12 @@
 import './Homepage.css'
-const CategoryList = ({categories,scrollToCategory}) => {
+const CategoryList = ({categoryNames,scrollToCategory}) => {
 
 
     return ( 
         <div className="CategoryList">
         {
-            categories.map( (category,index) => (
-                <div className="categorylist-name" id={category+'btn'}  key={index} onClick={()=> {scrollToCategory(category)}}>{category}</div>
+            categoryNames.map( (category,index) => (
+                <div className="categorylist-name" id={category.Type+'btn'}  key={index} onClick={()=> {scrollToCategory(category.Type)}}>{category.Type}</div>
             ))
         }
         </div>

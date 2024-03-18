@@ -4,7 +4,7 @@
 function CartItem({ foodItem, add, subtract, number, showImg = false,cost,fooditem }) {
 
     return (
-        <div className={fooditem} key={foodItem.id}>
+        <div className={fooditem} key={foodItem.food_id}>
             {console.log(showImg)}
           { showImg  &&  <div className="food-img"><img src={foodItem.image} alt={foodItem.name} /></div>}
             <div className="cart-food-info">
@@ -14,9 +14,9 @@ function CartItem({ foodItem, add, subtract, number, showImg = false,cost,foodit
                 <div className="cost-price">&#8377; {foodItem.price}</div>
                 <div>
                     <span className="quantity">
-                    <button className="minus" onClick={() => { subtract(foodItem.id) }}>-</button>
+                    <button className="minus" onClick={() => { subtract(foodItem.food_id) }}>-</button>
                     <button className="label" disabled>{number}</button>
-                    <button className="plus" onClick={() => { add(foodItem.id) }}>+</button>
+                    <button className="plus" onClick={() => { add(foodItem.food_id) }}>+</button>
                 </span>
                 </div>
             </div>

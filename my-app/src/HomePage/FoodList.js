@@ -4,10 +4,11 @@ import catgimg from '../image/category-svgrepo-com (1).svg'
 import ItemComponent from "./ItemsComponent";
 import { Children, forwardRef, useEffect, useImperativeHandle, useState, useLayoutEffect, useRef } from "react";
 import {Link} from 'react-router-dom'
+import axios from 'axios';
 
-const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, menuref }, ref) => {
+const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, menuref }, ref) => {
 
-    const categories = foodItems;
+   
     // for scrolling to clicked category--->>>
 
     const scrollToCategory = (CategoryId) => {
@@ -15,8 +16,6 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
         window.removeEventListener('scroll',scrollfuncRef.current);
         const CategoryFoodListId = CategoryId + 'list';
         const category = document.getElementById(CategoryFoodListId);
-        // console.log(CategoryId);
-        // console.log(category);
         if (category) {
             const height = category.getBoundingClientRect().top;
             const navbar_height = document.getElementById('head').getBoundingClientRect().bottom;
@@ -26,6 +25,7 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
                 left: 0,
                 behavior: 'smooth'
             });
+
             setTimeout(() => {                              // settimeout used to give time to scroll animation
                 setisScrolling(true);
                 window.addEventListener('scroll',scrollfuncRef.current);
@@ -45,7 +45,6 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
       
     }));
 
-
     // implementation of back-scrolling ----->>>
     /*use for re-rendering  so that height of head is updated and on changing dimension gives
      smooth experience in foodlist sticky part*/
@@ -60,40 +59,28 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
     }, []);
     //getting height of header and setting it to css variable--->
     let HeightOfHeader;
-    if (HeaderRef.current) {
-        HeightOfHeader = HeaderRef.current.getBoundingClientRect().bottom;
+    if (NavbarRef.current) {
+        HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
         document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
     }
-    // for onload first category active btn;
-    // const sandwichTitle = document.getElementById('Sandwich');
-    // const sandwichBtn = document.getElementById('Sandwichbtn');
-    // if(sandwichTitle){
-    // const heightOfSandwichTitle = sandwichTitle.getBoundingClientRect().top;
-    // if(heightOfSandwichTitle <= HeightOfHeader+2 && heightOfSandwichTitle>= HeightOfHeader+2 ) sandwichBtn.classList.add('activebtn-categorylist');
-    // }
-
-
-    //scroll event on foodlist component
     const [isScrolling, setisScrolling] = useState(true);
     const scrollfuncRef = useRef(null);
     useEffect(() => {
         scrollfuncRef.current = () => {
-            categories.map(category => {
+            MasterData.map(category => {
                 if(isScrolling) {
-                let title = category[0].category;
-                // console.log(document.getElementById(title));
+                let title = category[0];
                 let titleElement = document.getElementById(title);
                 let titleBtnId = title + 'btn';
                 let titleBtn = document.getElementById(titleBtnId);
-                // console.log(titleElement);
                 if (titleElement) {
                     let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
                 
                     const scrollPosition = window.scrollY+heightOfHeader+1 ;
                     const titlePosition = titleElement.offsetTop;
                     const nextTitlePosition =
-                      categories.indexOf(category) < categories.length - 1
-                        ? document.getElementById(`${categories[categories.indexOf(category) + 1][0].category}`).offsetTop
+                      MasterData.indexOf(category) < MasterData.length - 1
+                        ? document.getElementById(`${MasterData[MasterData.indexOf(category) + 1][0]}`).offsetTop
                         : Number.MAX_SAFE_INTEGER;
                     if (scrollPosition >= titlePosition && scrollPosition < nextTitlePosition) {
                         titleBtn.classList.add('activebtn-categorylist');
@@ -114,35 +101,18 @@ const FoodList = forwardRef(({ foodItems, subtractOne, addOne, cart, HeaderRef, 
         return () => {
             window.removeEventListener('scroll', scrollfuncRef.current);
         }
-    },[categories,isScrolling]
+    },[MasterData,isScrolling]
     )
-    window.addEventListener('load', scrollfuncRef.current)
-
-
-                    // if (heightOfTitleFromTop <= heightOfHeader) {
-                    //     // console.log(title,'  stick');
-                    //     titleElement.classList.add('Category-name-active');
-                    //     titleBtn.classList.add('activebtn-categorylist');
-                    // }
-                    // else {
-                    //     if (titleElement.classList.value.includes('Category-name-active'))
-                    //         titleElement.classList.remove('Category-name-active');
-
-                    // }
-                    // const heightOfTitle = titleElement.getBoundingClientRect().height;
-                    // console.log(category[0].category,'  header-',heightOfHeader,'titleheight: ',heightOfTitleFromTop, 'heightofheader+title', heightOfHeader+heightOfTitle)
-                    // if (heightOfTitleFromTop >= heightOfHeader-3 && heightOfTitleFromTop <= heightOfHeader + heightOfTitle) { console.log(titleBtn); titleBtn.classList.add('activebtn-categorylist'); } // given a margin of 3 in heightfromtop as due to some padding and margin heightfrom top is different
-                    // else {
-                    //     if (titleBtn.classList.value.includes('activebtn-categorylist')) titleBtn.classList.remove('activebtn-categorylist');
-                    // }
-
+    useEffect(()=>{window.addEventListener('load', scrollfuncRef.current)
+                },[scrollfuncRef.current])
 
     return (
         <div className="Menu" ref={menuref} >
-            {
-                // <ItemComponent FoodList={FoodList}/>
-                categories.map((category) => (
-                    <FoodListCategorywise Foodlist={category} key={categories.indexOf(category)} subtractOne={subtractOne} addOne={addOne} ItemInfo={'Item-info'} ItemName={'Item-name'} ItemPriceInfo={'Item-info-price'} AddBtn={'Add-item'} ImgClass={'Item-img'} MainClass={'Fooditem'} cart={cart} />
+            
+                 <img className = "footer-img-dif" src="https://dukaan.b-cdn.net/600x600/webp/4420984/58dfd4d9-6975-4e74-9027-758740ffcbf6/image-78227dda-6d27-4026-9733-56dd23d462bc.png" alt="Aroma Delight Dhaba" />
+            
+              {  MasterData.map((category) => (
+                    <FoodListCategorywise Foodlist={category} key={MasterData.indexOf(category)} subtractOne={subtractOne} addOne={addOne} ItemInfo={'Item-info'} ItemName={'Item-name'} ItemPriceInfo={'Item-info-price'} AddBtn={'Add-item'} ImgClass={'Item-img'} MainClass={'Fooditem'} cart={cart} />
                 ))}
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                     {/* <Link ><div className='catgBtn' ><img src={catgimg} style={{width:20,display:'inline-block',color: 'white'} } ></img><div className='catg-btn-name'>categories</div></div></Link> */}

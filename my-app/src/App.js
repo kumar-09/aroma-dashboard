@@ -1,6 +1,6 @@
 
 
-import {BrowserRouter,Route,Routes,Link,} from 'react-router-dom'
+import {Route,Routes} from 'react-router-dom'
 import Navbar from './Navbar';
 import Home from './HomePage/Home';
 import Login from './LoginPage/Login';
@@ -34,13 +34,6 @@ const App = () => {
     {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);*/
 
-  const [searchInput, setSearchInput] = useState("");
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value)
- };
-
   const list = [
     {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image:'./images/3f797cae-9813-4239-b745-9e2cdf09932c.webp', category: 'Sandwich'},
     {id:2, name: 'Chicken cheese Sandwich', price: '66', image: '', category: 'Sandwich'},
@@ -65,32 +58,54 @@ const App = () => {
  
   const [MasterData, setMasterData] = useState({details : [], })
     let data;
-    
     useEffect(() => {
       setTimeout(() => {
-        axios.get('http://localhost:8000/api/menu/')
+        axios.get('http://localhost:8000/api/all-category-menu')
         .then(res => {
           data = res.data;
-          setMasterData({
-            details: data
-          });
+          settempData(data);
+          console.log(data);
+          
         })
-        .catch(err => {console.log("Error thrown")})
+        // .catch(err => {console.log("Error thrown")})
       }, 1000);
-    }, []);
+    },[]);
 
-    MasterData.details = MasterData.details.map((dish) => {return {dish, quantity:0}})
+let temparr=[];
 
-    console.log(MasterData.details);
+useEffect(()=>{
+  Object.keys(tempData).forEach( key => {
+    temparr.push([key,tempData[key]])
+  })
+  setMasterData(temparr);
+},[tempData])
 
-  
+const [menu, setmenu] = useState([]);
+  useEffect( ()=> {
+    axios.get('http://127.0.0.1:8000/api/menu/')
+    .then(res=> {
+      setmenu(res.data);
+    })
+    .catch( err=>{
+      console.log('failed to get menu list.')
+    })
+  },[])
+  const [categories, setcategories] = useState([]);
+useEffect(()=>{
+  axios.get('http://127.0.0.1:8000/api/category-list/')
+  .then(res=>{
+      setcategories(res.data);
+  })
+
+},[])
+
   const [cart, setCart] = useState([]);
 
   const subtractOne = (id) =>{
     const tempCart = [...cart];
     let index = tempCart.findIndex((item) => 
     {
-      return item.id === id;
+      return item.food_id === id;
     });
     if(index === -1){
       console.log("Logical error related to subtraction before adding to cart");
@@ -108,31 +123,15 @@ const App = () => {
   }
 
   const addOne = (id) => {
-    /*const tempCart = cart;//The real blunder, arrays passed by reference
-    let index = tempCart.findIndex((item) => 
-    {
-      return item.id === id;
-    });
-    if(index === -1){
-      tempCart.push({id: id, quantity: 1});
-    }
-    else if(tempCart[index].quantity === 10){
-      alert("You cannot add more than 10 units of one dish!!");
-    }
-    else if(tempCart[index].quantity >= 1){
-      tempCart[index].quantity +=  1;
-    }
-    else{
-      console.log("Error, quantity of items in cart is becoming negative");
-    }*/
+   
     setCart(()=>{
       const tempCart = [...cart];
     let index = tempCart.findIndex((item) => 
     {
-      return item.id === id;
+      return item.food_id === id;
     });
     if(index === -1){
-      tempCart.push({id: id, quantity: 1});
+      tempCart.push({food_id: id, quantity: 1});
     }
     else if(tempCart[index].quantity === 10){
       alert("You cannot add more than 10 units of one dish!!");
@@ -155,39 +154,23 @@ const [email, setEmail] = useState('');
   const NavbarRef = useRef(null);
   const FooterRef = useRef(null);
   const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-      // function updateSize() {
-      //     setSize([window.innerWidth, window.innerHeight]);
-      // }
-      // window.addEventListener('resize', updateSize);
-      // updateSize();
-      // return () => window.removeEventListener('resize', updateSize);
-      
+  useLayoutEffect(() => { 
     if(FooterRef.current){ 
       let footerHeight = FooterRef.current.getBoundingClientRect().height;
       console.log(footerHeight)
       document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
-
-
   }, []);
 
-  
- 
-//---------------------------------------------------------------<<<<
-   // for showing active navlink
-  //  const [activeNavlink, setactiveNavlink] = useRef(null);
-
-  //In Home Component "list" refers to the category-list while "menu" refers to the food-item list 
   return (
     <>
     <div className="App">
       
-      <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput}/>
-      <SearchList items = {list} searchInput = {searchInput}/>
+      <Navbar HeaderRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {list} setLoggedIn={setLoggedIn}/>
+        
         <Routes>
-          <Route path='/' element = {<Home list={categories} menu = {list} addOne={addOne} subtractOne={subtractOne} cartItems={cart} HeaderRef={NavbarRef} FooterRef={FooterRef}/>} /> 
-          <Route path='/Categories' element={<Categories list={categories}/>}/>
-          <Route path = '/Cart' element = {<Cart cartItems={cart} addOne={addOne} subtractOne={subtractOne} foodList={list}/>}/>
+          <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
+          <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
+          <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={email}/>}/>
           <Route path="/" element={<LoginHome email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
@@ -198,7 +181,7 @@ const [email, setEmail] = useState('');
           <Route path='/admin' element = {<AdminPage/>}/>
           <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn}/>}/>
           { categories.map (category => (
-             <Route key={category[0].category} path={'Categories/CategoryFoodlist-'+category[0].category} element={<CategoryFoodList category={category} addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
+             <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
           ))}
          
         </Routes>
