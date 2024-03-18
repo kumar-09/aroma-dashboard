@@ -309,6 +309,12 @@ border-radius: 5px;
  font-weight:600;
  margin: 20px;
 }
+.previous-orders{
+  margin: 5% 0;
+  
+}
+
+
 @media screen and (min-width:769px) {
   .checkout-btn {
     display: none;

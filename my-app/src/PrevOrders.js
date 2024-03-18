@@ -8,41 +8,51 @@ import ItemComponent from "./HomePage/ItemsComponent"
 
 function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
     const [pastOrders, setPastOrders] = useState([]);
+    let data;
     useEffect(
         () =>{
             axios.get('http://127.0.0.1:8000/api/prevlist/'+userID)
                 .then((list)=> {
-                    console.log(/* "Previous orders:" +*/ JSON.stringify(list.data));
-                    //pastOrders = list.data[0];
-                    setPastOrders(list.data);
+                    data = list.data;
+                    setPastOrders(data)
                 })
+
                 .catch((err) => {
                     console.log("Fetch Error" + err);
                 });
         }
     ,[userID]
     );
+    console.log(pastOrders)
     const tempList = [];//This has pdtID: quantity pairs
-    for (const key in pastOrders[0]) {
-        tempList.push(...pastOrders[0][key]);
-    }
+    for(let i=0; i<=pastOrders.length-1; i++){
+    for (const key in pastOrders[i]) {
+        tempList.push(...pastOrders[i][key]);
+    }}
+    console.log(tempList);
     const suitFormat = [];
     for(let i = 0; i <= tempList.length - 1; i++)
     {
         for(const key in tempList[i]){
             const foodItem = foodList.find((dish) => {return ((dish.food_id).toString() === key)});
-            if(foodItem && suitFormat.findIndex((dish) =>{ return dish.id === foodItem.id})< 0){
+            if(foodItem && suitFormat.findIndex((dish) =>{ return dish.food_id === foodItem.food_id})< 0){
                 suitFormat.push(foodItem);
             }
         }
     }
+    console.log(suitFormat)
     return (
+        <>
         <div>
-            {suitFormat && <p>Previous Orders</p>}
+        {suitFormat && <p style={{fontSize:25,fontWeight:500,margin:'5% 1%'}}>Previous Orders</p>}
+        </div>
+        <div className="previous-orders" style={{display: "flex", flexWrap: 'wrap'}}>
+            
             {suitFormat && suitFormat.map((item) => 
-                <ItemComponent subtractOne={subtractOne} addOne={addOne} Food={item} quantity={((cart.find((eatable => eatable.id === item.id)))??{quantity: 0}).quantity } key={item.id}/>
+                <ItemComponent subtractOne={subtractOne} addOne={addOne} Food={item} quantity={((cart.find((eatable => eatable.id === item.id)))??{quantity: 0}).quantity } ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'} key={item.id}/>
             )}
         </div>
+        </>
     )
 }
 

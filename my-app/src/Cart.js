@@ -1,7 +1,7 @@
 import { Link,useNavigate } from "react-router-dom";
 import CartItem from "./HomePage/cartItem";
 import Suggestions from "./Suggestions";
-import { useEffect, useState, } from "react";
+import { useEffect, useState, useRef} from "react";
 import PrevOrders from "./PrevOrders";
 import img from './image/empty-cart-7359557-6024626.png';
 import axios from "axios";
@@ -9,7 +9,7 @@ import axios from "axios";
 function Cart({ cart, addOne, subtractOne, foodList,loggedIn,userId}) {
 const navigate = useNavigate();
 const [cartadded, setcartadded] = useState(false);
-    const [AddCart, setAddCart] = useState({
+    const AddCart = useRef({
         userid : '',
         cart_id: '',
         food_ids : [],
@@ -30,13 +30,12 @@ const [cartadded, setcartadded] = useState(false);
             food_ids: ids,
             quantity: quantities
         }
-        setAddCart(newcart);
-        return AddCart
+        AddCart.current =newcart;
+        return AddCart.current
     }
 
-    const addcart= ()=>{
-        console.log(AddCart)
-        axios.post('http://127.0.0.1:8000/api/addCart/', AddCart)
+    const addcart= (data)=>{
+        axios.post('http://127.0.0.1:8000/api/addCart/', data)
         .then (res=>{
             console.log(res);
         })
@@ -46,7 +45,7 @@ const [cartadded, setcartadded] = useState(false);
         })
         .finally(()=>{
             setcartadded(true);
-            // navigate('/')
+            navigate('/')
         })
     }
         
@@ -107,7 +106,7 @@ const [cartadded, setcartadded] = useState(false);
                         </div>
                         
                         <div className="cart-checkout-btn">
-                 {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{let newCart = handleCheckout(cart);if(newCart){addcart()}}}>Proceed to Checkout</button>
+                 {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{ addcart(handleCheckout(cart))}}>Proceed to Checkout</button>
                     :<Link to='/login'> <button className="go-to-cart-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
                     </div>
                     </>
@@ -118,7 +117,7 @@ const [cartadded, setcartadded] = useState(false);
             </div>
             {/* {cart.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cart}/>} */}
             {  cart.length!==0 && <div className="checkout">
-            { loggedIn ? <button className="checkout-btn" style={{marginLeft: 0}} onClick={()=>{let newCart = handleCheckout(cart);if(newCart){addcart()}}}>Proceed to Checkout</button>
+            { loggedIn ? <button className="checkout-btn" style={{marginLeft: 0}} onClick={()=>{addcart(handleCheckout(cart))}}>Proceed to Checkout</button>
                     :<Link to='/login'> <button className="checkout-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}                      
             </div>}
 
