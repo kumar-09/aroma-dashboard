@@ -31,7 +31,7 @@ const [cartadded, setcartadded] = useState(false);
             quantity: quantities
         }
         setAddCart(newcart);
-        return newcart
+        return AddCart
     }
 
     const addcart= ()=>{
@@ -118,7 +118,7 @@ const [cartadded, setcartadded] = useState(false);
             </div>
             {/* {cart.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cart}/>} */}
             {  cart.length!==0 && <div className="checkout">
-            { loggedIn ? <button className="checkout-btn" style={{marginLeft: 0}} onClick={()=>{addcart(handleCheckout(cart))}}>Proceed to Checkout</button>
+            { loggedIn ? <button className="checkout-btn" style={{marginLeft: 0}} onClick={()=>{let newCart = handleCheckout(cart);if(newCart){addcart()}}}>Proceed to Checkout</button>
                     :<Link to='/login'> <button className="checkout-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}                      
             </div>}
 

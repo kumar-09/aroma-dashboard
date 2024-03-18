@@ -144,6 +144,7 @@ const [email, setEmail] = useState('');
        })} 
      window.addEventListener('load',onload)
     },[MasterData])
+    
 
   return (
     <>
