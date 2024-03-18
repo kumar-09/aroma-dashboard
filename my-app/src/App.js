@@ -34,6 +34,7 @@ const App = () => {
     {dish: {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'}, quantity:0},
     {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);*/
+  const [searchInput, setSearchInput] = useState("");
 
   const [tempData, settempData] = useState({});
   const [MasterData, setMasterData] = useState([]);
@@ -119,10 +120,11 @@ useEffect(()=>{
     return tempCart;
     });
   }
+  // console.log(MasterData);
 
 const [loggedIn, setLoggedIn] = useState(false);
 const [email, setEmail] = useState('');
-
+// console.log(searchInput);
 
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);
@@ -150,8 +152,8 @@ const [email, setEmail] = useState('');
     <>
     <div className="App">
       <ScrollToTop/>
-      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {menu} setLoggedIn={setLoggedIn}/>
-        
+      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} email = {email} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput}/>
+        <SearchList items = {MasterData} searchInput = {searchInput}/>
         <Routes>
           <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
