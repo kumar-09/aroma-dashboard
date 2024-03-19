@@ -4,23 +4,23 @@ import axios from 'axios';
 
 const Register = (props) => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [useridError, setUseridError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   const navigate = useNavigate();
 
   const onButtonClick = async() => {
-    setEmailError('');
+    setUseridError('');
     setPasswordError('');
   
-    if ('' === email) {
-      setEmailError('Please enter userID');
+    if ('' === userid) {
+      setUseridError('Please enter userID');
       return;
     }
-    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-    //   setEmailError('Please enter a valid email');
+    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userid)) {
+    //   setUseridError('Please enter a valid userid');
     //   return;
     // }
   
@@ -41,12 +41,12 @@ const Register = (props) => {
       }
     };
     // let data = {
-    //   userid : email,
+    //   userid : userid,
     //   name : name,
     //   password: password
     // };
     
-      axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : ({userid: email, name : name, pswd : password}), headers: {
+      axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : ({userid: userid, name : name, pswd : password}), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
       .then(res => console.log(res))
@@ -62,13 +62,13 @@ const Register = (props) => {
       <form>
       <div className={'inputContainer'}>
         <input
-          value={email}
+          value={userid}
           placeholder="Enter your userID here"
-          onChange={(ev) => setEmail(ev.target.value)}
+          onChange={(ev) => setUserid(ev.target.value)}
           type= "text"
           className={'inputBox'}
         />
-        <label className="errorLabel">{emailError}</label>
+        <label className="errorLabel">{useridError}</label>
       </div>
       <br />
       <div className={'inputContainer'}>
@@ -79,7 +79,7 @@ const Register = (props) => {
           type= "text"
           className={'inputBox'}
         />
-        <label className="errorLabel">{emailError}</label>
+        <label className="errorLabel">{useridError}</label>
       </div>
       <br />
       <div className={'inputContainer'}>

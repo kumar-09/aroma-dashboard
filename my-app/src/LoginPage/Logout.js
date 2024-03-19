@@ -1,7 +1,7 @@
 import React from 'react';
 
-function LogOut(setLoggedIn) {
-    setLoggedIn(false);
+function LogOut(props) {
+    props.setLoggedIn(false);
     return;
 }
 

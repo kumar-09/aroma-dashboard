@@ -4,24 +4,24 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 const Login = (props) => {
-  const [email, setEmail] = useState('');
+  const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [useridError, setUseridError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   const navigate = useNavigate();
 
   const onButtonClick = (event) => {
     event.preventDefault();
-    setEmailError('');
+    setUseridError('');
     setPasswordError('');
   
-    if ('' === email) {
-      setEmailError('Please enter userID');
+    if ('' === userid) {
+      setUseridError('Please enter userID');
       return;
     }
-    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-    //   setEmailError('Please enter a valid email');
+    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userid)) {
+    //   setUseridError('Please enter a valid userid');
     //   return;
     // }
   
@@ -45,14 +45,14 @@ const Login = (props) => {
 
     //     console.log(data);
 
-      //   axios({method : 'get', url: 'http://localhost:8000/api/login/', data : ({userid: email, pswd : password}), headers: {
+      //   axios({method : 'get', url: 'http://localhost:8000/api/login/', data : ({userid: userid, pswd : password}), headers: {
       //     'Content-Type': 'application/x-www-form-urlencoded',
       // }})
       //   .then(res => console.log(res))
       //   .catch(err => console.log(err));
 
       // let d = {
-      //   userid : email,
+      //   userid : userid,
       //   pswd : password
       // };
       // console.log(d);
@@ -68,11 +68,11 @@ const Login = (props) => {
     //     console.log("then");
     //   })
     //   .catch(err => {console.log(err);console.log("catch");});
-    axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : ({userid: email, pswd : password}), headers: {
+    axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : ({userid: userid, pswd : password}), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
       .then(res => {console.log(res.status); 
-        if(res.status === 200){ props.setLoggedIn(true); props.setEmail(email); navigate("/");}
+        if(res.status === 200){ props.setLoggedIn(true); props.setUserid(userid); navigate("/");}
        })
       .catch(err => {setPasswordError("Please enter valid credentials");});
   }
@@ -86,13 +86,13 @@ const Login = (props) => {
       <form onSubmit={onButtonClick}>
       <div className={'inputContainer'}>
         <input
-          value={email}
+          value={userid}
           type = 'text'
           placeholder="Enter your userID here"
-          onChange={(ev) => setEmail(ev.target.value)}
+          onChange={(ev) => setUserid(ev.target.value)}
           className={'inputBox'}
         />
-        <label className="errorLabel">{emailError}</label>
+        <label className="errorLabel">{useridError}</label>
       </div>
       <br />
       <div className={'inputContainer'}>

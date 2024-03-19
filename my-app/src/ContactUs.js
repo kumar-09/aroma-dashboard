@@ -17,7 +17,7 @@ function ContactUs(){
                 Phone: 
                     +91 9019566851 <br />
                 <br />
-                Email:
+                Userid:
                     aromadhaba@iitb.ac.in <br />
                 <br />
                 Operating Hours: <br />
