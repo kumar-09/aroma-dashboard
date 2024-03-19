@@ -138,6 +138,8 @@ body{
 .navbar h1 {
   color: #f1356d;
   font-weight: 1000;
+  width :290px;
+  text-align: center;
 }
 .navbar .links {
   margin-left: auto;
