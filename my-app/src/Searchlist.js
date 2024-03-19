@@ -3,7 +3,7 @@ function SearchList(props) {
    var a = [];
    for(let i=0;i<items.length;i++){
       for(let j=0;j<items[i][1].length;j++){
-         a.push({name : items[i][1][j].name.toUpperCase() , cateogry : items[i][1][j].Type_id})
+         a.push({name : items[i][1][j].name.toUpperCase() , category : items[i][1][j].Type_id})
       }
    }
    // console.log(a);

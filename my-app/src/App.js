@@ -156,7 +156,7 @@ const [Hover, setHover] = useState(false);
       <ScrollToTop/>
       <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} userid = {userid} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput} setHover={setHover}/>
         <div className="searchcontainer"><SearchList items = {MasterData} searchInput = {searchInput}/></div>
-        {Hover && <DropDown setLoggedIn = {setLoggedIn}/>}
+        {Hover && <DropDown setLoggedIn = {setLoggedIn} setHover = {setHover}/>}
         <Routes>
           <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>

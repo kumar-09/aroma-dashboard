@@ -73,6 +73,26 @@ body{
   justify-self: center;
   justify-content: center;
 }
+.dropdown-menu{
+  position:fixed;
+  z-index: 999;
+  background:rgba(77, 77, 77, 0.062);
+  right:0px;
+  top: 105px;
+  justify-content: center;
+  text-align: center;
+  border-radius:10px;
+  padding:10px;
+}
+.dropdown-menu>a{
+  
+  text-decoration: none;
+  color: black;
+  align-self: center;
+  justify-self: center;
+  justify-content: center;
+}
+
 .search{
   background: url("/public/search-icon.png") top left     no-repeat;
   filter: invert(1) brightness(50%);
