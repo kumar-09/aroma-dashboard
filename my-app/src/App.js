@@ -169,7 +169,7 @@ const [Hover, setHover] = useState(false);
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage/>}/>
-          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn}/>}/>
+          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid}/>}/>
           { categories.map (category => (
              <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
           ))}

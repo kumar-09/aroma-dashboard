@@ -87,22 +87,25 @@ const [cartadded, setcartadded] = useState(false);
                             {cart.length === 1  && cart[0].quantity === 1 ? " Item" : " Items"}
                         </div>
                         
-                        <div className="item-total">Item Total: &#8377;{   
-                        cart.reduce((sum, item) => {
-                            let dish = foodList.find((eatable) => {return eatable.id === item.id});
-                            return sum + item.quantity * dish.price}, 0
-                        )
-                        }
+                        <div className="item-total">Item Total: &#8377;
+                        {cart.reduce((sum, item) => {
+                            let dish = foodList.find((eatable) => { return eatable.food_id === item.food_id });
+                            return sum + item.quantity * dish.price;
+                        }, 0
+                        )}
                         </div>
                         <div className="delivery-charges">
                             Delivery charge : &#8377; 30
                         </div>
                         <div className="grandTotal">
                             Grand Total: &#8377;
-                        {cart.reduce((sum, item) => {
-                            let dish = foodList.find((eatable) => {return eatable.id === item.id});
-                            return sum + item.quantity * dish.price}, 30
-                        )}
+                            {
+                        cart.reduce((sum, item) => {
+                            let dish = foodList.find((eatable) => { return eatable.food_id === item.food_id });
+                            return sum + item.quantity * dish.price;
+                        }, 30
+                        )
+                    }
                         </div>
                         
                         <div className="cart-checkout-btn">
