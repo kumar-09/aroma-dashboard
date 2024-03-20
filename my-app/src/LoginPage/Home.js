@@ -4,7 +4,7 @@ import Login from './Login';
 
 const Home = (props) => {
   const loggedIn = props.loggedIn;
-  const email = props.email;
+  const userid = props.userid;
   const navigate = useNavigate();
 
   const onButtonClick = () => {
@@ -22,7 +22,7 @@ const Home = (props) => {
           onClick={onButtonClick}
           value={loggedIn ? 'Log out' : 'Log in'}
         />
-        {loggedIn ? <div>Your email address is {email}</div> : <div />}
+        {loggedIn ? <div>Your userid address is {userid}</div> : <div />}
       </div>
     </div>
   )

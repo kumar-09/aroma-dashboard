@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function LogOut(setLoggedIn) {
-    setLoggedIn(false);
+function LogOut(props) {
+    const navigate = useNavigate();
+    props.setLoggedIn(false);
+    props.setCart([])
+    props.setUserid('');
+    navigate("/");
     return;
 }
 
