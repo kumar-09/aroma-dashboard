@@ -15,8 +15,8 @@ function AdminPage(event){
             name: '',
             Type: '',
             price: 0,
-            // food_image: null,
-            // cat_image: null
+            image: null,
+            cat_image: null
         }
     )
     // const [food_id, setfood_id] = useState('');
@@ -33,12 +33,12 @@ function AdminPage(event){
         formdata.append('name',details['name'])
         formdata.append('Type',details['Type'])
         formdata.append('price', details['price'])
-        formdata.append('food_image',details['food_image'])
+        formdata.append('image',details['image'])
         formdata.append('cat_image',details['cat_image'])
 
         console.log(formdata.get("food_id"))
         event.preventDefault();
-        axios({method : 'post', url: 'http://127.0.0.1:8000/api/additem/', data: details, 
+        axios({method : 'post', url: 'http://127.0.0.1:8000/api/additem/', data: formdata, 
     })
           .then(res => {
             console.log(res.data)    
@@ -49,14 +49,14 @@ function AdminPage(event){
 
     function handleChange(event) {
         const { name, value } = event.target;
-                if(name === 'food_image' || name === 'cat_image'){
-                    // console.log(event.target.files[0])
+                if(name === 'image' || name === 'cat_image'){
+                    console.log(event.target.files[0])
 
-                    // setDetails( prevDetails =>({
-                    //     ...prevDetails,
-                    //     [name]: event.target.files[0]
-                    }
-                      
+                    setDetails( prevDetails =>({
+                        ...prevDetails,
+                        [name]: event.target.files[0]
+                    }))
+                }
                 else {
                     setDetails(prevDetails => ({
                 ...prevDetails,
@@ -85,7 +85,7 @@ function AdminPage(event){
             <input required type="number" id="price" name="price" onChange={(event)=>{handleChange(event)}} min = {1}/>
             <br />
             <label htmlFor="image">Item Image</label>
-            <input  type="file" id="image" name="food_image" accept="image/*" onChange={(event)=>{handleChange(event)}}/>
+            <input  type="file" id="image" name="image" accept="image/*" onChange={(event)=>{handleChange(event)}}/>
             <br />
             <label htmlFor="cat-image">Category Image</label>
             <input required type="file" id="cat-image" name="cat_image" accept="image/*" onChange={(event)=>{handleChange(event)}}/>

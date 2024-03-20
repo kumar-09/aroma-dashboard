@@ -10,7 +10,7 @@ function Cart({ cart, addOne, subtractOne, foodList,loggedIn,userId,name}) {
 const navigate = useNavigate();
 const [isCheckout, setisCheckout] = useState(false);
 const [cartadded, setcartadded] = useState(false);
-    const AddCart = useRef({
+    const [AddCart,setAddCart] = useState({
         userid : '',
         name: '',
         cart_id: '',
@@ -19,7 +19,10 @@ const [cartadded, setcartadded] = useState(false);
         food_ids : [],
         quantity: [],
     });
-    function handleorder(cart){
+
+    function handleorder(cart,e){
+        e.preventDefault();
+        // console.log(AddCart)
         let d = new Date();
         let fulldate = d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'-'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
         let ids=[],quantities=[];
@@ -32,15 +35,35 @@ const [cartadded, setcartadded] = useState(false);
             userid: userId,
             cart_id: fulldate,
             food_ids: ids,
-            quantity: quantities
+            quantity: quantities,
+            name: '',
+            mobile: 0,
+            address: ''
         }
-        AddCart.current =newcart;
-        return AddCart.current
+        setAddCart(newcart);
+    }
+    function handlechange(e){
+        const{name,value} = e.target;
+        setAddCart( prevDetails =>({
+            ...prevDetails,
+            [name]: value,
+        }))
     }
 
-    const addcart= (data)=>{
-        console.log(data)
-        axios.post('http://127.0.0.1:8000/api/addCart/', data)
+    const addcart= (e)=>{
+        handleorder(cart);
+        e.preventDefault();
+        let formdata = new FormData();
+        formdata.append('userid',AddCart['userid'])
+        formdata.append('name',AddCart['name'])
+        formdata.append('cart_id',AddCart['cart_id'])
+        formdata.append('mobile',AddCart['mobile'])
+        formdata.append('food_ids',AddCart['food_ids'])
+        formdata.append('address',AddCart['address'])
+        formdata.append('quantity',AddCart['quantity'])
+        console.log(formdata.get("name"))
+
+        axios({method:'POST', url: 'http://127.0.0.1:8000/api/addCart/', data: formdata})
         .then (res=>{
             console.log(res);
         })
@@ -53,12 +76,6 @@ const [cartadded, setcartadded] = useState(false);
         })
     }
         
-    function handlechange(e){
-        const{name , value} = e.target;
-        AddCart.current = {...AddCart.current,
-                [name]: value,
-        }
-    }
     
         
 
@@ -130,9 +147,8 @@ const [cartadded, setcartadded] = useState(false);
             </div>}
             { isCheckout && 
             
-                isCheckout && 
                     <div className="after-checkout total-cart-page">
-                        <form>
+                        <form onSubmit={(e)=>{addcart(e)}}>
                             <label htmlFor="name">Name :</label>
                             <input required type="text" defaultValue={name} name="name" id="name" onChange={(e)=>{handlechange(e)}}/>
                             <label htmlFor="mobile-no"> Mobile No.: </label>
@@ -140,7 +156,7 @@ const [cartadded, setcartadded] = useState(false);
                             <label htmlFor="address">Address :</label>
                             <input type="text" required id="address" name="address" onChange={(e)=>{handlechange(e)}}/>
                             <div className="order-btn">
-                            <button onSubmit={(e)=>addcart(handleorder(cart))} className="order-btn" style={{marginLeft: 0}}>Order</button>
+                            <button type="submit" className="order-btn" style={{marginLeft: 0}}>Order</button>
                             </div>
                         </form>
                             <button onClick={()=>{setisCheckout(false)}}>Go Back</button>
@@ -149,7 +165,7 @@ const [cartadded, setcartadded] = useState(false);
          
             </div>
             {/* {cart.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cart}/>} */}
-            {  cart.length!==0 && <div className="checkout">
+            {  cart.length!==0 && !isCheckout && <div className="checkout">
             { loggedIn ? <button className="checkout-btn" style={{marginLeft: 0}} onClick={()=>{setisCheckout(true)}}>Proceed to Checkout</button>
                     :<Link to='/login'> <button className="checkout-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}                      
             </div>}
