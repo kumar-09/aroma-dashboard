@@ -27,7 +27,6 @@ const Login = (props) => {
   
     if ('' === password) {
       setPasswordError('Please enter a password');
-      props.setLoggedIn(true);
       return;
     }
   
@@ -72,7 +71,7 @@ const Login = (props) => {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
       .then(res => {console.log(res.status); 
-        if(res.status === 200){ props.setLoggedIn(true); props.setUserid(userid); navigate("/");}
+        if(res.status === 200){ props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); navigate("/");}
        })
       .catch(err => {setPasswordError("Please enter valid credentials");});
   }

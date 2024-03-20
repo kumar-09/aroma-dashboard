@@ -125,6 +125,7 @@ useEffect(()=>{
 
 const [loggedIn, setLoggedIn] = useState(false);
 const [userid, setUserid] = useState('');
+const [name, setName] = useState('');
 const [Hover, setHover] = useState(false);
 // console.log(searchInput);
 
@@ -154,7 +155,7 @@ const [Hover, setHover] = useState(false);
     <>
     <div className="App">
       <ScrollToTop/>
-      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} userid = {userid} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput} setHover={setHover}/>
+      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} name = {name} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput} setHover={setHover}/>
         <div className="searchcontainer"><SearchList items = {MasterData} searchInput = {searchInput}/></div>
         {Hover && <DropDown setLoggedIn = {setLoggedIn} setHover = {setHover}/>}
         <Routes>
@@ -162,8 +163,8 @@ const [Hover, setHover] = useState(false);
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
           <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid}/>}/>
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} />} />
-          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} />} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
+          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
           <Route path="/account" element={<account setUserid={setUserid} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />

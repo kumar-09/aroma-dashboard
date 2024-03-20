@@ -3,8 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = (props) => {
-  const [name, setName] = useState('');
-  const [userid, setUserid] = useState('');
+  const [nameinput, setNameinput] = useState('');
+  const [useridinput, setUseridinput] = useState('');
   const [password, setPassword] = useState('');
   const [useridError, setUseridError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -15,7 +15,7 @@ const Register = (props) => {
     setUseridError('');
     setPasswordError('');
   
-    if ('' === userid) {
+    if ('' === useridinput) {
       setUseridError('Please enter userID');
       return;
     }
@@ -29,10 +29,10 @@ const Register = (props) => {
       return;
     }
   
-    if (password.length < 7) {
-      setPasswordError('The password must be 8 characters or longer');
-      return;
-    }
+    // if (password.length < 7) {
+    //   setPasswordError('The password must be 8 characters or longer');
+    //   return;
+    // }
 
     let axiosConfig = {
       headers: {
@@ -46,11 +46,22 @@ const Register = (props) => {
     //   password: password
     // };
     
-      axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : ({userid: userid, name : name, pswd : password}), headers: {
+      axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : ({userid: useridinput, name : nameinput, pswd : password}), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => {
+        if(res.status === 201){
+        props.setLoggedIn(true);
+        props.setName(res.data.name);
+        props.setUserid(res.data.userid);
+        navigate('/');
+      }})
+      .catch(err => 
+        {
+          
+            setUseridError('User with this ID already exists');
+          
+        });
   }
 
   return (
@@ -59,12 +70,12 @@ const Register = (props) => {
         <div>Register</div>
       </div>
       <br />
-      <form>
+      {/* <form onSubmit={onButtonClick}> */}
       <div className={'inputContainer'}>
         <input
-          value={userid}
+          value={useridinput}
           placeholder="Enter your userID here"
-          onChange={(ev) => setUserid(ev.target.value)}
+          onChange={(ev) => setUseridinput(ev.target.value)}
           type= "text"
           className={'inputBox'}
         />
@@ -73,13 +84,12 @@ const Register = (props) => {
       <br />
       <div className={'inputContainer'}>
         <input
-          value={name}
+          value={nameinput}
           placeholder="Enter your name here"
-          onChange={(ev) => setName(ev.target.value)}
+          onChange={(ev) => setNameinput(ev.target.value)}
           type= "text"
           className={'inputBox'}
         />
-        <label className="errorLabel">{useridError}</label>
       </div>
       <br />
       <div className={'inputContainer'}>
@@ -94,9 +104,9 @@ const Register = (props) => {
       </div>
       <br />
       <div className={'inputContainer'}>
-        <input className={'inputButton'} type="submit" onClick={onButtonClick} value={'Register'} />
+        <button className={'inputButton'} onClick={onButtonClick} type="submit">Register</button>
       </div>
-      </form>
+      {/* </form> */}
       
       <div className='noaccount'>
         Already have an account?

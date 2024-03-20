@@ -8,7 +8,7 @@ import loginimg from './image/login-svgrepo-com.svg'
 const Navbar = (props) => {
     var NavbarRef = props.NavbarRef;
     var loggedIn = props.loggedIn;
-    var userid = props.userid;
+    var name = props.name;
     const foodList = props.foodList;
     const setLoggedIn = props.setLoggedIn;
 
@@ -35,7 +35,7 @@ const Navbar = (props) => {
                <Link to='/Cart' className="nav-links"><img src={cartimg} style={{width: '25px'}}></img>Cart</Link>
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <Link className="nav-links" to='/account' id = "acc" >{userid}</Link>
+                    <Link className="nav-links" to='/account' id = "acc" >{name}</Link>
                 </div> : <Link to='/Login' className="nav-links" ><img src={loginimg} style={{width: '25px'}}></img>Login</Link>}
             </nav>
         </div>
