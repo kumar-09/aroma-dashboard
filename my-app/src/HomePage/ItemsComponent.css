@@ -1,0 +1,137 @@
+body {
+    background-color: white;
+}
+.Fooditem-dif-design {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    border: 2px solid lightgray;
+    border-radius: 11px;
+    box-shadow:0px 0px 14px -4px rgba(0,0,0,0.5);
+    margin: 2% 4%;
+}
+
+.Fooditem { 
+    max-width: 500px;
+    margin:auto;
+    display:flex;
+    width:90%;
+    padding:16px;
+}
+.Fooditem-dif-design:hover{
+    scale:1.05;
+}
+.Fooditem:hover {
+    background-color: #f2f2f2;
+}
+.Item-img-dif-design {
+    width: 100%;
+    height: 250px;
+    /* border: 2px solid black; */
+    /* border-radius: 5%; */
+    /* border-bottom: 2px solid black; */
+    border-radius: inherit;
+}
+.Item-img-dif-design>img{
+    max-height:250px;
+    width:100%;
+    border-radius: inherit;
+}
+.Item-img {
+width: 120px;
+height: 120px;
+text-align: center;
+border: 1px solid black;
+border-radius: 5%;
+z-index: 0;
+object-fit: contain;
+}
+.Item-img>img {
+   max-height: 100%;
+   z-index: inherit;
+   border-radius: inherit;
+}
+.Item-info-dif-design {
+    flex-grow: 1;
+    /* margin-left: 16px; */
+    display: flex;
+    justify-content: space-between;
+}
+.Item-info {
+    flex-grow: 1;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Item-name {
+    font-size: 18px;    
+}
+.Item-name-dif-design{
+    font-size: 18px;
+    margin:10px;
+}
+.Item-info-price-dif-design {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.Item-info-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.Add-item {
+    display: flex;
+    width:80px;
+    height:28px ;
+    border: 2px solid #ff5050;
+    border-radius: 3px ;
+}
+.Add-item-dif-design {
+    display: flex;
+    width:80px;
+    height:28px ;
+    border: 2px solid #ff5050;
+    border-radius: 3px ;
+    margin: 10px;
+}
+.Init-add-btn {
+    width:100%;
+    height: 100%;
+}
+.Init-add-btn:hover {
+    background-color: #ff5050;
+    color: white;
+}
+.After-Init-btn {
+    width:33.33%;
+    text-align: center;
+    
+}
+.Add-item>button{
+  border:none;
+  background-color: transparent;
+}
+.Add-item-dif-design>button{
+    border:none;
+    background-color: transparent;
+  
+  }
+  .Add-item-dif-design>div {
+    background-color:#ff50506A/*#ff50501A*/ ;
+    }
+.Add-item>div {
+background-color:#ff50506A/*#ff50501A*/ ;
+}
+@media screen and (max-width:500px) {
+    .Item-image {
+        height : 96px;
+    }
+}
