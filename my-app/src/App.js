@@ -36,13 +36,14 @@ const App = () => {
     {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);*/
   const [searchInput, setSearchInput] = useState("");
+  const [admin, setAdmin] = useState(false);
   try{
     var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
   }
   catch(e){
     console.log(e)
   }
-  console.log(loginInfo)
+  // console.log(loginInfo)
   if(loginInfo!==""){
     axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : (loginInfo), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -50,7 +51,7 @@ const App = () => {
       .then(res => {console.log(res.status); 
         if(res.status === 200){ setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo', JSON.stringify(loginInfo));}
        })
-      .catch(err => {console.log(err);});
+      .catch(err => {console.log(err)});
   }
 
   const [tempData, settempData] = useState({});
@@ -171,22 +172,22 @@ const [Hover, setHover] = useState(false);
     <>
     <div className="App">
       <ScrollToTop/>
-      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} name = {name} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput} setHover={setHover}/>
+      <Navbar NavbarRef={NavbarRef} loggedIn = {loggedIn} name = {name} foodList = {menu} setLoggedIn={setLoggedIn} setSearchInput = {setSearchInput} setHover={setHover} admin={admin}/>
         <div className="searchcontainer"><SearchList items = {MasterData} searchInput = {searchInput}/></div>
-        {Hover && <DropDown setLoggedIn = {setLoggedIn} setHover = {setHover}/>}
+        {Hover && <DropDown setLoggedIn = {setLoggedIn} setHover = {setHover} admin={admin}/>}
         <Routes>
           <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
           <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid}/>}/>
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin}/>} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
           <Route path="/account" element={<account setUserid={setUserid} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
-          <Route path='/admin' element = {<AdminPage/>}/>
-          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid}/>}/>
+          <Route path='/admin' element = {<AdminPage admin={admin}/>}/>
+          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName}/>}/>
           { categories.map (category => (
              <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
           ))}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function SearchList(props) {
    var items = props.items;
    var a = [];
@@ -21,7 +22,7 @@ function SearchList(props) {
     var filtered = []
     try{ filtered = filtereditems?.map((item) => (
       <dt>
-          <a href = {'/Categories/CategoryFoodList-' + item.category}> {item.name}</a>
+          <Link to = {'/Categories/CategoryFoodList-' + item.category}> {item.name}</Link>
       </dt>
     ));}
     catch{}

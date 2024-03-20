@@ -32,7 +32,10 @@ const Navbar = (props) => {
                 {/* <input className="search" type="text" placeholder="Search..." /> */}
                 <Searchbar items={foodList} setSearchInput = {props.setSearchInput}/>
                <Link to='/Categories' className="nav-links" ><img src={catgimg} style={{width: '25px'}}></img> Categories</Link>
-               <Link to='/Cart' className="nav-links"><img src={cartimg} style={{width: '25px'}}></img>Cart</Link>
+               {!props.admin ? 
+               <Link to='/Cart' className="nav-links"><img src={cartimg} style={{width: '25px'}}></img>Cart
+               </Link>:
+               <Link to='/admin' className="nav-links">Admin</Link>}
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <Link className="nav-links" to='/account' id = "acc" >{name}</Link>
