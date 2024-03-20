@@ -332,6 +332,7 @@ form{
   width:300px;
     padding: 10px;
     font-size: 18px;
+    border: 1px solid lightgray;
 }
 .delivery-charges{
   margin: 20px 0;
