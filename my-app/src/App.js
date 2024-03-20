@@ -45,14 +45,20 @@ const App = () => {
   }
   // console.log(loginInfo)
   if(loginInfo!==""){
-    axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : (loginInfo), headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }})
+    // try{
+      axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : (loginInfo), headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      }})
       .then(res => {console.log(res.status); 
         if(res.status === 200){ setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo', JSON.stringify(loginInfo));}
-       })
+      })
       .catch(err => {console.log(err)});
+    // }
+    // catch(error){
+    //   console.log(error)
+    // }
   }
+    
 
   const [tempData, settempData] = useState({});
   const [MasterData, setMasterData] = useState([]);

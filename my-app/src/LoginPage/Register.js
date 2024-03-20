@@ -5,6 +5,8 @@ import axios from 'axios';
 const Register = (props) => {
   const [nameinput, setNameinput] = useState('');
   const [useridinput, setUseridinput] = useState('');
+  const [mobileinput, setMobileinput] = useState();
+  const [addressinput, setAddressinput] = useState();
   const [password, setPassword] = useState('');
   const [useridError, setUseridError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -45,8 +47,9 @@ const Register = (props) => {
     //   name : name,
     //   password: password
     // };
-    
-      axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : ({userid: useridinput, name : nameinput, pswd : password}), headers: {
+     let data = {userid: useridinput, name : nameinput, pswd : password, mobile: mobileinput, address:addressinput}
+     console.log(data);
+      axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : data, headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
       .then(res => {
@@ -78,6 +81,7 @@ const Register = (props) => {
           onChange={(ev) => setUseridinput(ev.target.value)}
           type= "text"
           className={'inputBox'}
+          required
         />
         <label className="errorLabel">{useridError}</label>
       </div>
@@ -89,6 +93,29 @@ const Register = (props) => {
           onChange={(ev) => setNameinput(ev.target.value)}
           type= "text"
           className={'inputBox'}
+          required
+        />
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={mobileinput}
+          placeholder="Enter your Mobile No. here"
+          onChange={(ev) => setMobileinput(ev.target.value)}
+          type= "number"
+          className={'inputBox'}
+          required
+        />
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={addressinput}
+          placeholder="Enter your Address here"
+          onChange={(ev) => setAddressinput(ev.target.value)}
+          type= "text"
+          className={'inputBox'}
+          required
         />
       </div>
       <br />
@@ -99,6 +126,7 @@ const Register = (props) => {
           onChange={(ev) => setPassword(ev.target.value)}
           type = "password"
           className={'inputBox'}
+          required
         />
         <label className="errorLabel">{passwordError}</label>
       </div>

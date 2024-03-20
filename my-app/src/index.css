@@ -13,6 +13,13 @@
   min-height: calc(100vh - var(--footerHeight));
 }
 
+@media screen and (max-width:431px){
+  .searchbox{
+    width: 400px;
+  }
+  
+}
+
 
 
 html{
@@ -184,6 +191,10 @@ body{
   display:flex;
   flex-direction:column;
   
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .footer{
