@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AdminPage(event){
-
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if(event.admin === false){
+            navigate("/");
+        }
+    })
     const [details, setDetails] = useState(
         {
             food_id: '',

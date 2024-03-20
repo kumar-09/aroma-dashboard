@@ -31,7 +31,7 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
     }}
     console.log(tempList);
     const suitFormat = [];
-    for(let i = 0; i <= tempList.length - 1; i++)
+    for(let i = tempList.length-1; i >=0 && suitFormat.length<3; i--)
     {
         for(const key in tempList[i]){
             const foodItem = foodList.find((dish) => {return ((dish.food_id).toString() === key)});

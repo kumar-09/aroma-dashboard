@@ -67,13 +67,19 @@ const Login = (props) => {
     //     console.log("then");
     //   })
     //   .catch(err => {console.log(err);console.log("catch");});
+    var loginInfo =  {userid: userid, pswd : password};
     axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : ({userid: userid, pswd : password}), headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
-      .then(res => {console.log(res.status); 
-        if(res.status === 200){ props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); navigate("/");}
+      .then(res => {
+        console.log(res.status); 
+        if(res.status === 200){
+            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); localStorage.setItem('loginInfo',JSON.stringify(loginInfo)); 
+            if(res.data.is_admin === true){console.log("admin");props.setAdmin(true); navigate("/admin");}
+            else{console.log("not admin");props.setAdmin(false);navigate("/") } 
+          }
        })
-      .catch(err => {setPasswordError("Please enter valid credentials");});
+      .catch(err => {console.log(err);setPasswordError("Please enter valid credentials");});
   }
 
   return (
