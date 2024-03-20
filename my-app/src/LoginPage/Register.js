@@ -57,6 +57,8 @@ const Register = (props) => {
         props.setLoggedIn(true);
         props.setName(res.data.name);
         props.setUserid(res.data.userid);
+        props.setAddress(res.data.address);
+        props.setMobile(res.data.mobile);
         navigate('/');
       }})
       .catch(err => 

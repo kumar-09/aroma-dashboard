@@ -8,6 +8,8 @@ function LogOut(props) {
     props.setUserid('');
     props.setAdmin(false);
     props.setName('');
+    props.setAddress("");
+    props.setMobile("");
     localStorage.setItem('loginInfo',"");
     navigate("/");
     return;

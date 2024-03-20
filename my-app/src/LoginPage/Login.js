@@ -74,7 +74,7 @@ const Login = (props) => {
       .then(res => {
         console.log(res.status); 
         if(res.status === 200){
-            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); localStorage.setItem('loginInfo',JSON.stringify(loginInfo)); 
+            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); props.setAddress(res.data.address); props.setMobile(res.data.mobile); 
             if(res.data.is_admin === true){console.log("admin");props.setAdmin(true); navigate("/admin");}
             else{console.log("not admin");props.setAdmin(false);navigate("/") } 
           }

@@ -19,7 +19,8 @@ import CategoryFoodList from './Categories/CategoryFoodList';
 import LogOut from './LoginPage/Logout';
 import ScrollToTop from './ScrollToTop';
 import SearchList from './Searchlist';
-import DropDown from './LoginPage/Dropdown'
+import DropDown from './LoginPage/Dropdown';
+import { useNavigate } from 'react-router-dom';
 
 const App = () => {
 
@@ -35,29 +36,22 @@ const App = () => {
     {dish: {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'}, quantity:0},
     {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);*/
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate(); 
   const [searchInput, setSearchInput] = useState("");
   const [admin, setAdmin] = useState(false);
-  try{
-    var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
-  }
-  catch(e){
-    console.log(e)
-  }
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
+  
   // console.log(loginInfo)
-  if(loginInfo!==""){
-    // try{
-      axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : (loginInfo), headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      }})
-      .then(res => {console.log(res.status); 
-        if(res.status === 200){ setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo', JSON.stringify(loginInfo));}
-      })
-      .catch(err => {console.log(err)});
-    // }
+  var sessionkey = localStorage.getItem('aroma_session_key');
+  if(sessionkey === null){sessionkey = "";}
+  var str = 'http://127.0.0.1:8000/api/is-authenticated/' + sessionkey + "/";
+  
     // catch(error){
     //   console.log(error)
     // }
-  }
+  
     
 
   const [tempData, settempData] = useState({});
@@ -89,6 +83,20 @@ const App = () => {
       .then(res=>{
           setcategories(res.data);
       })
+
+      if(!loggedIn){
+        // try{
+          axios({method : 'get', url: str , headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          }})
+          .then(res => {console.log(res); 
+            // if(res.status === 200){
+            //   setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo',JSON.stringify(loginInfo));
+            // }
+          }
+            )
+          .catch(err => {console.log(err)});
+        }
     },[]);
 
 useEffect(()=>{
@@ -146,7 +154,7 @@ useEffect(()=>{
   }
   // console.log(MasterData);
 
-const [loggedIn, setLoggedIn] = useState(false);
+
 const [userid, setUserid] = useState('');
 const [name, setName] = useState('');
 const [Hover, setHover] = useState(false);
@@ -175,14 +183,14 @@ const [Hover, setHover] = useState(false);
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
           <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid} name={name}/>}/>
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin}/>} />
-          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin} setMobile={setMobile} setAddress={setAddress}/>} />
+          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setMobile={setMobile} setAddress={setAddress}/>} />
           <Route path="/account" element={<account setUserid={setUserid} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage admin={admin}/>}/>
-          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName}/>}/>
+          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName} setAddress={setAddress} setMobile={setMobile}/>}/>
           { categories.map (category => (
              <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
           ))}
