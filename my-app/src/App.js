@@ -135,20 +135,9 @@ const [Hover, setHover] = useState(false);
   useLayoutEffect(() => { 
     if(FooterRef.current){ 
       let footerHeight = FooterRef.current.getBoundingClientRect().height;
-      console.log(footerHeight)
       document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
   }, []);
 
-  useEffect(()=>{   
-    let onload = ()=>{
-    console.log('loaded');
-       document.documentElement.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-       })} 
-     window.addEventListener('load',onload)
-    },[MasterData])
-    
 
   return (
     <>
