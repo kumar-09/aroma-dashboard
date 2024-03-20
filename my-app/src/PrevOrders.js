@@ -18,7 +18,7 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
                 })
 
                 .catch((err) => {
-                    console.log("Fetch Error" + err);
+                    // console.log("Fetch Error" + err);
                 });
         }
     ,[userID]
