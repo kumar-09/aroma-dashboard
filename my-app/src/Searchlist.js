@@ -3,15 +3,21 @@ function SearchList(props) {
    var a = [];
    for(let i=0;i<items.length;i++){
       for(let j=0;j<items[i][1].length;j++){
-         a.push({name : items[i][1][j].name.toUpperCase() , category : items[i][1][j].Type_id})
+         a.push({name : items[i][1][j].name.toUpperCase() , category : items[i][1][j].Type})
       }
    }
    // console.log(a);
-   var searchInput = props.searchInput;
-    let filtereditems = a.filter((item) => {
+   let filtereditems;
+   try{var searchInput = props.searchInput;
+    filtereditems = a.filter((item) => {
       // console.log(item);
        return item.name.match(searchInput.toUpperCase());
-    });
+    });}
+    catch(e){
+      console.log(e);
+    }
+   
+    // console.log(filtereditems);
     var filtered = []
     try{ filtered = filtereditems?.map((item) => (
       <dt>
@@ -21,6 +27,7 @@ function SearchList(props) {
     catch{}
     
     if(searchInput==="") return ;
+
     return ( 
          <div className = "searchresults">
              <dl> {filtered} </dl>

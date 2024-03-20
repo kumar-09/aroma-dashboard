@@ -6,6 +6,7 @@ function LogOut(props) {
     props.setLoggedIn(false);
     props.setCart([])
     props.setUserid('');
+    localStorage.setItem('loginInfo',"");
     navigate("/");
     return;
 }

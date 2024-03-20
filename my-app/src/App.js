@@ -36,6 +36,22 @@ const App = () => {
     {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
   ]);*/
   const [searchInput, setSearchInput] = useState("");
+  try{
+    var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
+  }
+  catch(e){
+    console.log(e)
+  }
+  console.log(loginInfo)
+  if(loginInfo!==""){
+    axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : (loginInfo), headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    }})
+      .then(res => {console.log(res.status); 
+        if(res.status === 200){ setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo', JSON.stringify(loginInfo));}
+       })
+      .catch(err => {console.log(err);});
+  }
 
   const [tempData, settempData] = useState({});
   const [MasterData, setMasterData] = useState([]);
