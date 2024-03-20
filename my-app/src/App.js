@@ -159,20 +159,9 @@ const [Hover, setHover] = useState(false);
   useLayoutEffect(() => { 
     if(FooterRef.current){ 
       let footerHeight = FooterRef.current.getBoundingClientRect().height;
-      console.log(footerHeight)
       document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
   }, []);
 
-  useEffect(()=>{   
-    let onload = ()=>{
-    console.log('loaded');
-       document.documentElement.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-       })} 
-     window.addEventListener('load',onload)
-    },[MasterData])
-    
 
   return (
     <>
@@ -184,7 +173,7 @@ const [Hover, setHover] = useState(false);
         <Routes>
           <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
-          <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid}/>}/>
+          <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid} name={name}/>}/>
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin}/>} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
