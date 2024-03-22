@@ -40,7 +40,7 @@ const Navbar = (props) => {
                <Link to='/admin' className="nav-links" ><img src={adminimg} alt={''} style={{width: '25px', opacity: '0.6',}}></img>Admin</Link>}
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <Link className="nav-links" to='/account' id = "acc" style={{padding:'5px'}}><img src={accountimg} alt={""} style={{width: '27px', opacity: '0.6', padding:'0px'}}/>{name}</Link>
+                    <Link className="nav-links" to='/account' id = "acc" style={{padding:'5px', paddingLeft: '10px', paddingRight:'10px'}}><img src={accountimg} alt={""} style={{width: '27px', opacity: '0.6', padding:'0px'}}/>{name}</Link>
                 </div> : <Link to='/Login' className="nav-links" ><img src={loginimg} alt={""} style={{width: '25px'}}></img>Login</Link>}
             </nav>
         </div>
