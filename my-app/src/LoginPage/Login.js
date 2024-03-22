@@ -84,7 +84,7 @@ const Login = (props) => {
              
           }
        })
-      .catch(err => {console.log(err);if(err.message==="Invalid credentials"){setPasswordError("Please enter valid credentials");}else{setPasswordError('Something went wrong');}});
+      .catch(err => {console.log(err.response.data.message);if(err.response.data.message==="Invalid credentials"){setPasswordError("Please enter valid credentials");}else{setPasswordError('Something went wrong');}});
   }
 
   return (
