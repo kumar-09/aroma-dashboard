@@ -13,6 +13,7 @@ import TNC from './TNC';
 import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import AdminPage from './AdminPage';
+import Account from './Account'
 import Register from './LoginPage/Register';
 import axios from 'axios';
 import CategoryFoodList from './Categories/CategoryFoodList';
@@ -186,7 +187,7 @@ const [Hover, setHover] = useState(false);
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin} setMobile={setMobile} setAddress={setAddress} setCart={setCart} cart={cart} carttologin={carttologin} setcarttologin={setcarttologin}/>} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setMobile={setMobile} setAddress={setAddress}/>} />
-          <Route path="/account" element={<account setUserid={setUserid} />} />
+          <Route path="/account" element={<Account name ={name} userid={userid} mobile={mobile} address={address} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
