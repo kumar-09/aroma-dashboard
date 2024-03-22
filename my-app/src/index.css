@@ -17,6 +17,18 @@
   .searchbox{
     width: 400px;
   }
+  .searchresults{
+    position: fixed;
+    top: 0px;
+    left: 20px;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.92);
+    width: 350px;
+    height:fit-content;
+    border-radius: 30px;
+  }
   
 }
 
@@ -396,6 +408,9 @@ border-radius: 5px;
   }
 }
 @media screen and (max-width:769px) {
+  .navbar h1{
+    width: 230px;
+  }
   .cart-flex{
     flex-direction: column;
     margin: 0 12%;
@@ -454,5 +469,17 @@ border-radius: 5px;
     margin-left: 16px;
     margin-top: 30px;
     cursor: pointer;
+}
+.searchresults{
+  position: fixed;
+  top: 130px;
+  left: 300px;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.92);
+  width: 350px;
+  height:fit-content;
+  border-radius: 30px;  
 }
   }

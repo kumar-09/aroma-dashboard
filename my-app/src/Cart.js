@@ -23,7 +23,7 @@ const [cartadded, setcartadded] = useState(false);
 
 
     const addcart= (e)=>{
-        console.log('order processing')
+        // console.log('order processing')
         e.preventDefault();
         function handleorder(cart){
             // console.log(AddCart)
@@ -37,7 +37,7 @@ const [cartadded, setcartadded] = useState(false);
                 ids.push(item.food_id);
                 quantities.push(item.quantity);
             })
-            console.log(ids,quantities,fulldate,userId,name,address,mobile_no)
+            // console.log(ids,quantities,fulldate,userId,name,address,mobile_no)
              let newcart={
                 userid: userId,
                 cart_id: fulldate,
@@ -51,11 +51,11 @@ const [cartadded, setcartadded] = useState(false);
         }
         
         handleorder(cart);
-        console.log(AddCart.current);
+        // console.log(AddCart.current);
         
         axios({method:'POST', url: 'http://127.0.0.1:8000/api/addCart/', data: AddCart.current})
         .then (res=>{
-            console.log(res.config.data);
+            // console.log(res.config.data);
         })
         .catch( err=>{
             console.log('failed to add cart');
@@ -135,7 +135,7 @@ const [cartadded, setcartadded] = useState(false);
                         {/* addcart(handleCheckout(cart)) */}
                         <div className="cart-checkout-btn">
                  {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{ setisCheckout(true)}}>Proceed to Checkout</button>
-                    :<Link to='/login'> <button className="go-to-cart-btn" onClick={()=>{setcarttologin(true)}} style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
+                    :<Link to='/login'> <button className="go-to-cart-btn" onClick={()=>{setcarttologin(true);}} style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
                     </div>
                     </>
                 }

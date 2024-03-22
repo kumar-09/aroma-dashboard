@@ -44,7 +44,7 @@ const App = () => {
   const [address, setAddress] = useState("");
   
   // console.log(loginInfo)
-  var sessionkey = localStorage.getItem('aroma_session_key');
+  var sessionkey = localStorage.getItem('aromas_session_key');
   if(sessionkey === null){sessionkey = "";}
   var str = 'http://127.0.0.1:8000/api/is-authenticated/' + sessionkey + "/";
   
@@ -66,7 +66,7 @@ const App = () => {
         .then(res => {
           data = res.data;
           settempData(data);
-          console.log(data);
+          // console.log(data);
           
         })
         // .catch(err => {console.log("Error thrown")})
@@ -89,13 +89,14 @@ const App = () => {
           axios({method : 'get', url: str , headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           }})
-          .then(res => {console.log(res); 
-            // if(res.status === 200){
-            //   setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo',JSON.stringify(loginInfo));
-            // }
+          .then(res => {
+            console.log(res); 
+            if(res.status === 200){
+              setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); setAddress(res.data.address); setMobile(res.data.mobile); setAdmin(res.data.is_admin); localStorage.setItem('aromas_session_key',sessionkey);
+            }
           }
             )
-          .catch(err => {console.log(err)});
+          .catch(err => {console.log(err);navigate("/");} );
         }
     },[]);
 
@@ -183,16 +184,16 @@ const [Hover, setHover] = useState(false);
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
           <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid} name={name} setcarttologin={setcarttologin}/>}/>
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin} setMobile={setMobile} setAddress={setAddress} cart={cart} carttologin={carttologin}/>} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin} setMobile={setMobile} setAddress={setAddress} setCart={setCart} cart={cart} carttologin={carttologin} setcarttologin={setcarttologin}/>} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setMobile={setMobile} setAddress={setAddress}/>} />
           <Route path="/account" element={<account setUserid={setUserid} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage admin={admin}/>}/>
-          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName} setAddress={setAddress} setMobile={setMobile}/>}/>
+          <Route path = '/logout' element = {<LogOut userid = {userid} sessionkey = {sessionkey} setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName} setAddress={setAddress} setMobile={setMobile} setHover={setHover}/>}/>
           { categories.map (category => (
-             <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
+             <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart={cart} setCart={setCart} />} />
           ))}
          
         </Routes>
