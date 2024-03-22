@@ -72,14 +72,17 @@ const Login = (props) => {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
       .then(res => {
-        console.log(res.status); 
+        // console.log(res.status); 
         if(res.status === 200){
-            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); props.setAddress(res.data.address); props.setMobile(res.data.mobile); 
-            if(res.data.is_admin === true){console.log("admin");props.setAdmin(true); navigate("/admin");}
-            else{console.log("not admin");props.setAdmin(false);navigate("/") } 
+            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); props.setAddress(res.data.address); props.setMobile(res.data.mobile);
+            localStorage.setItem('aromas_session_key',res.data.session_key);
+            if(res.data.is_admin === true){props.setAdmin(true);navigate("/admin");}
+            else{props.setAdmin(false);}
+            if(!props.carttologin){navigate("/");}
+            else {props.setCart(props.cart);navigate("/cart");props.setcarttologin(false);} 
           }
        })
-      .catch(err => {console.log(err);setPasswordError("Please enter valid credentials");});
+      .catch(err => {console.log(err);if(err.message==="Invalid credentials"){setPasswordError("Please enter valid credentials");}else{setPasswordError('Something went wrong');}});
   }
 
   return (

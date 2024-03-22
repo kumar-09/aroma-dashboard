@@ -23,13 +23,13 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
         }
     ,[userID]
     );
-    console.log(pastOrders)
+    // console.log(pastOrders)
     const tempList = [];//This has pdtID: quantity pairs
     for(let i=0; i<=pastOrders.length-1; i++){
     for (const key in pastOrders[i]) {
         tempList.push(...pastOrders[i][key]);
     }}
-    console.log(tempList);
+    // console.log(tempList);
     const suitFormat = [];
     for(let i = tempList.length-1; i >=0 && suitFormat.length<3; i--)
     {
@@ -40,7 +40,7 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
             }
         }
     }
-    console.log(suitFormat)
+    // console.log(suitFormat)
     return (
         <>
         <div>

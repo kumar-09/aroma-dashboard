@@ -15,7 +15,7 @@ const [CategoryData,setCategoryData]= useState([]);
 useEffect (  ()=>{
    axios.get('http://127.0.0.1:8000/api/menu/'+category)
   .then ( res =>{
-    console.log(res.data)
+    // console.log(res.data)
     CategoryDatalist = res.data;
     setLoad(false);
   setCategoryData(CategoryDatalist);

@@ -48,7 +48,7 @@ const Register = (props) => {
     //   password: password
     // };
      let data = {userid: useridinput, name : nameinput, pswd : password, mobile: mobileinput, address:addressinput}
-     console.log(data);
+    //  console.log(data);
       axios({method : 'post', url: 'http://127.0.0.1:8000/api/register/', data : data, headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     }})
@@ -59,6 +59,7 @@ const Register = (props) => {
         props.setUserid(res.data.userid);
         props.setAddress(res.data.address);
         props.setMobile(res.data.mobile);
+        localStorage.setItem('aromas_session_key',res.data.session_key);
         navigate('/');
       }})
       .catch(err => 

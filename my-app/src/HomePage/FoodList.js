@@ -55,12 +55,12 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
         if (NavbarRef.current) {
             HeightOfHeader = document.getElementById('head').getBoundingClientRect().height;
             document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);}
-            console.log(HeightOfHeader)
+            // console.log(HeightOfHeader)
         function updateSize() {
             if (NavbarRef.current) {
                 HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
                 document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
-                console.log(HeightOfHeader);
+                // console.log(HeightOfHeader);
             }
         }
         window.addEventListener('resize', updateSize);

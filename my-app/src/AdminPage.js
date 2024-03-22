@@ -27,7 +27,7 @@ function AdminPage(event){
     // const [name, setname] = useState('');
 
     function handleSubmit(event){
-        console.log(details)
+        // console.log(details)
        let formdata = new FormData();
         formdata.append("food_id",details['food_id'])
         formdata.append('name',details['name'])
@@ -36,12 +36,12 @@ function AdminPage(event){
         formdata.append('image',details['image'])
         formdata.append('cat_image',details['cat_image'])
 
-        console.log(formdata.get("food_id"))
+        // console.log(formdata.get("food_id"))
         event.preventDefault();
         axios({method : 'post', url: 'http://127.0.0.1:8000/api/additem/', data: formdata, 
     })
           .then(res => {
-            console.log(res.data)    
+            // console.log(res.data)    
         })
         .catch(err => console.log(err))
     }
@@ -50,7 +50,7 @@ function AdminPage(event){
     function handleChange(event) {
         const { name, value } = event.target;
                 if(name === 'image' || name === 'cat_image'){
-                    console.log(event.target.files[0])
+                    // console.log(event.target.files[0])
 
                     setDetails( prevDetails =>({
                         ...prevDetails,

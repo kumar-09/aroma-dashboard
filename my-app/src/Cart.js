@@ -7,7 +7,7 @@ import img from './image/empty-cart-7359557-6024626.png';
 import axios from "axios";
 import successimage from './image/success-svgrepo-com.svg'
 
-function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,mobile,address }) {
+function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name, address,mobile,setcarttologin }) {
     const navigate = useNavigate();
     const [isCheckout, setisCheckout] = useState(false);
     const [cartadded, setcartadded] = useState(false);
@@ -33,7 +33,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,mobi
             let address = document.getElementsByName('address')[0].value;
             let mobile_no = document.getElementsByName('mobile')[0].value;
             if(mobile_no < 1000000000 || mobile_no > 9999999999){ 
-                throw('mobile number should be of 10 digits.')
+                throw(Error('mobile number should be of 10 digits.'))
             }
             let fulldate = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + '-' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
             let ids = [], quantities = [];
@@ -139,7 +139,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,mobi
                             {/* addcart(handleCheckout(cart)) */}
                             <div className="cart-checkout-btn">
                                 {loggedIn ? <button className="go-to-cart-btn" style={{ marginLeft: 0 }} onClick={() => { setisCheckout(true) }}>Proceed to Checkout</button>
-                                    : <Link to='/login'> <button className="go-to-cart-btn" style={{ textDecoration: 'none', marginLeft: 0 }}> Proceed to Checkout</button> </Link>}
+                                    : <Link to='/login'> <button className="go-to-cart-btn" onClick={()=>{setcarttologin(true)}} style={{ textDecoration: 'none', marginLeft: 0 }}> Proceed to Checkout</button> </Link>}
                             </div>
                         </>
                     }
@@ -171,7 +171,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,mobi
                                     cart.reduce((sum, item) => {
                                         let dish = foodList.find((eatable) => { return eatable.food_id === item.food_id });
                                         return sum + item.quantity * dish.price;
-                                    }, 30
+                                    }, 10
                                     )
                                 }</div> 
                                 <div style={{fontSize: '10px'}}>Total</div>
@@ -188,7 +188,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,mobi
             {/* {cart.length !=0 &&  <Suggestions addOne={addOne} subtractOne={subtractOne} cart = {cart}/>} */}
             {cart.length !== 0 && !isCheckout && <div className="checkout">
                 {loggedIn ? <button className="checkout-btn" style={{ marginLeft: 0 }} onClick={() => { setisCheckout(true) }}>Proceed to Checkout</button>
-                    : <Link to='/login'> <button className="checkout-btn" style={{ textDecoration: 'none', marginLeft: 0 }}> Proceed to Checkout</button> </Link>}
+                    : <Link to='/login'> <button className="checkout-btn" onClick={()=>{setcarttologin(true)}} style={{ textDecoration: 'none', marginLeft: 0 }}> Proceed to Checkout</button> </Link>}
             </div>}
 
             {loggedIn && <PrevOrders userID={userId} addOne={addOne} subtractOne={subtractOne} foodList={foodList} cart={cart} />}
