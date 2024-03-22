@@ -13,46 +13,30 @@ import TNC from './TNC';
 import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import AdminPage from './AdminPage';
+import Account from './Account'
 import Register from './LoginPage/Register';
 import axios from 'axios';
 import CategoryFoodList from './Categories/CategoryFoodList';
 import LogOut from './LoginPage/Logout';
 import ScrollToTop from './ScrollToTop';
 import SearchList from './Searchlist';
-import DropDown from './LoginPage/Dropdown'
+import DropDown from './LoginPage/Dropdown';
+import { useNavigate } from 'react-router-dom';
 
 const App = () => {
 
-  /*const [list, setList] = useState([
-    {dish: {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image:'./images/3f797cae-9813-4239-b745-9e2cdf09932c.webp', category: 'Sandwich'}, quantity:0},
-    {dish: {id:2,name: 'Chicken cheese Sandwich', price: '66', image: '', category: 'Sandwich'} ,quantity:0},
-    {dish: {id:3, name:'Egg Cheese Sandwich', price:'60',image:'', category: 'Sandwich'}, quantity:0},
-    {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:'', category: 'Sandwich'}, quantity:0},
-    {dish: {id:5, name:'sprite', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:6, name: 'coke', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:7, name: 'fanta', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:8, name: 'Veg Hakka Noodles', price:'45', image:'', category:'Noodles'}, quantity:0},
-    {dish: {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'}, quantity:0},
-    {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
-  ]);*/
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate(); 
   const [searchInput, setSearchInput] = useState("");
   const [admin, setAdmin] = useState(false);
-  try{
-    var loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
-  }
-  catch(e){
-    console.log(e)
-  }
-  // console.log(loginInfo)
-  if(loginInfo!==""){
-    axios({method : 'post', url: 'http://127.0.0.1:8000/api/login/', data : (loginInfo), headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }})
-      .then(res => {console.log(res.status); 
-        if(res.status === 200){ setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); localStorage.setItem('loginInfo', JSON.stringify(loginInfo));}
-       })
-      .catch(err => {console.log(err)});
-  }
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
+  
+  var sessionkey = localStorage.getItem('aromas_session_key');
+  if(sessionkey === null){sessionkey = "";}
+  var str = 'http://127.0.0.1:8000/api/is-authenticated/' + sessionkey + "/";
+  
+  const [carttologin, setcarttologin] = useState(false);
 
   const [tempData, settempData] = useState({});
   const [MasterData, setMasterData] = useState([]);
@@ -66,7 +50,7 @@ const App = () => {
         .then(res => {
           data = res.data;
           settempData(data);
-          console.log(data);
+          // console.log(data);
           
         })
         // .catch(err => {console.log("Error thrown")})
@@ -83,16 +67,56 @@ const App = () => {
       .then(res=>{
           setcategories(res.data);
       })
-    },[]);
+      .catch(err=>{
+        console.log(err);
+      })
 
-useEffect(()=>{
+      if(!loggedIn){
+      // try{
+        axios({method : 'get', url: str , headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        }})
+        .then(res => {
+          // console.log(res); 
+          if(res.status === 200){
+            setLoggedIn(true); 
+            setUserid(res.data.userid); 
+            setName(res.data.name); 
+            setAddress(res.data.address); 
+            setMobile(res.data.mobile); 
+            setAdmin(res.data.is_admin); 
+            localStorage.setItem('aromas_session_key',sessionkey);
+          }
+        }
+          )
+        .catch(err => {
+          console.log(err);
+          if(err.response.data.message==='Session expired.'){
+            alert('Session Expired');
+            localStorage.setItem('aromas_session_key',"");
+          }
+          if(err.status===400){
+            navigate("/");
+          }
+        });
+      }
+    // }
+    // catch(error){
+    //   console.log(error);
+    //   navigate("/error");
+    // }
+    
+  },[]);
+
+  useEffect(()=>{
   Object.keys(tempData).forEach( key => {
     temparr.push([key,tempData[key]])
   })
   setMasterData(temparr);
-},[tempData])
+  },[tempData]);
 
   const [cart, setCart] = useState([]);
+    
 
   const subtractOne = (id) =>{
     const tempCart = [...cart];
@@ -138,13 +162,11 @@ useEffect(()=>{
     return tempCart;
     });
   }
-  // console.log(MasterData);
 
-const [loggedIn, setLoggedIn] = useState(false);
+
 const [userid, setUserid] = useState('');
 const [name, setName] = useState('');
 const [Hover, setHover] = useState(false);
-// console.log(searchInput);
 
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);
@@ -153,20 +175,9 @@ const [Hover, setHover] = useState(false);
   useLayoutEffect(() => { 
     if(FooterRef.current){ 
       let footerHeight = FooterRef.current.getBoundingClientRect().height;
-      console.log(footerHeight)
       document.documentElement.style.setProperty('--footerHeight',`${footerHeight}px`)}
   }, []);
 
-  useEffect(()=>{   
-    let onload = ()=>{
-    console.log('loaded');
-       document.documentElement.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-       })} 
-     window.addEventListener('load',onload)
-    },[MasterData])
-    
 
   return (
     <>
@@ -178,18 +189,18 @@ const [Hover, setHover] = useState(false);
         <Routes>
           <Route path='/' element = {<Home MasterData={MasterData} addOne={addOne} menu={menu} subtractOne={subtractOne} cart={cart} NavbarRef={NavbarRef} FooterRef={FooterRef}/>} /> 
           <Route path='/Categories' element={<Categories categories={categories} cart={cart}/>}/>
-          <Route path = '/Cart' element = {<Cart cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid}/>}/>
+          <Route path = '/Cart' element = {<Cart mobile={mobile} address={address} cart={cart} addOne={addOne} subtractOne={subtractOne} foodList={menu} loggedIn={loggedIn} userId={userid} name={name} setcarttologin={setcarttologin}/>}/>
           <Route path="/" element={<LoginHome userid={userid} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin}/>} />
-          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName}/>} />
-          <Route path="/account" element={<account setUserid={setUserid} />} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setAdmin={setAdmin} setMobile={setMobile} setAddress={setAddress} setCart={setCart} cart={cart} carttologin={carttologin} setcarttologin={setcarttologin}/>} />
+          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setUserid={setUserid} setName = {setName} setMobile={setMobile} setAddress={setAddress}/>} />
+          <Route path="/account" element={<Account name ={name} userid={userid} mobile={mobile} address={address} />} />
           <Route path = "/tnc" element = {<TNC/>}/>
           <Route path = "/about-us" element = {<AboutUs/>} />
           <Route path = "/contact-us" element = {<ContactUs/>} />
           <Route path='/admin' element = {<AdminPage admin={admin}/>}/>
-          <Route path = '/logout' element = {<LogOut setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName}/>}/>
+          <Route path = '/logout' element = {<LogOut userid = {userid} sessionkey = {sessionkey} setLoggedIn = {setLoggedIn} setCart= {setCart} setUserid={setUserid} setAdmin={setAdmin} setName={setName} setAddress={setAddress} setMobile={setMobile} setHover={setHover}/>}/>
           { categories.map (category => (
-             <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart  ={cart} />} />
+             <Route key={category.Type} path={'Categories/CategoryFoodlist-'+category.Type} element={<CategoryFoodList category={category.Type}  addOne={addOne} subtractOne={subtractOne}  cart={cart} setCart={setCart} />} />
           ))}
          
         </Routes>

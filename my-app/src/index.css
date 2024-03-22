@@ -12,6 +12,45 @@
 .App {
   min-height: calc(100vh - var(--footerHeight));
 }
+@media screen and (min-width:431) {
+
+}
+@media screen and (max-width:431px){
+  .navbar {
+    padding-top:20px;
+    padding-bottom:20px;
+    margin-right:10px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-wrap:wrap;
+    border-bottom: 1px solid #f2f2f2;
+    width:100%;
+    
+  }
+  .searchbox{
+    width: 90% !important;
+    margin-left:0px;
+  }
+  .searchresults{
+    position: fixed;
+    top: 200px !important;
+    left: 30px !important;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.92);
+    width: 350px;
+    height:fit-content;
+    border-radius: 30px;
+  }
+  .dropdown-menu{
+    position:fixed;
+    top: 190px !important;
+    right:0px !important;
+  }
+  
+}
 
 
 
@@ -35,7 +74,7 @@ body{
 .searchresults {
   position: fixed;
   top: 130px;
-  left: 400px;
+  left: 30%;
   right: 0;
   bottom: 0;
   z-index: 999;
@@ -78,7 +117,7 @@ body{
   z-index: 999;
   background:rgba(77, 77, 77, 0.062);
   right:0px;
-  top: 105px;
+  top: 104px;
   justify-content: center;
   text-align: center;
   border-radius:10px;
@@ -160,7 +199,7 @@ body{
 .navbar h1 {
   color: #f1356d;
   font-weight: 1000;
-  width :290px;
+  width :250px;
   text-align: center;
 }
 .navbar .links {
@@ -184,6 +223,10 @@ body{
   display:flex;
   flex-direction:column;
   
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .footer{
@@ -332,7 +375,9 @@ form{
   width:300px;
     padding: 10px;
     font-size: 18px;
+    border: 1px solid lightgray;
 }
+
 .delivery-charges{
   margin: 20px 0;
   border-bottom: 1px solid lightgray;
@@ -375,15 +420,121 @@ border-radius: 5px;
 }
 .previous-orders{
   margin: 5% 0;
-  
 }
 
+.order-form {
+justify-content: start !important;
+height: 90%;
+}
+.order-form>label {
+  display: inline-block;
+}
+.order-form>div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10%;
+}
+.order-form>div>input {
+  width:67%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  height: 20px;
+}
+.order-form>div>textarea {
+  width: 67%;
+  text-decoration: none;
+  resize: none;
+}
+.order-btn-div{
+justify-content: start !important;
+margin-top: 22% !important;
+
+}
+.order-btn {
+  width: 50%;
+  background-color: #ff5050;
+  font-size: 15px;
+  padding: 3% 5%;
+  border-radius: 7px;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order{
+  margin-left: 25px;
+  font-size: 18px;
+}
+.go-back {
+  background-color: #ff5050;
+  font-size: 15px;
+  padding: 3% 5%;
+  border-radius: 7px;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 65%;
+  bottom: 5%;
+}
+.order-placed {
+  margin: auto;
+  height: 300px;
+  width: 30%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 30px;
+}
+.order-placed>p{
+  margin-top:25% ;
+}
+.account-page{
+  position: relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:30px;
+  align-items: center;
+  top:40px;
+}
+.account-headings{
+  position: relative;
+  display:flex;
+  gap:5px;
+  flex-direction: column;
+}
+.account-heading{
+  font-weight:bold;
+  font-size:30px;
+  /* text-decoration: ; */
+  color:#ff5050
+}
+.accountimg{
+
+  max-width:200px;
+}
 @media screen and (min-width:769px) {
   .checkout-btn {
     display: none;
   }
 }
-@media screen and (max-width:769px) {
+@media screen and (max-width:769px) and (min-width:450px) {
+  .dropdown-menu{
+    position:fixed;
+    top:110px !important;
+    right:10px !important;
+  }
+  .navbar a{
+    margin-left:0px;
+  }
+  .navbar h1{
+    width: 100px;
+  }
   .cart-flex{
     flex-direction: column;
     margin: 0 12%;
@@ -442,5 +593,17 @@ border-radius: 5px;
     margin-left: 16px;
     margin-top: 30px;
     cursor: pointer;
+}
+.searchresults{
+  position: fixed;
+  top: 130px;
+  left: 100px;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.92);
+  width: 350px;
+  height:fit-content;
+  border-radius: 30px;  
 }
   }

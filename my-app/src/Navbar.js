@@ -5,6 +5,8 @@ import DropDown from './LoginPage/Dropdown.js';
 import catgimg from './image/category-svgrepo-com.svg'
 import cartimg from './image/cart-3-svgrepo-com.svg'
 import loginimg from './image/login-svgrepo-com.svg'
+import accountimg from './image/mine-svgrepo-com.svg'
+import adminimg from './image/admin-svgrepo-com.svg'
 const Navbar = (props) => {
     var NavbarRef = props.NavbarRef;
     var loggedIn = props.loggedIn;
@@ -12,7 +14,6 @@ const Navbar = (props) => {
     const foodList = props.foodList;
     const setLoggedIn = props.setLoggedIn;
 
-    // console.log(foodList);
     
     const handleMouseEnter = () => {
         props.setHover(true);
@@ -29,17 +30,16 @@ const Navbar = (props) => {
             </div>
             <nav className = "navbar">
                <Link to='/'> <h1 >AROMAS</h1></Link>
-                {/* <input className="search" type="text" placeholder="Search..." /> */}
                 <Searchbar items={foodList} setSearchInput = {props.setSearchInput}/>
-               <Link to='/Categories' className="nav-links" ><img src={catgimg} style={{width: '25px'}}></img> Categories</Link>
+               <Link to='/Categories' className="nav-links" ><img src={catgimg} alt={""} style={{width: '25px'}}></img> Categories</Link>
                {!props.admin ? 
-               <Link to='/Cart' className="nav-links"><img src={cartimg} style={{width: '25px'}}></img>Cart
+               <Link to='/Cart' className="nav-links"><img src={cartimg} alt={''} style={{width: '25px'}}></img>Cart
                </Link>:
-               <Link to='/admin' className="nav-links">Admin</Link>}
+               <Link to='/admin' className="nav-links" ><img src={adminimg} alt={''} style={{width: '25px', opacity: '0.6',}}></img>Admin</Link>}
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <Link className="nav-links" to='/account' id = "acc" >{name}</Link>
-                </div> : <Link to='/Login' className="nav-links" ><img src={loginimg} style={{width: '25px'}}></img>Login</Link>}
+                    <Link className="nav-links" to='/account' id = "acc" style={{padding:'5px', paddingLeft: '10px', paddingRight:'10px'}}><img src={accountimg} alt={""} style={{width: '27px', opacity: '0.6', padding:'0px'}}/>{name}</Link>
+                </div> : <Link to='/Login' className="nav-links" ><img src={loginimg} alt={""} style={{width: '25px'}}></img>Login</Link>}
             </nav>
         </div>
     );

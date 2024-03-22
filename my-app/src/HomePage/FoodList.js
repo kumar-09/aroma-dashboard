@@ -45,25 +45,19 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
     // implementation of back-scrolling ----->>>
  
     let HeightOfHeader;
-    //getting height of header and setting it to css variable--->
-    useEffect(()=>{  
-        if (NavbarRef.current) {
-        HeightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
-        document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
-        // console.log(HeightOfHeader)
-    }},[])
-
     useLayoutEffect(() => {
+        if (NavbarRef.current) {
+            HeightOfHeader = document.getElementById('head').getBoundingClientRect().height;
+            document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);}
         function updateSize() {
             if (NavbarRef.current) {
                 HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
                 document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
-                console.log(HeightOfHeader);
             }
         }
         window.addEventListener('resize', updateSize);
         return () => window.removeEventListener('resize', updateSize);
-    },[]);
+},[NavbarRef.current]);
 
     const [isScrolling, setisScrolling] = useState(true);
     const scrollfuncRef = useRef(null);
@@ -77,6 +71,7 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
                 let titleElement = document.getElementById(title);
                 let titleBtnId = title + 'btn';
                 let titleBtn = document.getElementById(titleBtnId);
+
                 if (titleElement && titleBtn) {
                     let heightOfHeader = document.getElementById('head').getBoundingClientRect().bottom;
                 
@@ -101,15 +96,16 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
             })
 
         }
+        window.onload= scrollfuncRef.current();
+           
         window.addEventListener('scroll', scrollfuncRef.current);
-
-
+      
         return () => {
             window.removeEventListener('scroll', scrollfuncRef.current);
         }
     },[MasterData,isScrolling]
     )
-
+    
     return (
         <div className="Menu" ref={menuref} >
             

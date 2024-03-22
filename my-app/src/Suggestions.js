@@ -5,17 +5,9 @@ import axios from "axios";
 function Suggestions({addOne, subtractOne, cart}) {
     const [sug, setSug] = useState([]);
     const [loading, setLoading] = useState(true);
-    //const [error, setError] = useState(false);
     useEffect(
         () => {
             setTimeout(() => {axios.get('http://127.0.0.1:8000/api/menu/Cold Drinks/')
-            /*.then((res) => {
-                console.log("Ami's data has arrived: ", res.data);
-                if(res.ok === false){
-                    throw new Error ("Not able to fetch data");
-                }
-                return Promise.resolve(res.data);
-            } ) */
             .then((res) => {
                 
                 if(res.status !== 200){
@@ -26,21 +18,13 @@ function Suggestions({addOne, subtractOne, cart}) {
             })
             .catch((err)=>{
                 console.log(err);
-                //setError(true);
                 setLoading(false);
             })
         }, 0)
     }
         , []
     );
-    /*var suggestions = [];
-    for(let i = 0; suggestions.length <= 3; i++){
-        var food=(foodList[Math.floor(Math.random()*foodList.length)]);
-        console.log(food);
-        suggestions = suggestions.splice(0, suggestions.indexOf(food)).concat(suggestions.splice(suggestions.indexOf(food)+1));
-        suggestions.push(food);
-        console.log(suggestions);
-    }*/
+  
     return(
         <div className="suggestions">
             <div style={{margin: '2.5% 0'}}>Grab a delightful beverage before you leave!!</div>
