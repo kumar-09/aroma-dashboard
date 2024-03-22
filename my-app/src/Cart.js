@@ -150,26 +150,26 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name }) {
                             </div>
                             <div>
                                 <label htmlFor="address">Address :</label>
-                                <textarea type="text" rows={5} required id="address" name="address" />
+                                <textarea type="text" rows={7} required id="address" name="address" />
                             </div>
-                           
                             <div className="order-btn-div">
                                 <button type="submit" className="order-btn" style={{ marginLeft: 0 }}>
-                                <div>
-                                    &#8377;
+                                <div className="total-pay">
+                                  <div> &#8377;
                                 {
                                     cart.reduce((sum, item) => {
                                         let dish = foodList.find((eatable) => { return eatable.food_id === item.food_id });
                                         return sum + item.quantity * dish.price;
                                     }, 30
                                     )
-                                } <br/>Total
+                                }</div> 
+                                <div style={{fontSize: '10px'}}>Total</div>
                                 </div>
-                                <div>Order</div> 
+                                <div className="order">Order</div> 
                                 </button>
                             </div>
                         </form>
-                        <button onClick={() => { setisCheckout(false) }}>Go Back</button>
+                        <button onClick={() => { setisCheckout(false) }} className="go-back">Go Back</button>
                     </div>
                 }
 

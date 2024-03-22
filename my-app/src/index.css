@@ -391,8 +391,8 @@ border-radius: 5px;
 }
 
 .order-form {
-justify-content: space-evenly !important;
-height: 75%;
+justify-content: start !important;
+height: 90%;
 }
 .order-form>label {
   display: inline-block;
@@ -402,6 +402,7 @@ height: 75%;
   justify-content: space-between;
   width: 100%;
   font-size: 15px;
+  margin-top: 10%;
 }
 .order-form>div>input {
   width:67%;
@@ -415,16 +416,39 @@ height: 75%;
   resize: none;
 }
 .order-btn-div{
-justify-content: space-evenly !important;
+justify-content: start !important;
+margin-top: 22% !important;
+
 }
 .order-btn {
   width: 50%;
   background-color: #ff5050;
-  font-size: 18px;
-  padding: 10px 0;
-  border-radius: 20px;
+  font-size: 15px;
+  padding: 3% 5%;
+  border-radius: 7px;
   border: none;
+  color: white;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order{
+  margin-left: 25px;
+  font-size: 18px;
+}
+.go-back {
+  background-color: #ff5050;
+  font-size: 15px;
+  padding: 3% 5%;
+  border-radius: 7px;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 65%;
+  bottom: 8%;
 }
 
 @media screen and (min-width:769px) {
