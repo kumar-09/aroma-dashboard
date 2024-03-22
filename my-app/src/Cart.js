@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import PrevOrders from "./PrevOrders";
 import img from './image/empty-cart-7359557-6024626.png';
 import axios from "axios";
+import successimage from './image/success-svgrepo-com.svg'
 
 function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name, address,mobile,setcarttologin }) {
     const navigate = useNavigate();
@@ -199,6 +200,8 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name, add
     cartadded &&
             <div className="order-placed">
                <p> Order placed Successfully !!</p>
+               <img src={successimage} style={{width: 100,marginLeft:'30%'}}></img>
+               <Link to='/' ><button className="go-to-cart-btn" >Go to Homepage</button> </Link>
             </div>
 
 }
