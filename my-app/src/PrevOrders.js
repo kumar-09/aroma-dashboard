@@ -46,7 +46,7 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
         <div className="previous-orders" style={{display: "flex", flexWrap: 'wrap'}}>
             
             {suitFormat && suitFormat.map((item) => 
-                <ItemComponent subtractOne={subtractOne} addOne={addOne} Food={item} quantity={((cart.find((eatable => eatable.id === item.id)))??{quantity: 0}).quantity } ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'} key={item.id}/>
+                <ItemComponent subtractOne={subtractOne} addOne={addOne} Food={item} quantity={((cart.find((eatable => eatable.food_id === item.food_id)))??{quantity: 0}).quantity } ItemInfo={'Item-info-dif-design'} ItemName={'Item-name-dif-design'}  ItemPriceInfo={'Item-info-price-dif-design'} AddBtn={'Add-item-dif-design'} ImgClass={'Item-img-dif-design'} MainClass={'Fooditem-dif-design'} key={item.id}/>
             )}
         </div>
         </>
