@@ -357,6 +357,7 @@ form{
     font-size: 18px;
     border: 1px solid lightgray;
 }
+
 .delivery-charges{
   margin: 20px 0;
   border-bottom: 1px solid lightgray;
@@ -399,7 +400,67 @@ border-radius: 5px;
 }
 .previous-orders{
   margin: 5% 0;
-  
+}
+
+.order-form {
+justify-content: start !important;
+height: 90%;
+}
+.order-form>label {
+  display: inline-block;
+}
+.order-form>div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10%;
+}
+.order-form>div>input {
+  width:67%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  height: 20px;
+}
+.order-form>div>textarea {
+  width: 67%;
+  text-decoration: none;
+  resize: none;
+}
+.order-btn-div{
+justify-content: start !important;
+margin-top: 22% !important;
+
+}
+.order-btn {
+  width: 50%;
+  background-color: #ff5050;
+  font-size: 15px;
+  padding: 3% 5%;
+  border-radius: 7px;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order{
+  margin-left: 25px;
+  font-size: 18px;
+}
+.go-back {
+  background-color: #ff5050;
+  font-size: 15px;
+  padding: 3% 5%;
+  border-radius: 7px;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 65%;
+  bottom: 8%;
 }
 
 @media screen and (min-width:769px) {
