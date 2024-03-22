@@ -6,7 +6,7 @@ import PrevOrders from "./PrevOrders";
 import img from './image/empty-cart-7359557-6024626.png';
 import axios from "axios";
 
-function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setcarttologin }) {
+function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name, address,mobile,setcarttologin }) {
     const navigate = useNavigate();
     const [isCheckout, setisCheckout] = useState(false);
     const [cartadded, setcartadded] = useState(false);
@@ -31,6 +31,9 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
             let name = document.getElementsByName('name')[0].value;
             let address = document.getElementsByName('address')[0].value;
             let mobile_no = document.getElementsByName('mobile')[0].value;
+            if(mobile_no < 1000000000 || mobile_no > 9999999999){ 
+                throw(Error('mobile number should be of 10 digits.'))
+            }
             let fulldate = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear() + '-' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
             let ids = [], quantities = [];
             cart.map(item => {
@@ -49,8 +52,13 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
             }
             AddCart.current = newcart;
         }
-
-        handleorder(cart);
+        try{
+            handleorder(cart);
+        }
+        catch(err){
+                document.getElementById('mobile').innerHTML = err;
+                return
+        }
         console.log(AddCart.current);
 
         axios({ method: 'POST', url: 'http://127.0.0.1:8000/api/addCart/', data: AddCart.current })
@@ -63,8 +71,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
             })
             .finally(() => {
                 setcartadded(true);
-                navigate('/')
-            })
+                            })
     }
 
 
@@ -80,6 +87,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
 
 
         <div className="Cart-page">
+            { !cartadded && <>
             {cart.length != 0 && <div className="cart-heading">Cart</div>}
             <div className="cart-flex">
 
@@ -123,14 +131,14 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
                                     cart.reduce((sum, item) => {
                                         let dish = foodList.find((eatable) => { return eatable.food_id === item.food_id });
                                         return sum + item.quantity * dish.price;
-                                    }, 30
+                                    }, 10
                                     )
                                 }
                             </div>
                             {/* addcart(handleCheckout(cart)) */}
                             <div className="cart-checkout-btn">
                                 {loggedIn ? <button className="go-to-cart-btn" style={{ marginLeft: 0 }} onClick={() => { setisCheckout(true) }}>Proceed to Checkout</button>
-                                    : <Link to='/login'> <button className="go-to-cart-btn" style={{ textDecoration: 'none', marginLeft: 0 }}> Proceed to Checkout</button> </Link>}
+                                    : <Link to='/login'> <button className="go-to-cart-btn" onClick={()=>{setcarttologin(true)}} style={{ textDecoration: 'none', marginLeft: 0 }}> Proceed to Checkout</button> </Link>}
                             </div>
                         </>
                     }
@@ -146,11 +154,13 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
                             </div>
                             <div>
                                 <label htmlFor="mobile-no"> Mobile No. : </label>
-                                <input required type="text" id="mobile-no" name="mobile" style={{ textDecoration: 'none' }} />
+                                <input required type="text" defaultValue={mobile} id="mobile-no" name="mobile" style={{ textDecoration: 'none' }} />
+
                             </div>
+                            <div id="mobile" style={{fontSize: 10,minHeight:'12px', color:'red',margin:0,marginLeft:'60%'}}></div>
                             <div>
                                 <label htmlFor="address">Address :</label>
-                                <textarea type="text" rows={7} required id="address" name="address" />
+                                <textarea defaultValue={address} type="text" rows={7} required id="address" name="address" />
                             </div>
                             <div className="order-btn-div">
                                 <button type="submit" className="order-btn" style={{ marginLeft: 0 }}>
@@ -160,7 +170,7 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
                                     cart.reduce((sum, item) => {
                                         let dish = foodList.find((eatable) => { return eatable.food_id === item.food_id });
                                         return sum + item.quantity * dish.price;
-                                    }, 30
+                                    }, 10
                                     )
                                 }</div> 
                                 <div style={{fontSize: '10px'}}>Total</div>
@@ -182,7 +192,16 @@ function Cart({ cart, addOne, subtractOne, foodList, loggedIn, userId, name,setc
 
             {loggedIn && <PrevOrders userID={userId} addOne={addOne} subtractOne={subtractOne} foodList={foodList} cart={cart} />}
 
+            
+            </>
+}
+{
+    cartadded &&
+            <div className="order-placed">
+               <p> Order placed Successfully !!</p>
+            </div>
 
+}
         </div>
 
     )

@@ -460,9 +460,20 @@ margin-top: 22% !important;
   justify-content: center;
   position: relative;
   left: 65%;
-  bottom: 8%;
+  bottom: 5%;
 }
-
+.order-placed {
+  border: 1px solid lightgray;
+  margin: auto;
+  height: 300px;
+  width: 30%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 30px;
+}
+.order-placed>p{
+  margin-top: ;
+}
 @media screen and (min-width:769px) {
   .checkout-btn {
     display: none;
