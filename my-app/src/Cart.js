@@ -6,7 +6,7 @@ import PrevOrders from "./PrevOrders";
 import img from './image/empty-cart-7359557-6024626.png';
 import axios from "axios";
 
-function Cart({ cart, addOne, subtractOne, foodList,loggedIn,userId,name}) {
+function Cart({ cart, addOne, subtractOne, foodList,loggedIn,userId,name, setcarttologin}) {
 const navigate = useNavigate();
 const [isCheckout, setisCheckout] = useState(false);
 const [cartadded, setcartadded] = useState(false);
@@ -139,7 +139,7 @@ const [cartadded, setcartadded] = useState(false);
                         {/* addcart(handleCheckout(cart)) */}
                         <div className="cart-checkout-btn">
                  {loggedIn ? <button className="go-to-cart-btn" style={{marginLeft: 0}} onClick={()=>{ setisCheckout(true)}}>Proceed to Checkout</button>
-                    :<Link to='/login'> <button className="go-to-cart-btn" style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
+                    :<Link to='/login'> <button className="go-to-cart-btn" onClick={()=>{setcarttologin(true)}} style={{textDecoration:'none', marginLeft: 0}}> Proceed to Checkout</button> </Link>}  
                     </div>
                     </>
                 }

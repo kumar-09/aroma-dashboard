@@ -74,9 +74,12 @@ const Login = (props) => {
       .then(res => {
         console.log(res.status); 
         if(res.status === 200){
-            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); props.setAddress(res.data.address); props.setMobile(res.data.mobile); 
+            props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); props.setAddress(res.data.address); props.setMobile(res.data.mobile);
+            
             if(res.data.is_admin === true){console.log("admin");props.setAdmin(true); navigate("/admin");}
-            else{console.log("not admin");props.setAdmin(false);navigate("/") } 
+            else{console.log("not admin");props.setAdmin(false);
+            if(!props.carttologin)navigate("/");
+            else navigate("/cart"); } 
           }
        })
       .catch(err => {console.log(err);setPasswordError("Please enter valid credentials");});
