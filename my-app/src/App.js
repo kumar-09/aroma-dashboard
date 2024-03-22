@@ -61,17 +61,17 @@ const App = () => {
   const [menu, setmenu] = useState([]);
   const [categories, setcategories] = useState([]);
   let data;
-    useEffect(() => {
-      
-        axios.get('http://localhost:8000/api/all-category-menu')
-        .then(res => {
-          data = res.data;
-          settempData(data);
-          // console.log(data);
-          
-        })
-        // .catch(err => {console.log("Error thrown")})
-      
+  useEffect(() => {
+    // try{
+      axios.get('http://localhost:8000/api/all-category-menu')
+      .then(res => {
+        data = res.data;
+        settempData(data);
+        // console.log(data);
+        
+      })
+      .catch(err => {console.log("Error thrown")})
+        
       axios.get('http://127.0.0.1:8000/api/menu/')
       .then(res=> {
         setmenu(res.data);
@@ -84,31 +84,56 @@ const App = () => {
       .then(res=>{
           setcategories(res.data);
       })
+      .catch(err=>{
+        console.log(err);
+      })
 
       if(!loggedIn){
-        // try{
-          axios({method : 'get', url: str , headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          }})
-          .then(res => {
-            console.log(res); 
-            if(res.status === 200){
-              setLoggedIn(true); setUserid(res.data.userid); setName(res.data.name); setAddress(res.data.address); setMobile(res.data.mobile); setAdmin(res.data.is_admin); localStorage.setItem('aromas_session_key',sessionkey);
-            }
+      // try{
+        axios({method : 'get', url: str , headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        }})
+        .then(res => {
+          console.log(res); 
+          if(res.status === 200){
+            setLoggedIn(true); 
+            setUserid(res.data.userid); 
+            setName(res.data.name); 
+            setAddress(res.data.address); 
+            setMobile(res.data.mobile); 
+            setAdmin(res.data.is_admin); 
+            localStorage.setItem('aromas_session_key',sessionkey);
           }
-            )
-          .catch(err => {console.log(err);navigate("/");} );
         }
-    },[]);
+          )
+        .catch(err => {
+          console.log(err);
+          if(err.response.data.message==='Session expired.'){
+            alert('Session Expired');
+            localStorage.setItem('aromas_session_key',"");
+          }
+          if(err.status===400){
+            navigate("/");
+          }
+        });
+      }
+    // }
+    // catch(error){
+    //   console.log(error);
+    //   navigate("/error");
+    // }
+    
+  },[]);
 
-useEffect(()=>{
+  useEffect(()=>{
   Object.keys(tempData).forEach( key => {
     temparr.push([key,tempData[key]])
   })
   setMasterData(temparr);
-},[tempData])
+  },[tempData]);
 
   const [cart, setCart] = useState([]);
+    
 
   const subtractOne = (id) =>{
     const tempCart = [...cart];

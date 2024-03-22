@@ -12,15 +12,30 @@
 .App {
   min-height: calc(100vh - var(--footerHeight));
 }
+@media screen and (min-width:431) {
 
+}
 @media screen and (max-width:431px){
+  .navbar {
+    padding-top:20px;
+    padding-bottom:20px;
+    margin-right:10px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-wrap:wrap;
+    border-bottom: 1px solid #f2f2f2;
+    width:100%;
+    
+  }
   .searchbox{
-    width: 400px;
+    width: 90% !important;
+    margin-left:0px;
   }
   .searchresults{
     position: fixed;
-    top: 0px;
-    left: 20px;
+    top: 200px !important;
+    left: 30px !important;
     right: 0;
     bottom: 0;
     z-index: 999;
@@ -503,7 +518,7 @@ margin-top: 22% !important;
     display: none;
   }
 }
-@media screen and (max-width:769px) {
+@media screen and (max-width:769px) and (min-width:431px) {
   .navbar h1{
     width: 230px;
   }
