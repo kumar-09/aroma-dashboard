@@ -5,6 +5,7 @@ import DropDown from './LoginPage/Dropdown.js';
 import catgimg from './image/category-svgrepo-com.svg'
 import cartimg from './image/cart-3-svgrepo-com.svg'
 import loginimg from './image/login-svgrepo-com.svg'
+import accountimg from './image/mine-svgrepo-com.svg'
 const Navbar = (props) => {
     var NavbarRef = props.NavbarRef;
     var loggedIn = props.loggedIn;
@@ -38,7 +39,7 @@ const Navbar = (props) => {
                <Link to='/admin' className="nav-links">Admin</Link>}
                {loggedIn ? 
                <div style={{display:"flex", flexDirection:"column"}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <Link className="nav-links" to='/account' id = "acc" >{name}</Link>
+                    <Link className="nav-links" to='/account' id = "acc" ><img src={accountimg} alt={""} style={{width: '25px'}}/>{name}</Link>
                 </div> : <Link to='/Login' className="nav-links" ><img src={loginimg} alt={""} style={{width: '25px'}}></img>Login</Link>}
             </nav>
         </div>

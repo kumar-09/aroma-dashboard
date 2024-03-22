@@ -77,9 +77,11 @@ const Login = (props) => {
             props.setLoggedIn(true); props.setUserid(res.data.userid); props.setName(res.data.name); props.setAddress(res.data.address); props.setMobile(res.data.mobile);
             localStorage.setItem('aromas_session_key',res.data.session_key);
             if(res.data.is_admin === true){props.setAdmin(true);navigate("/admin");}
-            else{props.setAdmin(false);}
-            if(!props.carttologin){navigate("/");}
-            else {props.setCart(props.cart);navigate("/cart");props.setcarttologin(false);} 
+            else{props.setAdmin(false);
+              if(!props.carttologin){navigate("/");}
+              else {props.setCart(props.cart);navigate("/cart");props.setcarttologin(false);}
+            }
+             
           }
        })
       .catch(err => {console.log(err);if(err.message==="Invalid credentials"){setPasswordError("Please enter valid credentials");}else{setPasswordError('Something went wrong');}});
