@@ -226,6 +226,16 @@ body {
     .Home{
         margin:0 5px;
     }
+    .order-placed{ 
+        font-size: 18px;
+        width: 80%;
+    }
+    .order-placed>p{
+        padding-left:10%
+    }
+    .order-placed>button {
+        margin-left: 10%;
+    }
     
 }
 @media screen and (max-width:1025px) {

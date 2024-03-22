@@ -451,7 +451,6 @@ margin-top: 22% !important;
   bottom: 5%;
 }
 .order-placed {
-  border: 1px solid lightgray;
   margin: auto;
   height: 300px;
   width: 30%;
@@ -460,7 +459,7 @@ margin-top: 22% !important;
   font-size: 30px;
 }
 .order-placed>p{
-  margin-top: ;
+  margin-top:25% ;
 }
 @media screen and (min-width:769px) {
   .checkout-btn {
