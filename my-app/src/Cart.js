@@ -10,7 +10,7 @@ function Cart({ cart, addOne, subtractOne, foodList,loggedIn,userId,name, setcar
 const navigate = useNavigate();
 const [isCheckout, setisCheckout] = useState(false);
 const [cartadded, setcartadded] = useState(false);
-    const [AddCart,setAddCart] = useState({
+    const AddCart= useRef({
         userid : '',
         name: '',
         cart_id: '',
@@ -20,52 +20,42 @@ const [cartadded, setcartadded] = useState(false);
         quantity: [],
     });
 
-    function handleorder(cart,e){
-        e.preventDefault();
-        // console.log(AddCart)
-        let d = new Date();
-        let fulldate = d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'-'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
-        let ids=[],quantities=[];
-        cart.map(item => {
-            ids.push(item.food_id);
-            quantities.push(item.quantity);
-        })
-        console.log(ids,quantities,fulldate,userId)
-         let newcart={
-            userid: userId,
-            cart_id: fulldate,
-            food_ids: ids,
-            quantity: quantities,
-            name: '',
-            mobile: 0,
-            address: ''
-        }
-        setAddCart(newcart);
-    }
-    function handlechange(e){
-        const{name,value} = e.target;
-        setAddCart( prevDetails =>({
-            ...prevDetails,
-            [name]: value,
-        }))
-    }
+
 
     const addcart= (e)=>{
-        handleorder(cart);
+        console.log('order processing')
         e.preventDefault();
-        let formdata = new FormData();
-        formdata.append('userid',AddCart['userid'])
-        formdata.append('name',AddCart['name'])
-        formdata.append('cart_id',AddCart['cart_id'])
-        formdata.append('mobile',AddCart['mobile'])
-        formdata.append('food_ids',AddCart['food_ids'])
-        formdata.append('address',AddCart['address'])
-        formdata.append('quantity',AddCart['quantity'])
-        console.log(formdata.get("name"))
-
-        axios({method:'POST', url: 'http://127.0.0.1:8000/api/addCart/', data: formdata})
+        function handleorder(cart){
+            // console.log(AddCart)
+            let d = new Date();
+            let name = document.getElementsByName('name')[0].value;
+            let address = document.getElementsByName('address')[0].value;
+            let mobile_no = document.getElementsByName('mobile')[0].value;
+            let fulldate = d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'-'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+            let ids=[],quantities=[];
+            cart.map(item => {
+                ids.push(item.food_id);
+                quantities.push(item.quantity);
+            })
+            console.log(ids,quantities,fulldate,userId,name,address,mobile_no)
+             let newcart={
+                userid: userId,
+                cart_id: fulldate,
+                food_ids: ids,
+                quantity: quantities,
+                name: name,
+                mobile: mobile_no,
+                address: address
+            }
+            AddCart.current = newcart;
+        }
+        
+        handleorder(cart);
+        console.log(AddCart.current);
+        
+        axios({method:'POST', url: 'http://127.0.0.1:8000/api/addCart/', data: AddCart.current})
         .then (res=>{
-            console.log(res);
+            console.log(res.config.data);
         })
         .catch( err=>{
             console.log('failed to add cart');
@@ -73,9 +63,15 @@ const [cartadded, setcartadded] = useState(false);
         })
         .finally(()=>{
             setcartadded(true);
+            navigate('/')
         })
     }
         
+    function handlechange(e){
+        const{name,value} = e.target;
+       
+        }
+        // console.log(AddCart)
     
         
 
