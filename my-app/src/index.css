@@ -473,6 +473,31 @@ margin-top: 22% !important;
 .order-placed>p{
   margin-top:25% ;
 }
+.account-page{
+  position: relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:30px;
+  align-items: center;
+  top:40px;
+}
+.account-headings{
+  position: relative;
+  display:flex;
+  gap:5px;
+  flex-direction: column;
+}
+.account-heading{
+  font-weight:bold;
+  font-size:30px;
+  /* text-decoration: ; */
+  color:#ff5050
+}
+.accountimg{
+
+  max-width:200px;
+}
 @media screen and (min-width:769px) {
   .checkout-btn {
     display: none;
