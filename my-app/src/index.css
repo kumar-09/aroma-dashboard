@@ -345,6 +345,7 @@ form{
     font-size: 18px;
     border: 1px solid lightgray;
 }
+
 .delivery-charges{
   margin: 20px 0;
   border-bottom: 1px solid lightgray;
@@ -387,7 +388,43 @@ border-radius: 5px;
 }
 .previous-orders{
   margin: 5% 0;
-  
+}
+
+.order-form {
+justify-content: space-evenly !important;
+height: 75%;
+}
+.order-form>label {
+  display: inline-block;
+}
+.order-form>div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+}
+.order-form>div>input {
+  width:67%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  height: 20px;
+}
+.order-form>div>textarea {
+  width: 67%;
+  text-decoration: none;
+  resize: none;
+}
+.order-btn-div{
+justify-content: space-evenly !important;
+}
+.order-btn {
+  width: 50%;
+  background-color: #ff5050;
+  font-size: 18px;
+  padding: 10px 0;
+  border-radius: 20px;
+  border: none;
+  display: flex;
 }
 
 @media screen and (min-width:769px) {
