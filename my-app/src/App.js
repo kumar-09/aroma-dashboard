@@ -45,7 +45,7 @@ const App = () => {
   const [categories, setcategories] = useState([]);
   let data;
     useEffect(() => {
-      
+      try{
         axios.get('http://localhost:8000/api/all-category-menu')
         .then(res => {
           data = res.data;
@@ -100,11 +100,11 @@ const App = () => {
           }
         });
       }
-    // }
-    // catch(error){
-    //   console.log(error);
-    //   navigate("/error");
-    // }
+    }
+    catch(error){
+      console.log(error);
+      navigate("/error");
+    }
     
   },[]);
 
