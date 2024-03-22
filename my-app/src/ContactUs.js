@@ -15,10 +15,10 @@ function ContactUs(){
                     India <br />
                 <br />
                 Phone: 
-                    +91 9019566851 <br />
+                    +91 9999999999 <br />
                 <br />
                 Userid:
-                    aromadhaba@iitb.ac.in <br />
+                    ldap@iitb.ac.in <br />
                 <br />
                 Operating Hours: <br />
                 Monday - Friday: 5:30 p.m. - 3:30 a.m. <br />
