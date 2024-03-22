@@ -25,18 +25,6 @@ import { useNavigate } from 'react-router-dom';
 
 const App = () => {
 
-  /*const [list, setList] = useState([
-    {dish: {id:1 ,name:'Paneer Cheese Sandwich', price: '66', image:'./images/3f797cae-9813-4239-b745-9e2cdf09932c.webp', category: 'Sandwich'}, quantity:0},
-    {dish: {id:2,name: 'Chicken cheese Sandwich', price: '66', image: '', category: 'Sandwich'} ,quantity:0},
-    {dish: {id:3, name:'Egg Cheese Sandwich', price:'60',image:'', category: 'Sandwich'}, quantity:0},
-    {dish: {id:4, name:'Veg Cheese Sandwich', price:'55', image:'', category: 'Sandwich'}, quantity:0},
-    {dish: {id:5, name:'sprite', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:6, name: 'coke', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:7, name: 'fanta', price:'20', image:'', category:'Cold Drinks'}, quantity:0},
-    {dish: {id:8, name: 'Veg Hakka Noodles', price:'45', image:'', category:'Noodles'}, quantity:0},
-    {dish: {id:9, name: 'Veg Fried Rice', price:'50', image:'', category:'Rices'}, quantity:0},
-    {dish: {id:10, name: 'Paneer Paratha', price:'26', image:'', category:'Parathas'}, quantity:0},
-  ]);*/
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate(); 
   const [searchInput, setSearchInput] = useState("");
@@ -44,14 +32,9 @@ const App = () => {
   const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   
-  // console.log(loginInfo)
   var sessionkey = localStorage.getItem('aromas_session_key');
   if(sessionkey === null){sessionkey = "";}
   var str = 'http://127.0.0.1:8000/api/is-authenticated/' + sessionkey + "/";
-  
-    // catch(error){
-    //   console.log(error)
-    // }
   
   const [carttologin, setcarttologin] = useState(false);
 
@@ -67,10 +50,8 @@ const App = () => {
         .then(res => {
           data = res.data;
           settempData(data);
-          // console.log(data);
           
         })
-        // .catch(err => {console.log("Error thrown")})
       
       axios.get('http://127.0.0.1:8000/api/menu/')
       .then(res=> {
@@ -154,13 +135,11 @@ useEffect(()=>{
     return tempCart;
     });
   }
-  // console.log(MasterData);
 
 
 const [userid, setUserid] = useState('');
 const [name, setName] = useState('');
 const [Hover, setHover] = useState(false);
-// console.log(searchInput);
 
 //setting useRef to navbar to access header element
   const NavbarRef = useRef(null);

@@ -14,7 +14,6 @@ const Navbar = (props) => {
     const foodList = props.foodList;
     const setLoggedIn = props.setLoggedIn;
 
-    // console.log(foodList);
     
     const handleMouseEnter = () => {
         props.setHover(true);
@@ -31,7 +30,6 @@ const Navbar = (props) => {
             </div>
             <nav className = "navbar">
                <Link to='/'> <h1 >AROMAS</h1></Link>
-                {/* <input className="search" type="text" placeholder="Search..." /> */}
                 <Searchbar items={foodList} setSearchInput = {props.setSearchInput}/>
                <Link to='/Categories' className="nav-links" ><img src={catgimg} alt={""} style={{width: '25px'}}></img> Categories</Link>
                {!props.admin ? 
