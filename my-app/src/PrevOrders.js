@@ -18,18 +18,16 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
                 })
 
                 .catch((err) => {
-                    // console.log("Fetch Error" + err);
+                    console.log("Fetch Error" + err);
                 });
         }
     ,[userID]
     );
-    // console.log(pastOrders)
     const tempList = [];//This has pdtID: quantity pairs
     for(let i=0; i<=pastOrders.length-1; i++){
     for (const key in pastOrders[i]) {
         tempList.push(...pastOrders[i][key]);
     }}
-    // console.log(tempList);
     const suitFormat = [];
     for(let i = tempList.length-1; i >=0 && suitFormat.length<3; i--)
     {
@@ -40,7 +38,6 @@ function PrevOrders({userID, addOne, subtractOne, foodList, cart}){
             }
         }
     }
-    // console.log(suitFormat)
     return (
         <>
         <div>

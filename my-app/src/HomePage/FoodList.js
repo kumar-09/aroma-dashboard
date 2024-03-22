@@ -45,22 +45,14 @@ const FoodList = forwardRef(({MasterData,subtractOne, addOne, cart, NavbarRef, m
     // implementation of back-scrolling ----->>>
  
     let HeightOfHeader;
-    //getting height of header and setting it to css variable--->
-    // useEffect(()=>{  
-       
-    //     // console.log(HeightOfHeader)
-    // }},[])
-
     useLayoutEffect(() => {
         if (NavbarRef.current) {
             HeightOfHeader = document.getElementById('head').getBoundingClientRect().height;
             document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);}
-            // console.log(HeightOfHeader)
         function updateSize() {
             if (NavbarRef.current) {
                 HeightOfHeader = NavbarRef.current.getBoundingClientRect().bottom;
                 document.documentElement.style.setProperty('--stickHeight', `${HeightOfHeader}px`);
-                // console.log(HeightOfHeader);
             }
         }
         window.addEventListener('resize', updateSize);

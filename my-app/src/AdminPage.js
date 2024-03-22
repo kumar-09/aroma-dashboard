@@ -19,15 +19,7 @@ function AdminPage(event){
             cat_image: null
         }
     )
-    // const [food_id, setfood_id] = useState('');
-    // const [price, setprice] = useState(0);
-    // const [cat_image, setcat_image] = useState(null);
-    // const [food_image, setfood_image] = useState(null);
-    // const [Type, setType] = useState('');
-    // const [name, setname] = useState('');
-
     function handleSubmit(event){
-        // console.log(details)
        let formdata = new FormData();
         formdata.append("food_id",details['food_id'])
         formdata.append('name',details['name'])
@@ -36,12 +28,10 @@ function AdminPage(event){
         formdata.append('image',details['image'])
         formdata.append('cat_image',details['cat_image'])
 
-        // console.log(formdata.get("food_id"))
         event.preventDefault();
         axios({method : 'post', url: 'http://127.0.0.1:8000/api/additem/', data: formdata, 
     })
           .then(res => {
-            // console.log(res.data)    
         })
         .catch(err => console.log(err))
     }
@@ -50,7 +40,6 @@ function AdminPage(event){
     function handleChange(event) {
         const { name, value } = event.target;
                 if(name === 'image' || name === 'cat_image'){
-                    // console.log(event.target.files[0])
 
                     setDetails( prevDetails =>({
                         ...prevDetails,

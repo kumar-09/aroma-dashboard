@@ -25,7 +25,7 @@ useEffect (  ()=>{
               setFailed(true);
               setLoad(false);
           })
-},[]);
+},[category]);
 
 //fliter---->>>
 
