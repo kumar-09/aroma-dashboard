@@ -1,6 +1,5 @@
 .Categories {
     margin:20px;
-    
 }
 .Category-list {
     display: flex;
@@ -84,7 +83,10 @@
         height: 24.5px;
     }
 }
-@media screen and (max-width: 431px) {
+@media screen and (max-width: 435px) {
+    .previous-orders{
+        margin: 0 19%;
+    }
     .categorylist-flex{
         justify-content: space-evenly;
     }
