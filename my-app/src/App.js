@@ -77,7 +77,7 @@ const App = () => {
         'Content-Type': 'application/x-www-form-urlencoded',
         }})
         .then(res => {
-          console.log(res); 
+          // console.log(res); 
           if(res.status === 200){
             setLoggedIn(true); 
             setUserid(res.data.userid); 
