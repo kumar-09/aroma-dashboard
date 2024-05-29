@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/aroma-dashboard/static/css/main.b3963585.css",
+    "main.js": "/aroma-dashboard/static/js/main.39e9ac87.js",
+    "static/js/592.7f72a991.chunk.js": "/aroma-dashboard/static/js/592.7f72a991.chunk.js",
+    "static/media/Spin-1s-200px.gif": "/aroma-dashboard/static/media/Spin-1s-200px.c5902aa37fdc6ab3059e.gif",
+    "static/media/empty-cart-7359557-6024626.png": "/aroma-dashboard/static/media/empty-cart-7359557-6024626.f0d8f3d2a69675852ebb.png",
+    "static/media/mine-svgrepo-com.svg": "/aroma-dashboard/static/media/mine-svgrepo-com.2d0f3058ffe8522ca5da1cf80339a625.svg",
+    "static/media/login-svgrepo-com.svg": "/aroma-dashboard/static/media/login-svgrepo-com.8593c04aeaf91c1fcbfb793176b132cc.svg",
+    "static/media/cart-3-svgrepo-com.svg": "/aroma-dashboard/static/media/cart-3-svgrepo-com.c1a6b662592b140f5a9bd37e373e2667.svg",
+    "static/media/category-svgrepo-com.svg": "/aroma-dashboard/static/media/category-svgrepo-com.50ea54b78089dd5ef8930296d2cadc49.svg",
+    "static/media/success-svgrepo-com.svg": "/aroma-dashboard/static/media/success-svgrepo-com.c46f36634c4bf6536ef183b90960dbad.svg",
+    "index.html": "/aroma-dashboard/index.html",
+    "static/media/admin-svgrepo-com.svg": "/aroma-dashboard/static/media/admin-svgrepo-com.b596ce0a3972cc68d97c9ff4d1419740.svg",
+    "main.b3963585.css.map": "/aroma-dashboard/static/css/main.b3963585.css.map",
+    "main.39e9ac87.js.map": "/aroma-dashboard/static/js/main.39e9ac87.js.map",
+    "592.7f72a991.chunk.js.map": "/aroma-dashboard/static/js/592.7f72a991.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3963585.css",
+    "static/js/main.39e9ac87.js"
+  ]
+}
